@@ -19,11 +19,11 @@ public class LogicGateSpawner : MonoBehaviour
 	{
 		foreach (var trackedImage in args.added)
 		{
-			Debug.Log("Found: " + trackedImage.referenceImage.name);
-			Debug.Log(Instantiate(logicGatePrefabs.Find(x => x.key.Equals(trackedImage.referenceImage
-			.name))
-			.value, 
-			trackedImage.transform, false));
+			var go = Instantiate(logicGatePrefabs.Find(x => x.key.Equals(trackedImage.referenceImage.name)).value,
+				trackedImage.transform, true);
+
+			Debug.Log("found marker, position: " + go.transform.position + ", image pos: " +
+			          trackedImage.transform.position);
 		}
 	}
 }
