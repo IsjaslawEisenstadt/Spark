@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class ARPlane : MonoBehaviour
 {
-	private void Start()
+	void Start()
 	{
 		EventBus.onSetShowPlanes += OnSetShowPlanes;
 		EventBus.InvokeOnPlaneSpawned(gameObject);
 	}
 
-	private void OnDestroy()
+	void OnDestroy()
 	{
 		EventBus.onSetShowPlanes -= OnSetShowPlanes;
 	}
 
-	private void OnSetShowPlanes(bool showPlanes)
+	void OnSetShowPlanes(bool showPlanes)
 	{
 		gameObject.SetActive(showPlanes);
 	}

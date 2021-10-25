@@ -5,22 +5,22 @@ using UnityEngine.UI;
 
 public class TogglePlanes : MonoBehaviour
 {
-	private Toggle _toggle;
+	Toggle toggle;
 
-	private void Start()
+	void Start()
 	{
-		_toggle = GetComponent<Toggle>();
+		toggle = GetComponent<Toggle>();
 
 		EventBus.onPlaneSpawned += OnPlaneSpawned;
 	}
 
-	private void OnPlaneSpawned(GameObject go)
+	void OnPlaneSpawned(GameObject go)
 	{
-		go.SetActive(_toggle.isOn);
+		go.SetActive(toggle.isOn);
 	}
 
 	public void VisualizePlanes()
 	{
-		EventBus.InvokeSetShowPlanes(_toggle.isOn);
+		EventBus.InvokeSetShowPlanes(toggle.isOn);
 	}
 }
