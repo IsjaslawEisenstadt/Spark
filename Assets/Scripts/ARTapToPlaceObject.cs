@@ -7,59 +7,40 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ARRaycastManager))]
 public class ARTapToPlaceObject : MonoBehaviour
 {
-    private GameObject spawnedObject;
-    private ARRaycastManager arRaycastManager;
-    private Vector2 touchPosition;
+	private GameObject _spawnedObject;
+	private ARRaycastManager _arRaycastManager;
 
-    static List<ARRaycastHit> hits = new List<ARRaycastHit>();
+	private static readonly List<ARRaycastHit> Hits = new List<ARRaycastHit>();
 
-    void Awake()
-    {
-        arRaycastManager = GetComponent<ARRaycastManager>();
-    }
+	private void Awake()
+	{
+		_arRaycastManager = GetComponent<ARRaycastManager>();
+		enabled = false;
+	}
 
-    bool tryGetTouchPosition(out Vector2 touchPosition)
-    {
-        if (Input.touchCount > 0)
-        {
-            touchPosition = Input.GetTouch(0).position;
-            return true;
-        }
+	private void Update()
+	{
+		if (Input.touchCount <= 0)
+		{
+			if (!_spawnedObject.activeSelf)
+				Destroy(_spawnedObject);
+			_spawnedObject = null;
+			enabled = false;
+			return;
+		}
 
-        touchPosition = default;
-        return false;
-    }
+		var touchPosition = Input.GetTouch(0).position;
+		var hit = _arRaycastManager.Raycast(touchPosition, Hits, TrackableType.PlaneWithinPolygon);
 
-    void Update()
-    {
-        if (spawnedObject == null)
-            return;
+		_spawnedObject.SetActive(hit);
+		if (hit)
+			_spawnedObject.transform.position = Hits[0].pose.position;
+	}
 
-        if (!tryGetTouchPosition(out Vector2 touchPosition))
-        {
-            if (!spawnedObject.activeSelf)
-                Destroy(spawnedObject);
-            spawnedObject = null;
-            return;
-        }
-
-        if(arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon))
-        {
-            if (!spawnedObject.activeSelf)
-                spawnedObject.SetActive(true);
-
-            spawnedObject.transform.position = hits[0].pose.position;
-        }
-        else
-        {
-            if(spawnedObject.activeSelf)
-                spawnedObject.SetActive(false);
-        }
-    }
-
-    public void instantiateGate(GameObject gate)
-    {
-        spawnedObject = Instantiate(gate);
-        spawnedObject.SetActive(false);
-    }
+	public void InstantiateGate(GameObject gate)
+	{
+		_spawnedObject = Instantiate(gate);
+		_spawnedObject.SetActive(false);
+		enabled = true;
+	}
 }

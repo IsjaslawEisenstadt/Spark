@@ -946,7 +946,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 40919618}
           m_TargetAssemblyTypeName: ARTapToPlaceObject, Assembly-CSharp
-          m_MethodName: instantiateGate
+          m_MethodName: InstantiateGate
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 7452306746260275617, guid: 87ad82be5f0eeb546a04b3f11c94c54b, type: 3}
