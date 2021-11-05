@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8109438575550316068}
   - component: {fileID: 7911988898470553375}
   m_Layer: 0
-  m_Name: ORSphere
+  m_Name: OR
   m_TagString: LogicGate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -24,8 +24,8 @@ public class GateSelector : MonoBehaviour
 
 		if (Physics.Raycast(ray, out RaycastHit hit) && hit.rigidbody.gameObject.CompareTag("LogicGate"))
 		{
-			gateDrawerScript.SetCurrentGateObject(gameObject);
 			gateDrawer.SetActive(true);
+			gateDrawerScript.SetCurrentGateObject(hit.rigidbody.transform.parent.gameObject);
 		}
 	}
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GateDrawer : MonoBehaviour
 {
-    GameObject currentGateObject;
+    GameObject currentBaseGateObject;
     BaseGate baseGateScript;
 
     public void OnCloseGateDrawer()
@@ -12,12 +12,16 @@ public class GateDrawer : MonoBehaviour
 
     public void OnGateSelected(string gateName)
     {
+        Debug.Log("GateSelected: " + gateName);
         baseGateScript.SetGateActive(gateName);
     }
 
     public void SetCurrentGateObject(GameObject gateObject)
     {
-        currentGateObject = gateObject;
-        baseGateScript = currentGateObject.GetComponent<BaseGate>();
+        currentBaseGateObject = gateObject;
+        baseGateScript = currentBaseGateObject.GetComponent<BaseGate>();
+
+        Debug.Log("currentGateObject: " + currentBaseGateObject.name);
+        Debug.Log("BaseGate: " + (baseGateScript != null));
     }
 }

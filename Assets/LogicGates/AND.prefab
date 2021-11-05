@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 305382398693321761}
   - component: {fileID: 1894192972713203278}
   m_Layer: 0
-  m_Name: AndCube
+  m_Name: AND
   m_TagString: LogicGate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,7 +10,10 @@ public class BaseGate : MonoBehaviour
         {
             currentSelectedGate.SetActive(false);
         }
+
         currentSelectedGate = gameObject.transform.Find(gateName).gameObject;
         currentSelectedGate.SetActive(true);
+
+        Debug.Log("CurrentSelectedGAte: " + currentSelectedGate);
     }
 }
