@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseGate : MonoBehaviour
 {
-    private GameObject currentSelectedGate;
+    GameObject currentSelectedGate;
 
-    public void SetGateActive(string GateName)
+    public void SetGateActive(string gateName)
     {
-        currentSelectedGate.SetActive(false);
-        currentSelectedGate = gameObject.transform.Find(GateName).gameObject;
+        if (currentSelectedGate != null)
+        {
+            currentSelectedGate.SetActive(false);
+        }
+        currentSelectedGate = gameObject.transform.Find(gateName).gameObject;
         currentSelectedGate.SetActive(true);
     }
 }

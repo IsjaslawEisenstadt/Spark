@@ -4,9 +4,9 @@ public class GateSelector : MonoBehaviour
 {
 	public GameObject gateDrawer;
 
-	private GateDrawer gateDrawerScript;
+	GateDrawer gateDrawerScript;
 
-    private void Awake()
+	void Awake()
     {
 		gateDrawerScript = gateDrawer.GetComponent<GateDrawer>();
     }
