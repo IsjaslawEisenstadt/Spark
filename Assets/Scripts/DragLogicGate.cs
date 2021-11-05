@@ -7,40 +7,23 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ARRaycastManager))]
 public class DragLogicGate : MonoBehaviour
 {
-	GameObject spawnedObject;
-	ARRaycastManager arRaycastManager;
-
-	static readonly List<ARRaycastHit> hits = new List<ARRaycastHit>();
-
-	void Awake()
-	{
-		arRaycastManager = GetComponent<ARRaycastManager>();
-		enabled = false;
-	}
+	public GameObject GateDrawer;
 
 	void Update()
 	{
 		if (Input.touchCount <= 0)
 		{
-			if (!spawnedObject.activeSelf)
-				Destroy(spawnedObject);
-			spawnedObject = null;
-			enabled = false;
 			return;
 		}
 
 		var touchPosition = Input.GetTouch(0).position;
-		var hit = arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon);
 
-		spawnedObject.SetActive(hit);
-		if (hit)
-			spawnedObject.transform.position = hits[0].pose.position;
-	}
+		RaycastHit hit;
+		Ray ray = Camera.main.ScreenPointToRay(touchPosition);
 
-	public void InstantiateGate(GameObject gate)
-	{
-		spawnedObject = Instantiate(gate);
-		spawnedObject.SetActive(false);
-		enabled = true;
+		if (Physics.Raycast(ray, out hit) && hit.rigidbody.gameObject.tag == "Gate")
+		{
+			GateDrawer.SetActive(true);
+		}
 	}
 }
