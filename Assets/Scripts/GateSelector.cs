@@ -1,10 +1,17 @@
 using UnityEngine;
 
-public class DragLogicGate : MonoBehaviour
+public class GateSelector : MonoBehaviour
 {
 	public GameObject gateDrawer;
 
-	void Update()
+	private GateDrawer gateDrawerScript;
+
+    private void Awake()
+    {
+		gateDrawerScript = gateDrawer.GetComponent<GateDrawer>();
+    }
+
+    void Update()
 	{
 		if (Input.touchCount <= 0)
 		{
@@ -17,6 +24,7 @@ public class DragLogicGate : MonoBehaviour
 
 		if (Physics.Raycast(ray, out RaycastHit hit) && hit.rigidbody.gameObject.CompareTag("LogicGate"))
 		{
+			gateDrawerScript.SetCurrentGateObject(gameObject);
 			gateDrawer.SetActive(true);
 		}
 	}
