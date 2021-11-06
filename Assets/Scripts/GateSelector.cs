@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GateSelector : MonoBehaviour
 {
@@ -7,22 +8,29 @@ public class GateSelector : MonoBehaviour
 	GateDrawer gateDrawerScript;
 
 	void Awake() => gateDrawerScript = gateDrawer.GetComponent<GateDrawer>();
-
+	
 	void Update()
 	{
-		if (Input.touchCount <= 0 || gateDrawer.activeSelf)
+		if (Input.touchCount <= 0 || EventSystem.current.IsPointerOverGameObject(0))
 		{
 			return;
 		}
 
-		Vector2 touchPosition = Input.GetTouch(0).position;
+		Touch touchEvent = Input.GetTouch(0);
 
-		Ray ray = Camera.main.ScreenPointToRay(touchPosition);
-
-		if (Physics.Raycast(ray, out RaycastHit hit) && hit.rigidbody.gameObject.CompareTag("LogicGate"))
+		if (touchEvent.phase == TouchPhase.Ended)
 		{
-			gateDrawer.SetActive(true);
-			gateDrawerScript.SetCurrentGateObject(hit.rigidbody.transform.parent.gameObject);
+			Vector2 touchPosition = touchEvent.position;
+			Ray ray = Camera.main.ScreenPointToRay(touchPosition);
+
+			if (Physics.Raycast(ray, out RaycastHit hit) && hit.rigidbody.gameObject.CompareTag("LogicGate"))
+			{
+				gateDrawerScript.Open(hit.rigidbody.transform.parent.gameObject);
+			}
+			else
+			{
+				gateDrawerScript.Close();
+			}
 		}
 	}
 }

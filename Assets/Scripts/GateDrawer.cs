@@ -3,23 +3,31 @@ using UnityEngine;
 
 public class GateDrawer : MonoBehaviour
 {
-	BaseGate baseGateScript;
+	BaseGate baseGate;
 
-	public void OnCloseGateDrawer()
+	public void OnGateSelected(string gateName) => baseGate.SetGateType(gateName);
+
+	public void Open(GameObject gateObject)
 	{
-		if (baseGateScript)
+		gameObject.SetActive(true);
+		
+		if (baseGate)
 		{
-			baseGateScript.Selected = false;
+			baseGate.Selected = false;
+		}
+
+		baseGate = gateObject.GetComponent<BaseGate>();
+		baseGate.Selected = true;
+	}
+
+	public void Close()
+	{
+		if (baseGate)
+		{
+			baseGate.Selected = false;
 		}
 
 		gameObject.SetActive(false);
 	}
-
-	public void OnGateSelected(string gateName) => baseGateScript.SetGateType(gateName);
-
-	public void SetCurrentGateObject(GameObject gateObject)
-	{
-		baseGateScript = gateObject.GetComponent<BaseGate>();
-		baseGateScript.Selected = true;
-	}
+	
 }
