@@ -921,6 +921,7 @@ GameObject:
   m_Component:
   - component: {fileID: 573178499}
   - component: {fileID: 573178498}
+  - component: {fileID: 573178500}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -957,6 +958,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &573178500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573178497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a775d1acf95f14595e842e5e246e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  line: {fileID: 1361741781828246816, guid: ecbbc5e3dc4fcfb4fb0c50a549a30f33, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,8 +1476,8 @@ MonoBehaviour:
   lineIntensity: 1
   fillAmount: 0
   lineColor0: {r: 1, g: 0.9298608, b: 0.07058823, a: 1}
-  lineColor1: {r: 0, g: 1, b: 0, a: 1}
-  lineColor2: {r: 0, g: 0, b: 1, a: 1}
+  lineColor1: {r: 0, g: 0.08237791, b: 1, a: 1}
+  lineColor2: {r: 0, g: 1, b: 0.09511161, a: 1}
   additiveRendering: 0
   backfaceCulling: 1
   fillColor: {r: 0, g: 0, b: 1, a: 1}
