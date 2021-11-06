@@ -23,9 +23,9 @@ public class GateSelector : MonoBehaviour
 			Vector2 touchPosition = touchEvent.position;
 			Ray ray = Camera.main.ScreenPointToRay(touchPosition);
 
-			if (Physics.Raycast(ray, out RaycastHit hit) && hit.rigidbody.gameObject.CompareTag("LogicGate"))
+			if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.gameObject.CompareTag("LogicGate"))
 			{
-				gateDrawerScript.Open(hit.rigidbody.transform.parent.gameObject);
+				gateDrawerScript.Open(hit.collider.transform.parent.gameObject);
 			}
 			else
 			{
