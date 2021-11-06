@@ -6,18 +6,15 @@ public class GateSelector : MonoBehaviour
 
 	GateDrawer gateDrawerScript;
 
-	void Awake()
-    {
-		gateDrawerScript = gateDrawer.GetComponent<GateDrawer>();
-    }
+	void Awake() => gateDrawerScript = gateDrawer.GetComponent<GateDrawer>();
 
-    void Update()
+	void Update()
 	{
-		if (Input.touchCount <= 0)
+		if (Input.touchCount <= 0 || gateDrawer.activeSelf)
 		{
 			return;
 		}
-		
+
 		Vector2 touchPosition = Input.GetTouch(0).position;
 
 		Ray ray = Camera.main.ScreenPointToRay(touchPosition);

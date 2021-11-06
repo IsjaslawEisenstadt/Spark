@@ -1,27 +1,13 @@
+using System;
 using UnityEngine;
 
 public class GateDrawer : MonoBehaviour
 {
-    GameObject currentBaseGateObject;
-    BaseGate baseGateScript;
+	BaseGate baseGateScript;
 
-    public void OnCloseGateDrawer()
-    {
-        gameObject.SetActive(false);
-    }
+	public void OnCloseGateDrawer() => gameObject.SetActive(false);
 
-    public void OnGateSelected(string gateName)
-    {
-        Debug.Log("GateSelected: " + gateName);
-        baseGateScript.SetGateActive(gateName);
-    }
+	public void OnGateSelected(string gateName) => baseGateScript.SetGateType(gateName);
 
-    public void SetCurrentGateObject(GameObject gateObject)
-    {
-        currentBaseGateObject = gateObject;
-        baseGateScript = currentBaseGateObject.GetComponent<BaseGate>();
-
-        Debug.Log("currentGateObject: " + currentBaseGateObject.name);
-        Debug.Log("BaseGate: " + (baseGateScript != null));
-    }
+	public void SetCurrentGateObject(GameObject gateObject) => baseGateScript = gateObject.GetComponent<BaseGate>();
 }
