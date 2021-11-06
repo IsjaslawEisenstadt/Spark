@@ -1,8 +1,20 @@
+using cakeslice;
 using UnityEngine;
 
 public class BaseGate : MonoBehaviour
 {
-	GameObject currentSelectedGate;
+	GameObject activeGate;
+	bool selected;
+
+	public bool Selected
+	{
+		get => selected;
+		set
+		{
+			selected = value;
+			SetOutline(value);
+		}
+	}
 
 	void Awake()
 	{
@@ -11,7 +23,7 @@ public class BaseGate : MonoBehaviour
 		{
 			if (child is Transform childTransform && childTransform.gameObject.activeSelf)
 			{
-				currentSelectedGate = childTransform.gameObject;
+				activeGate = childTransform.gameObject;
 				return;
 			}
 		}
@@ -19,8 +31,15 @@ public class BaseGate : MonoBehaviour
 
 	public void SetGateType(string gateName)
 	{
-		currentSelectedGate.SetActive(false);
-		currentSelectedGate = gameObject.transform.Find(gateName).gameObject;
-		currentSelectedGate.SetActive(true);
+		SetOutline(false);
+		activeGate.SetActive(false);
+		activeGate = gameObject.transform.Find(gateName).gameObject;
+		activeGate.SetActive(true);
+		SetOutline(true);
+	}
+
+	void SetOutline(bool outlineEnabled)
+	{
+		activeGate.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
 	}
 }
