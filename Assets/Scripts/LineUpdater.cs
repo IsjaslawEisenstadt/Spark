@@ -1,28 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 public class LineUpdater : MonoBehaviour
 {
-    private LineRenderer lineRenderer;
+	LineRenderer lineRenderer;
 
-    private Transform source;
-    private Transform sink;
+	Transform source;
+	Transform sink;
 
-    void Start()
-    {
-        lineRenderer = GetComponent<LineRenderer>();
-    }
-    void Update()
-    {
-        Vector3[] positions = { source.position, sink.position };
-        lineRenderer.SetPositions(positions);
-    }
+	void Start()
+	{
+		lineRenderer = GetComponent<LineRenderer>();
+		enabled = false;
+	}
 
-    public void SetLineSourceAndSink(Transform source, Transform sink)
-    {
-        this.source = source;
-        this.sink = sink;
-    }
+	void Update()
+	{
+		lineRenderer.SetPositions(new[] { source.position, sink.position });
+	}
+
+	public void SetLineSourceAndSink(Transform source, Transform sink)
+	{
+		this.source = source;
+		this.sink = sink;
+		enabled = true;
+	}
 }
