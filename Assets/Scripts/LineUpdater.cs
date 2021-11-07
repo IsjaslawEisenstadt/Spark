@@ -8,7 +8,7 @@ public class LineUpdater : MonoBehaviour
 	Transform start;
 	Transform end;
 
-	void Start()
+	void Awake()
 	{
 		lineRenderer = GetComponent<LineRenderer>();
 		enabled = false;
