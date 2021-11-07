@@ -29,7 +29,8 @@ public class DragLine : MonoBehaviour
 				Destroy(currentLine);
 			}
 
-			SetOutline(true);
+			SetOutlineSink(false);
+			SetOutlineSource(false);
 			currentLine = null;
 			currentLineRenderer = null;
 			lineSource = null;
@@ -48,38 +49,49 @@ public class DragLine : MonoBehaviour
 				lineSource = hit.collider.gameObject;
 				currentLine = Instantiate(line, lineSource.transform);
 				currentLineRenderer = currentLine.GetComponent<LineRenderer>();
+
+				SetOutlineSource(true);
 			}
 		}
-		else
+		
+		if (currentLine)
 		{
 			Vector3 projectedTouchPosition;
 
 			if (Physics.Raycast(ray, out RaycastHit hit) &&
 			    hit.collider.gameObject.CompareTag("LogicGateContactPoint") && hit.collider.gameObject != lineSource)
 			{
-				lineSink = hit.collider.gameObject;
+				if (hit.collider.gameObject != lineSink)
+                {
+					lineSink = hit.collider.gameObject;
+					SetOutlineSink(true);
+				}
+
 				projectedTouchPosition = lineSink.transform.position;
 			}
 			else
 			{
 				projectedTouchPosition = Camera.main.ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y,
-					(Camera.main.transform.position - gameObject.transform.position).magnitude));
+					(Camera.main.transform.position - gameObject.transform.position).magnitude + Camera.main.nearClipPlane));
+
+				SetOutlineSink(false);
 				lineSink = null;
 			}
 
 			Vector3[] points = { lineSource.transform.position, projectedTouchPosition };
 
 			currentLineRenderer.SetPositions(points);
-
-			SetOutline(true);
 		}
 	}
 
-	void SetOutline(bool outlineEnabled)
+	void SetOutlineSource(bool outlineEnabled)
 	{
 		if (lineSource)
 			lineSource.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
+	}
 
+	void SetOutlineSink(bool outlineEnabled)
+	{
 		if (lineSink)
 			lineSink.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
 	}
