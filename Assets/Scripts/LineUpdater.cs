@@ -5,8 +5,8 @@ public class LineUpdater : MonoBehaviour
 {
 	LineRenderer lineRenderer;
 
-	Transform source;
-	Transform sink;
+	Transform start;
+	Transform end;
 
 	void Start()
 	{
@@ -16,13 +16,18 @@ public class LineUpdater : MonoBehaviour
 
 	void Update()
 	{
-		lineRenderer.SetPositions(new[] { source.position, sink.position });
+		lineRenderer.SetPositions(new[] { start.position, end.position });
 	}
 
-	public void SetLineSourceAndSink(Transform source, Transform sink)
+	public void SetLineStartAndEnd(Transform lineStart, Transform lineEnd)
 	{
-		this.source = source;
-		this.sink = sink;
+		start = lineStart;
+		end = lineEnd;
 		enabled = true;
+	}
+
+	public void SetPositions(Vector3[] positions)
+	{
+		lineRenderer.SetPositions(positions);
 	}
 }
