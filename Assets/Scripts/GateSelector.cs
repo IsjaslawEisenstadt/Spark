@@ -20,12 +20,11 @@ public class GateSelector : MonoBehaviour
 
 		if (touchEvent.phase == TouchPhase.Ended)
 		{
-			Vector2 touchPosition = touchEvent.position;
-			Ray ray = Camera.main.ScreenPointToRay(touchPosition);
+			var rayCast = RayCaster.Instance.GetHitObject();
 
-			if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.gameObject.CompareTag("LogicGate"))
+			if (rayCast.succesfull && rayCast.hitObject.CompareTag("LogicGate"))
 			{
-				gateDrawerScript.Open(hit.collider.transform.parent.gameObject);
+				gateDrawerScript.Open(rayCast.hitObject.transform.parent.gameObject);
 			}
 			else
 			{

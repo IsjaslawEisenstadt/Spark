@@ -31,22 +31,22 @@ public class DragLine : MonoBehaviour
 
 			SetEndOutline(false);
 			SetStartOutline(false);
+
 			currentLine = null;
 			currentLineUpdater = null;
 			lineStart = null;
 			lineEnd = null;
+
 			return;
 		}
 
-		Vector2 touchPosition = Input.GetTouch(0).position;
-
-		Ray ray = Camera.main.ScreenPointToRay(touchPosition);
+		var rayCast = RayCaster.Instance.GetHitObject();
 
 		if (!currentLine)
 		{
-			if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.gameObject.CompareTag("LogicGateContactPoint"))
+			if (rayCast.succesfull && rayCast.hitObject.CompareTag("LogicGateContactPoint"))
 			{
-				lineStart = hit.collider.gameObject;
+				lineStart = rayCast.hitObject;
 				currentLine = Instantiate(line, lineStart.transform);
 				currentLineUpdater = currentLine.GetComponent<LineUpdater>();
 
@@ -58,12 +58,11 @@ public class DragLine : MonoBehaviour
 		{
 			Vector3 projectedTouchPosition;
 
-			if (Physics.Raycast(ray, out RaycastHit hit) &&
-			    hit.collider.gameObject.CompareTag("LogicGateContactPoint") && hit.collider.gameObject != lineStart)
+			if (rayCast.succesfull && rayCast.hitObject.CompareTag("LogicGateContactPoint") && rayCast.hitObject != lineStart)
 			{
-				if (hit.collider.gameObject != lineEnd)
+				if (rayCast.hitObject != lineEnd)
                 {
-					lineEnd = hit.collider.gameObject;
+					lineEnd = rayCast.hitObject;
 					SetEndOutline(true);
 				}
 
@@ -71,6 +70,7 @@ public class DragLine : MonoBehaviour
 			}
 			else
 			{
+				Vector2 touchPosition = Input.GetTouch(0).position;
 				projectedTouchPosition = Camera.main.ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y,
 					(Camera.main.transform.position - gameObject.transform.position).magnitude + Camera.main.nearClipPlane));
 
