@@ -8,16 +8,11 @@ public class LineUpdater : MonoBehaviour
 	Transform start;
 	Transform end;
 
-	void Awake()
-	{
-		lineRenderer = GetComponent<LineRenderer>();
-		enabled = false;
-	}
+	void Awake() => lineRenderer = GetComponent<LineRenderer>();
 
-	void Update()
-	{
-		lineRenderer.SetPositions(new[] { start.position, end.position });
-	}
+	void Start() => enabled = false;
+
+	void Update() => lineRenderer.SetPositions(new[] { start.position, end.position });
 
 	public void SetLineStartAndEnd(Transform lineStart, Transform lineEnd)
 	{
@@ -26,8 +21,5 @@ public class LineUpdater : MonoBehaviour
 		enabled = true;
 	}
 
-	public void SetPositions(Vector3[] positions)
-	{
-		lineRenderer.SetPositions(positions);
-	}
+	public void SetPositions(Vector3[] positions) => lineRenderer.SetPositions(positions);
 }

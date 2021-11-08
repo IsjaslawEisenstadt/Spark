@@ -38,8 +38,5 @@ public class BaseGate : MonoBehaviour
 		SetOutline(true);
 	}
 
-	void SetOutline(bool outlineEnabled)
-	{
-		activeGate.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
-	}
+	void SetOutline(bool outlineEnabled) => activeGate.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
 }
