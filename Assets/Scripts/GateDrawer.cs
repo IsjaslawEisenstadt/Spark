@@ -29,5 +29,4 @@ public class GateDrawer : MonoBehaviour
 
 		gameObject.SetActive(false);
 	}
-	
 }
