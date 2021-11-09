@@ -7,6 +7,7 @@ TagManager:
   - DetectedPlane
   - LogicGate
   - LogicGateContactPoint
+  - Line
   layers:
   - Default
   - TransparentFX

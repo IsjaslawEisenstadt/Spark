@@ -4,7 +4,7 @@ using UnityEngine;
 public class DragLine : MonoBehaviour
 {
 	GameObject currentLine;
-	LineUpdater currentLineUpdater;
+	Line currentLineScript;
 	GameObject lineStart;
 	GameObject lineEnd;
 
@@ -22,7 +22,7 @@ public class DragLine : MonoBehaviour
 			if (lineEnd)
 			{
 				//tell gates about new connection
-				currentLineUpdater.SetLineStartAndEnd(lineStart.transform, lineEnd.transform);
+				currentLineScript.SetLine(lineStart.transform, lineEnd.transform);
 			}
 			else
 			{
@@ -33,7 +33,7 @@ public class DragLine : MonoBehaviour
 			SetStartOutline(false);
 
 			currentLine = null;
-			currentLineUpdater = null;
+			currentLineScript = null;
 			lineStart = null;
 			lineEnd = null;
 
@@ -48,7 +48,7 @@ public class DragLine : MonoBehaviour
 			{
 				lineStart = rayCast.hitObject;
 				currentLine = Instantiate(line, lineStart.transform);
-				currentLineUpdater = currentLine.GetComponent<LineUpdater>();
+				currentLineScript = currentLine.GetComponent<Line>();
 
 				SetStartOutline(true);
 			}
@@ -80,7 +80,7 @@ public class DragLine : MonoBehaviour
 
 			Vector3[] points = { lineStart.transform.position, projectedTouchPosition };
 
-			currentLineUpdater.SetPositions(points);
+			currentLineScript.SetPositions(points);
 		}
 	}
 
