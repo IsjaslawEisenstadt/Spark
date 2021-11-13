@@ -20,7 +20,7 @@ public class LineSelector : MonoBehaviour
 		{
 			var rayCast = RayCaster.Instance.GetHitObject();
 
-			if (!rayCast.succesfull || rayCast.hitObject == currentSelectedLine)
+			if (!rayCast.successful || rayCast.hitObject == currentSelectedLine)
 				return;
 
 			if (currentSelectedLine)

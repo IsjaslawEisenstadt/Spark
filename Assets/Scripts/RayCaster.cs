@@ -1,53 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RayCaster : MonoBehaviour
 {
-    static RayCaster _instance;
+	public static RayCaster Instance { get; private set; }
 
-    public static RayCaster Instance { get { return _instance; } }
+	new Camera camera;
+	GameObject hitObject;
+	bool isCached = false;
 
-    Camera camera;
-    GameObject hitObject;
-    bool isCached = false;
+	void Awake()
+	{
+		if (Instance != null && Instance != this)
+		{
+			Destroy(gameObject);
+		}
+		else
+		{
+			Instance = this;
+			camera = Camera.main;
+		}
+	}
 
-    void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            _instance = this;
-            camera = Camera.main;
-        }
-    }
+	(bool successful, GameObject hitObject) CalculateHitObject()
+	{
+		Vector2 touchPosition = Input.GetTouch(0).position;
 
-    (bool succesfull, GameObject hitObject) CalculateHitObject()
-    {
-        Vector2 touchPosition = Input.GetTouch(0).position;
+		Ray ray = camera.ScreenPointToRay(touchPosition);
 
-        Ray ray = camera.ScreenPointToRay(touchPosition);
+		if (Physics.Raycast(ray, out RaycastHit hit))
+		{
+			hitObject = hit.collider.gameObject;
+			isCached = true;
+		}
 
-        if(Physics.Raycast(ray, out RaycastHit hit))
-        {
-            hitObject = hit.collider.gameObject;
-            isCached = true;
-        }
+		return (isCached, hitObject);
+	}
 
-        return (isCached, hitObject);
-    }
+	public (bool successful, GameObject hitObject) GetHitObject() => isCached ? (true, hitObject) : CalculateHitObject();
 
-    public (bool succesfull, GameObject hitObject) GetHitObject() => isCached ? (true, hitObject) : CalculateHitObject();
-
-    void LateUpdate()
-    {
-        if (isCached)
-        {
-            hitObject = null;
-            isCached = false;
-        }
-    }
+	void LateUpdate()
+	{
+		if (isCached)
+		{
+			hitObject = null;
+			isCached = false;
+		}
+	}
 }

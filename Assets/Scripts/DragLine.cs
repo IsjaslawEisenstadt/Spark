@@ -18,7 +18,7 @@ public class DragLine : MonoBehaviour
 			{
 				return;
 			}
-			
+
 			if (lineEnd)
 			{
 				//tell gates about new connection
@@ -44,7 +44,7 @@ public class DragLine : MonoBehaviour
 
 		if (!currentLine)
 		{
-			if (rayCast.succesfull && rayCast.hitObject.CompareTag("LogicGateContactPoint"))
+			if (rayCast.successful && rayCast.hitObject.CompareTag("LogicGateContactPoint"))
 			{
 				lineStart = rayCast.hitObject;
 				currentLine = Instantiate(line, lineStart.transform);
@@ -53,15 +53,16 @@ public class DragLine : MonoBehaviour
 				SetStartOutline(true);
 			}
 		}
-		
+
 		if (currentLine)
 		{
 			Vector3 projectedTouchPosition;
 
-			if (rayCast.succesfull && rayCast.hitObject.CompareTag("LogicGateContactPoint") && rayCast.hitObject != lineStart)
+			if (rayCast.successful && rayCast.hitObject.CompareTag("LogicGateContactPoint") &&
+			    rayCast.hitObject != lineStart)
 			{
 				if (rayCast.hitObject != lineEnd)
-                {
+				{
 					lineEnd = rayCast.hitObject;
 					SetEndOutline(true);
 				}
@@ -72,7 +73,8 @@ public class DragLine : MonoBehaviour
 			{
 				Vector2 touchPosition = Input.GetTouch(0).position;
 				projectedTouchPosition = Camera.main.ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y,
-					(Camera.main.transform.position - gameObject.transform.position).magnitude + Camera.main.nearClipPlane));
+					(Camera.main.transform.position - gameObject.transform.position).magnitude +
+					Camera.main.nearClipPlane));
 
 				SetEndOutline(false);
 				lineEnd = null;

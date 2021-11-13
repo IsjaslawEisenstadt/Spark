@@ -8,7 +8,7 @@ public class GateSelector : MonoBehaviour
 	GateDrawer gateDrawerScript;
 
 	void Awake() => gateDrawerScript = gateDrawer.GetComponent<GateDrawer>();
-	
+
 	void Update()
 	{
 		if (Input.touchCount <= 0 || EventSystem.current.IsPointerOverGameObject(0))
@@ -22,7 +22,7 @@ public class GateSelector : MonoBehaviour
 		{
 			var rayCast = RayCaster.Instance.GetHitObject();
 
-			if (rayCast.succesfull && rayCast.hitObject.CompareTag("LogicGate"))
+			if (rayCast.successful && rayCast.hitObject.CompareTag("LogicGate"))
 			{
 				gateDrawerScript.Open(rayCast.hitObject.transform.parent.gameObject);
 			}
