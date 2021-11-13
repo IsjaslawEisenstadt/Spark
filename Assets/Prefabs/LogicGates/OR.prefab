@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8221779275464954649}
   m_Layer: 0
   m_Name: IN2
-  m_TagString: LogicGateContactPoint
+  m_TagString: LogicGateInput
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 3844001933769963522}
   m_Layer: 0
   m_Name: OUT
-  m_TagString: LogicGateContactPoint
+  m_TagString: LogicGateOutput
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 8928697979287269394}
   m_Layer: 0
   m_Name: IN1
-  m_TagString: LogicGateContactPoint
+  m_TagString: LogicGateInput
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
