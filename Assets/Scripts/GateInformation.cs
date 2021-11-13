@@ -8,18 +8,15 @@ public class GateInformation : MonoBehaviour
 
     public float offsetValue;
 
-    void Start() => camera = Camera.main;
-
-    void Update()
+    void Start()
     {
-        UpdatePosition(true);
-    }
-
-    public void ShowGateInformation(bool show)
-    {
-        gameObject.SetActive(show);
+        camera = Camera.main;
         UpdatePosition(false);
     }
+
+    void Update() => UpdatePosition(true);
+
+    public void ShowGateInformation(bool show) => gameObject.SetActive(show);
 
     private void UpdatePosition(bool lerpPosition)
     {
