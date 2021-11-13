@@ -11,6 +11,7 @@ public class Line : MonoBehaviour
 	Transform end;
 
 	GameObject deletionCanvas;
+	Camera camera;
 
 	void Awake()
 	{
@@ -21,7 +22,8 @@ public class Line : MonoBehaviour
 
 	void Start()
 	{
-		deletionCanvas.GetComponent<Canvas>().worldCamera = Camera.main;
+		camera = Camera.main;
+		deletionCanvas.GetComponent<Canvas>().worldCamera = camera;
 		enabled = false;
 	}
 
@@ -62,6 +64,13 @@ public class Line : MonoBehaviour
 
 	void CanvasUpdate()
     {
-		//some magic here
-    }
+		Vector3 lineMid = start.position + (end.position - start.position) / 2;
+		Vector3 offset = Vector3.Cross((end.position - start.position), lineMid).normalized * 0.1f;
+
+		if (offset.y < 0)
+			offset *= -1;
+
+		deletionCanvas.transform.position = Vector3.Lerp(deletionCanvas.transform.position, lineMid + offset, 0.5f);
+		deletionCanvas.transform.LookAt(camera.transform.position, -Vector3.up);
+	}
 }
