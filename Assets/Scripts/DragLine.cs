@@ -44,13 +44,26 @@ public class DragLine : MonoBehaviour
 
 		if (!currentLine)
 		{
-			if (rayCast.successful && rayCast.hitObject.CompareTag("LogicGateContactPoint"))
+			if (!rayCast.successful)
+				return;
+
+			if (rayCast.hitObject.CompareTag("LogicGateOutput"))
 			{
-				lineStart = rayCast.hitObject;
 				currentLine = Instantiate(line, lineStart.transform);
 				currentLineScript = currentLine.GetComponent<Line>();
+				lineStart = rayCast.hitObject;
 
 				SetStartOutline(true);
+			}
+			else if (rayCast.hitObject.CompareTag("LogicGateInput"))
+            {
+				if (!rayCast.hitObject.HasLine())
+					return;
+
+				//tell gates about lost connection
+				currentLine = rayCast.hitObject.GetLine();
+				currentLineScript = currentLine.GetComponent<Line>();
+				lineStart = currentLineScript.GetStart();
 			}
 		}
 
