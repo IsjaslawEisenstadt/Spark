@@ -30,7 +30,7 @@ public class Line : MonoBehaviour
 	void Update()
 	{
 		lineRenderer.SetPositions(new[] { start.position, end.position });
-		CanvasUpdate();
+		//CanvasUpdate();
 	}
 
 	public void SetLine(Transform lineStart, Transform lineEnd)
@@ -39,11 +39,14 @@ public class Line : MonoBehaviour
 		end = lineEnd;
 		enabled = true;
 
-		StartCoroutine(SetCollider());
+		//StartCoroutine(SetCollider());
 	}
 
 	public void SetPositions(Vector3[] positions) => lineRenderer.SetPositions(positions);
 
+	public GameObject GetStart() => start.gameObject;
+
+	/*
 	public void ActivateDeletionOption(bool activate)
 	{
 		CanvasUpdate();
@@ -56,21 +59,22 @@ public class Line : MonoBehaviour
 		Destroy(gameObject);
     }
 
-	IEnumerator SetCollider()
+    IEnumerator SetCollider()
     {
-		yield return new WaitForEndOfFrame();
-		lineCollider.EnableCollider(true);
+        yield return new WaitForEndOfFrame();
+        lineCollider.EnableCollider(true);
     }
 
-	void CanvasUpdate()
+    void CanvasUpdate()
     {
-		Vector3 lineMid = start.position + (end.position - start.position) / 2;
-		Vector3 offset = Vector3.Cross((end.position - start.position), lineMid).normalized * 0.1f;
+        Vector3 lineMid = start.position + (end.position - start.position) / 2;
+        Vector3 offset = Vector3.Cross((end.position - start.position), lineMid).normalized * 0.1f;
 
-		if (offset.y < 0)
-			offset *= -1;
+        if (offset.y < 0)
+            offset *= -1;
 
-		deletionCanvas.transform.position = Vector3.Lerp(deletionCanvas.transform.position, lineMid + offset, 0.5f);
-		deletionCanvas.transform.LookAt(camera.transform.position, -Vector3.up);
-	}
+        deletionCanvas.transform.position = Vector3.Lerp(deletionCanvas.transform.position, lineMid + offset, 0.5f);
+        deletionCanvas.transform.LookAt(camera.transform.position, -Vector3.up);
+    }
+	*/
 }

@@ -25,14 +25,14 @@ public class LineSelector : MonoBehaviour
 
 			if (currentSelectedLine)
             {
-				currentSelectedLine.GetComponent<Line>().ActivateDeletionOption(false);
+				//currentSelectedLine.GetComponent<Line>().ActivateDeletionOption(false);
 				currentSelectedLine = null;
 			}
 
 			if (rayCast.hitObject.CompareTag("Line"))
             {
 				currentSelectedLine = rayCast.hitObject;
-				currentSelectedLine.GetComponent<Line>().ActivateDeletionOption(true);
+				//currentSelectedLine.GetComponent<Line>().ActivateDeletionOption(true);
 			}
 		}
 	}
