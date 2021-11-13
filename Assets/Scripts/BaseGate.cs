@@ -6,6 +6,8 @@ public class BaseGate : MonoBehaviour
 	GameObject activeGate;
 	bool selected;
 
+	public GateInformation gateInformation;
+
 	public bool Selected
 	{
 		get => selected;
@@ -13,6 +15,7 @@ public class BaseGate : MonoBehaviour
 		{
 			selected = value;
 			SetOutline(value);
+			ShowGateInformation(value);
 		}
 	}
 
@@ -39,4 +42,6 @@ public class BaseGate : MonoBehaviour
 	}
 
 	void SetOutline(bool outlineEnabled) => activeGate.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
+
+	void ShowGateInformation(bool show) => gateInformation.ShowGateInformation(show);
 }
