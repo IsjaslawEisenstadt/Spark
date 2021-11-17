@@ -23,10 +23,15 @@ public class DragLine : MonoBehaviour
 			{
 				//tell gates about new connection
 				currentLineScript.SetLine(lineStart.transform, lineEnd.transform);
+				lineStart.GetComponent<Pin>().Line = currentLineScript;
+				lineEnd.GetComponent<Pin>().Line = currentLineScript;
 			}
 			else
 			{
 				Destroy(currentLine);
+				lineStart.GetComponent<Pin>().Line = null;
+				if (lineEnd)
+					lineEnd.GetComponent<Pin>().Line = null;
 			}
 
 			SetEndOutline(false);
@@ -49,19 +54,21 @@ public class DragLine : MonoBehaviour
 
 			if (rayCast.hitObject.CompareTag("LogicGateOutput"))
 			{
+				lineStart = rayCast.hitObject;
 				currentLine = Instantiate(line, lineStart.transform);
 				currentLineScript = currentLine.GetComponent<Line>();
-				lineStart = rayCast.hitObject;
 
 				SetStartOutline(true);
 			}
 			else if (rayCast.hitObject.CompareTag("LogicGateInput"))
-            {
-				if (!rayCast.hitObject.HasLine())
+			{
+				Pin pin = rayCast.hitObject.GetComponent<Pin>();
+
+				if (!pin.Line)
 					return;
 
 				//tell gates about lost connection
-				currentLine = rayCast.hitObject.GetLine();
+				currentLine = pin.Line.gameObject;
 				currentLineScript = currentLine.GetComponent<Line>();
 				lineStart = currentLineScript.GetStart();
 			}
@@ -71,7 +78,8 @@ public class DragLine : MonoBehaviour
 		{
 			Vector3 projectedTouchPosition;
 
-			if (rayCast.successful && rayCast.hitObject.CompareTag("LogicGateContactPoint") &&
+			if (rayCast.successful &&
+			    (rayCast.hitObject.CompareTag("LogicGateInput") || rayCast.hitObject.CompareTag("LogicGateOutput")) &&
 			    rayCast.hitObject != lineStart)
 			{
 				if (rayCast.hitObject != lineEnd)
