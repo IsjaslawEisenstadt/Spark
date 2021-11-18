@@ -4,7 +4,10 @@ public class GateDrawer : MonoBehaviour
 {
 	BaseGate baseGate;
 
-	public void OnGateSelected(string gateName) => baseGate.SetGateType(gateName);
+	public void OnGateSelected(string gateName)
+	{
+		baseGate.SetGateType(gateName);
+	}
 
 	public void Open(GameObject gateObject)
 	{
