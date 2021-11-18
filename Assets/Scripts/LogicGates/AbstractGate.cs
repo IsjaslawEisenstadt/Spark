@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public abstract class AbstractGate : MonoBehaviour
 {
-	public Pin[] inputs;
-	public Pin[] outputs;
+	public List<Pin> inputs;
+	public List<Pin> outputs;
 	
 	void Awake()
 	{
