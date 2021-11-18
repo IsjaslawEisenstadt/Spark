@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4915937318686210522}
   m_Layer: 0
   m_Name: SourceGate
-  m_TagString: LogicGate
+  m_TagString: Source
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

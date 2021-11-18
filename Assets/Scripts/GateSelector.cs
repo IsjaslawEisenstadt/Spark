@@ -3,11 +3,7 @@ using UnityEngine.EventSystems;
 
 public class GateSelector : MonoBehaviour
 {
-	public GameObject gateDrawer;
-
-	GateDrawer gateDrawerScript;
-
-	void Awake() => gateDrawerScript = gateDrawer.GetComponent<GateDrawer>();
+	public GateDrawer gateDrawer;
 
 	void Update()
 	{
@@ -22,13 +18,15 @@ public class GateSelector : MonoBehaviour
 		{
 			var rayCast = RayCaster.Instance.GetHitObject();
 
-			if (rayCast.successful && rayCast.hitObject.CompareTag("LogicGate"))
+			if (rayCast.successful && (rayCast.hitObject.CompareTag("LogicGate") || rayCast.hitObject.CompareTag("Source")))
 			{
-				gateDrawerScript.Open(rayCast.hitObject.transform.parent.gameObject);
+				gateDrawer.Open(rayCast.hitObject.transform.parent.gameObject);
+				PinSettings.Instance.CheckAndOpen(rayCast.hitObject);
 			}
 			else
 			{
-				gateDrawerScript.Close();
+				gateDrawer.Close();
+				PinSettings.Instance.Close();
 			}
 		}
 	}
