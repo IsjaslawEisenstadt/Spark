@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +11,8 @@ public class PinSettings : MonoBehaviour
     SourceGate currentSource;
     int selectedPinIndex;
 
-    public Text pinCountText;
-    public Text selectedPinText;
+    public TMP_Text pinCountText;
+    public TMP_Text selectedPinText;
     public Button pinActivation;
 
     void Awake()
