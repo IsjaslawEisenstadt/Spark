@@ -40,7 +40,7 @@ public class BaseGate : MonoBehaviour
 		activeGate.SetActive(true);
 		SetOutline(true);
 
-		PinSettings.Instance.CheckAndOpen(activeGate);
+		PinSettings.Instance.SetVisualizationState(activeGate);
 	}
 
 	void SetOutline(bool outlineEnabled) => activeGate.GetComponent<Outline>().eraseRenderer = !outlineEnabled;

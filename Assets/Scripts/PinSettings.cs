@@ -13,29 +13,39 @@ public class PinSettings : MonoBehaviour
 
     public TMP_Text pinCountText;
     public TMP_Text selectedPinText;
-    public Button pinActivation;
+    public TMP_Text pinActivation;
 
     void Awake()
     {
         if (Instance != null && Instance != this)
+        {
             Destroy(gameObject);
+        }
         else
+        {
             Instance = this;
+        }
     }
 
-    public void CheckAndOpen(GameObject activeGate)
+    public void SetVisualizationState(GameObject activeGate)
     {
         if (!activeGate.CompareTag("Source"))
+        {
+            Close();
             return;
+        }
 
-        currentSource = activeGate.GetComponent<SourceGate>();
-        setUpUI();
+        SetUp(activeGate);
         gameObject.SetActive(true);
     }
 
     public void Close() => gameObject.SetActive(false);
 
-    public void OnActivationButton() => currentSource.outputs[selectedPinIndex].State = !currentSource.outputs[selectedPinIndex].State;
+    public void OnActivationButton()
+    {
+        currentSource.outputs[selectedPinIndex].State = !currentSource.outputs[selectedPinIndex].State;
+        UpdateSelectedPinView();
+    }
 
     public void OnMinusButton()
     {
@@ -48,8 +58,8 @@ public class PinSettings : MonoBehaviour
 
     public void OnPlusButton()
     {
-        currentSource.outputs.Add(new Pin()); //the handling of spawning that pin should be done in the constructor of the pin
-        pinCountText.text = currentSource.outputs.Count.ToString();
+        currentSource.outputs.Add(Instantiate(currentSource.outputs[currentSource.outputs.Count - 1], currentSource.transform)); //Set pin to the right position is missing
+        UpdatePinCountView();
     }
 
     public void OnLeftButton()
@@ -58,6 +68,8 @@ public class PinSettings : MonoBehaviour
             selectedPinIndex--;
         else
             selectedPinIndex = currentSource.outputs.Count - 1;
+
+        UpdateSelectedPinView();
     }
 
     public void OnRightButton()
@@ -66,12 +78,25 @@ public class PinSettings : MonoBehaviour
             selectedPinIndex++;
         else
             selectedPinIndex = 0;
+
+        UpdateSelectedPinView();
     }
 
-    private void setUpUI()
+    private void SetUp(GameObject activeGate)
     {
-        pinCountText.text = currentSource.outputs.Count.ToString();
-        selectedPinText.text = string.Format("Pin {0}: {1}", selectedPinIndex, currentSource.outputs[selectedPinIndex].State);
-        pinActivation.GetComponentInChildren<Text>().text = currentSource.outputs[selectedPinIndex].State ? "deactivate" : "activate";
+        currentSource = activeGate.GetComponent<SourceGate>();
+        selectedPinIndex = 0;
+
+        UpdatePinCountView();
+        UpdateSelectedPinView();
     }
+
+    private void UpdateSelectedPinView()
+    {
+        bool currentPinState = currentSource.outputs[selectedPinIndex].State;
+        selectedPinText.text = string.Format("Pin {0}: {1}", selectedPinIndex + 1, currentPinState);
+        pinActivation.text = currentPinState ? "deactivate" : "activate";
+    }
+
+    private void UpdatePinCountView() => pinCountText.text = currentSource.outputs.Count.ToString();
 }

@@ -21,7 +21,7 @@ public class GateSelector : MonoBehaviour
 			if (rayCast.successful && (rayCast.hitObject.CompareTag("LogicGate") || rayCast.hitObject.CompareTag("Source")))
 			{
 				gateDrawer.Open(rayCast.hitObject.transform.parent.gameObject);
-				PinSettings.Instance.CheckAndOpen(rayCast.hitObject);
+				PinSettings.Instance.SetVisualizationState(rayCast.hitObject);
 			}
 			else
 			{
