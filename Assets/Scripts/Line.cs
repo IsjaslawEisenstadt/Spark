@@ -34,4 +34,10 @@ public class Line : MonoBehaviour
 	public void SetPositions(Vector3[] positions) => lineRenderer.SetPositions(positions);
 
 	public GameObject GetStart() => LineStart.gameObject;
+
+	public void Disconnect()
+    {
+		//tell gates about lost connection
+		enabled = false;
+	}
 }
