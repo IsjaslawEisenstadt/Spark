@@ -454,8 +454,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 0.05, y: 0.05}
-  m_Spacing: {x: 0, y: 0}
+  m_CellSize: {x: 0.02, y: 0.02}
+  m_Spacing: {x: 0.01, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &1369593682260560576
@@ -1367,7 +1367,6 @@ GameObject:
   - component: {fileID: 1434663371464996651}
   - component: {fileID: 8483752038126284615}
   - component: {fileID: 8622727016140235640}
-  - component: {fileID: 3396993497853960290}
   - component: {fileID: 1287778388869654081}
   m_Layer: 5
   m_Name: GateInformation
@@ -1393,8 +1392,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.22935}
-  m_SizeDelta: {x: 0.27284, y: 0.2087}
+  m_AnchoredPosition: {x: 0, y: 0.2}
+  m_SizeDelta: {x: 0.22254, y: 0.14714}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8483752038126284615
 Canvas:
@@ -1440,23 +1439,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &3396993497853960290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6193184055732998072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &1287778388869654081
 MonoBehaviour:
   m_ObjectHideFlags: 0
