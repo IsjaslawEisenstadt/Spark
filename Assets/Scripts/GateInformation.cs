@@ -1,12 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GateInformation : MonoBehaviour
 {
     Camera camera;
 
+    TMP_Text[] gateNames;
     public float offsetValue;
+
+    void Awake()
+    {
+        gateNames = GetComponentsInChildren<TMP_Text>();
+    }
 
     void Start()
     {
@@ -16,7 +24,17 @@ public class GateInformation : MonoBehaviour
 
     void Update() => UpdatePosition(true);
 
-    public void ShowGateInformation(bool show) => gameObject.SetActive(show);
+    public void ShowGateInformation(bool show, string gateName)
+    {
+        gameObject.SetActive(show);
+        SetGateName(gateName);
+    }
+
+    void SetGateName(string gateName)
+    {
+        // This is the table heading.
+        gateNames[1].SetText(gateName);
+    }
 
     private void UpdatePosition(bool lerpPosition)
     {
