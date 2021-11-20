@@ -29,6 +29,9 @@ public class GateDrawer : MonoBehaviour
 			baseGate.Selected = false;
 		}
 
+		PinSettings.Instance.Close();
+		HiddenGateArrow.Instance.Deactivate();
+
 		gameObject.SetActive(false);
 	}
 }
