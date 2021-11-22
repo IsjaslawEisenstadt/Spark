@@ -14,15 +14,14 @@ public class HiddenGateArrow : MonoBehaviour
     public static HiddenGateArrow Instance { get; private set; }
 
     public GameObject arrow;
-    public float borderSizeInPercent;
+    public float borderSize;
 
     GameObject target;
     Camera camera;
     RectTransform viewportRectTransform;
     RectTransform arrowRectTransform;
 
-    float yBorder;
-    float xBorder;
+    (float left, float right, float top, float bottom) viewportBorders;
 
     void Awake()
     {
@@ -39,14 +38,19 @@ public class HiddenGateArrow : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        SetViewport(Viewport.Left);    
+    }
+
     void Update()
     {
         Vector3 targetScreenPosition = camera.WorldToScreenPoint(target.transform.position);
 
         bool isOffScreen = IsOffScreen(targetScreenPosition);
-        Debug.Log("isOffScreen: " + isOffScreen);
         if (isOffScreen)
         {
+            CalculateArrowPosition(targetScreenPosition);
             RotatePointer(targetScreenPosition);
         }
 
@@ -71,51 +75,69 @@ public class HiddenGateArrow : MonoBehaviour
         {
             case (Viewport.FullScreen):
                 {
+                    viewportRectTransform.offsetMax = new Vector2(0, 0);
                     viewportRectTransform.offsetMin = new Vector2(0, 0);
                     break;
                 }
             case (Viewport.Left):
                 {
-                    viewportRectTransform.offsetMin = new Vector2(550, 0);
+                    viewportRectTransform.offsetMax = new Vector2(-550, 0);
+                    viewportRectTransform.offsetMin = new Vector2(0, 0);
                     break;
                 }
             case (Viewport.UpperLeft):
                 {
-                    viewportRectTransform.offsetMin = new Vector2(550, 300);
+                    viewportRectTransform.offsetMax = new Vector2(-550, 0);
+                    viewportRectTransform.offsetMin = new Vector2(0, 300);
                     break;
                 }
         }
 
-        viewportRectTransform.offsetMax = new Vector2(0, 0);
-
-        xBorder = viewportRectTransform.rect.width * borderSizeInPercent;
-        yBorder = viewportRectTransform.rect.height * borderSizeInPercent;
+        viewportBorders = CalculateViewportBorders();
     }
 
     private bool IsOffScreen(Vector3 targetScreenPosition)
     {
-        Debug.Log("targetScreenPosition: " + targetScreenPosition);
-        Debug.Log("viewportRectTransform.position: " + viewportRectTransform.position);
+        return  viewportBorders.left > targetScreenPosition.x ||
+                viewportBorders.right < targetScreenPosition.x ||
+                viewportBorders.top < targetScreenPosition.y ||
+                viewportBorders.bottom > targetScreenPosition.y;
+    }
 
+    private void RotatePointer(Vector3 targetScreenPosition)
+    {
+        Vector3 direction = (targetScreenPosition - arrowRectTransform.position).normalized;
+        float rad = Mathf.Acos(Vector3.Dot(direction, new Vector3(1, 0, 0)));
+
+        if (direction.y < 0)
+        {
+            rad *= -1;
+        }
+        else if (direction.y == 0)
+        {
+            rad = direction.x > 0 ? 0 : Mathf.PI;
+        }
+
+        arrowRectTransform.localEulerAngles = new Vector3(0, 0, (rad / (2 * Mathf.PI)) * 360);
+    }
+
+    private (float left, float right, float top, float bottom) CalculateViewportBorders()
+    {
         float left = viewportRectTransform.position.x - viewportRectTransform.rect.width / 2;
         float right = viewportRectTransform.position.x + viewportRectTransform.rect.width / 2;
         float top = viewportRectTransform.position.y + viewportRectTransform.rect.height / 2;
         float bottom = viewportRectTransform.position.y - viewportRectTransform.rect.height / 2;
-        Debug.Log("left: " + left);
-        Debug.Log("right: " + right);
-        Debug.Log("top: " + top);
-        Debug.Log("bottom: " + bottom);
-        return  left > targetScreenPosition.x ||
-                right < targetScreenPosition.x ||
-                top < targetScreenPosition.y ||
-                bottom > targetScreenPosition.y;
+        return (left, right, top, bottom);
     }
 
-    //Does not rotet correctly yet
-    private void RotatePointer(Vector3 targetScreenPosition)
+    private void CalculateArrowPosition(Vector3 targetScreenPosition)
     {
-        Vector3 direction = (targetScreenPosition - viewportRectTransform.position).normalized;
-        float rad = Mathf.Acos(Vector3.Dot(direction, new Vector3(0, 1, 0)));
-        arrowRectTransform.localEulerAngles = new Vector3(0, 0, (rad / 2 * Mathf.PI) * 360);
+        Vector3 arrowScreenPosition = targetScreenPosition;
+        if (arrowScreenPosition.x <= viewportBorders.left + borderSize) arrowScreenPosition.x = viewportBorders.left + borderSize;
+        if (arrowScreenPosition.x >= viewportBorders.right - borderSize) arrowScreenPosition.x = viewportBorders.right - borderSize;
+        if (arrowScreenPosition.y <= viewportBorders.bottom + borderSize) arrowScreenPosition.y = viewportBorders.bottom + borderSize;
+        if (arrowScreenPosition.y >= viewportBorders.top - borderSize) arrowScreenPosition.y = viewportBorders.top - borderSize;
+
+        arrowRectTransform.position = arrowScreenPosition;
     }
 }
