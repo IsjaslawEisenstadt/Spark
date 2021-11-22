@@ -67,10 +67,11 @@ public class DragLine : MonoBehaviour
 				if (!pin.Line)
 					return;
 
-				//tell gates about lost connection
 				currentLine = pin.Line.gameObject;
 				currentLineScript = currentLine.GetComponent<Line>();
 				lineStart = currentLineScript.GetStart();
+
+				currentLineScript.Disconnect();
 			}
 		}
 
@@ -79,7 +80,7 @@ public class DragLine : MonoBehaviour
 			Vector3 projectedTouchPosition;
 
 			if (rayCast.successful &&
-			    (rayCast.hitObject.CompareTag("LogicGateInput") || rayCast.hitObject.CompareTag("LogicGateOutput")) &&
+			    rayCast.hitObject.CompareTag("LogicGateInput") &&
 			    rayCast.hitObject != lineStart)
 			{
 				if (rayCast.hitObject != lineEnd)
