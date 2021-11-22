@@ -9,6 +9,7 @@ TagManager:
   - Line
   - LogicGateInput
   - LogicGateOutput
+  - Source
   layers:
   - Default
   - TransparentFX

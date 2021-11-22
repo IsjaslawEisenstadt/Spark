@@ -6,8 +6,8 @@ public class Line : MonoBehaviour
 {
 	LineRenderer lineRenderer;
 
-	Transform start;
-	Transform end;
+	public Transform LineStart { get; private set; }
+	public Transform LineEnd { get; private set; }
 
 	void Awake()
 	{
@@ -21,17 +21,23 @@ public class Line : MonoBehaviour
 
 	void Update()
 	{
-		lineRenderer.SetPositions(new[] { start.position, end.position });
+		lineRenderer.SetPositions(new[] { LineStart.position, LineEnd.position });
 	}
 
-	public void SetLine(Transform lineStart, Transform lineEnd)
+	public void SetLine(Transform start, Transform end)
 	{
-		start = lineStart;
-		end = lineEnd;
+		LineStart = start;
+		LineEnd = end;
 		enabled = true;
 	}
 
 	public void SetPositions(Vector3[] positions) => lineRenderer.SetPositions(positions);
 
-	public GameObject GetStart() => start.gameObject;
+	public GameObject GetStart() => LineStart.gameObject;
+
+	public void Disconnect()
+    {
+		//tell gates about lost connection
+		enabled = false;
+	}
 }
