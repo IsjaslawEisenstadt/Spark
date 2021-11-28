@@ -72,9 +72,11 @@ public class GateInformation : MonoBehaviour
         Vector3 offset =
             Vector3.Cross(camera.transform.right, (camera.transform.position - transform.position)).normalized *
             offsetValue;
+
         transform.position = lerpPosition
             ? Vector3.Lerp(transform.position, transform.parent.position + offset, 0.5f)
             : transform.parent.position + offset;
-        transform.LookAt(camera.transform.position);
+
+        transform.LookAt(transform.position + (transform.position - camera.transform.position));
     }
 }
