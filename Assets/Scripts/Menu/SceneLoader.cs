@@ -3,13 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class SceneLoader
+public class SceneLoader : MonoBehaviour
 {
-    public static string currentlyLoadedScene { get; private set; }
+    public SceneBlender sceneBlender;
+    private bool isLoading;
+    private string currentlyLoadedScene;
 
-    public static void LoadScene(string scene)
+    public void SwitchScene(string scene)
     {
+        if (isLoading)
+            return;
+
         currentlyLoadedScene = scene;
-        SceneManager.LoadScene("LoadingScreen");
+        sceneBlender.StartBlending(() => {LoadScene();});
+    }
+
+    private void LoadScene()
+    {
+        SceneManager.LoadScene(currentlyLoadedScene);
     }
 }
