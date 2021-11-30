@@ -45,7 +45,7 @@ public class DragLine : MonoBehaviour
 			return;
 		}
 
-		var rayCast = RayCaster.Instance.GetHitObject();
+		(bool successful, GameObject hitObject) rayCast = RayCaster.Instance.GetHitObject();
 
 		if (!currentLine)
 		{

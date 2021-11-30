@@ -58,7 +58,7 @@ public class GateInformation : MonoBehaviour
 
     void SetTruthtableCells(bool value)
     {
-        var cellValue = value ? "1" : "0";
+        string cellValue = value ? "1" : "0";
         cellPrefab.GetComponentInChildren<TMP_Text>().SetText(cellValue);
     }
 
