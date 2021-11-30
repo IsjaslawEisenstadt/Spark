@@ -6,20 +6,6 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     public SceneBlender sceneBlender;
-    private bool isLoading;
-    private string currentlyLoadedScene;
 
-    public void SwitchScene(string scene)
-    {
-        if (isLoading)
-            return;
-
-        currentlyLoadedScene = scene;
-        sceneBlender.StartBlending(() => {LoadScene();});
-    }
-
-    private void LoadScene()
-    {
-        SceneManager.LoadScene(currentlyLoadedScene);
-    }
+    public void SwitchScene(string scene) => StartCoroutine(sceneBlender.Fade(FadeMode.FadeOut, () => { SceneManager.LoadScene(scene); }));
 }

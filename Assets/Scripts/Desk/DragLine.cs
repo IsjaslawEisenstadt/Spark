@@ -71,6 +71,7 @@ public class DragLine : MonoBehaviour
 				currentLineScript = currentLine.GetComponent<Line>();
 				lineStart = currentLineScript.GetStart();
 
+				pin.Line = null;
 				currentLineScript.Disconnect();
 			}
 		}
