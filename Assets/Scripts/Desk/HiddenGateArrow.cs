@@ -17,7 +17,7 @@ public class HiddenGateArrow : MonoBehaviour
     public float borderSize;
 
     GameObject target;
-    Camera camera;
+    new Camera camera;
     RectTransform viewportRectTransform;
     RectTransform arrowRectTransform;
 
@@ -96,7 +96,7 @@ public class HiddenGateArrow : MonoBehaviour
         viewportBorders = CalculateViewportBorders();
     }
 
-    private bool IsOffScreen(Vector3 targetScreenPosition)
+    bool IsOffScreen(Vector3 targetScreenPosition)
     {
         return  viewportBorders.left > targetScreenPosition.x ||
                 viewportBorders.right < targetScreenPosition.x ||
@@ -104,7 +104,7 @@ public class HiddenGateArrow : MonoBehaviour
                 viewportBorders.bottom > targetScreenPosition.y;
     }
 
-    private void RotatePointer(Vector3 targetScreenPosition)
+    void RotatePointer(Vector3 targetScreenPosition)
     {
         Vector3 direction = (targetScreenPosition - arrowRectTransform.position).normalized;
         float rad = Mathf.Acos(Vector3.Dot(direction, new Vector3(1, 0, 0)));
@@ -121,7 +121,7 @@ public class HiddenGateArrow : MonoBehaviour
         arrowRectTransform.localEulerAngles = new Vector3(0, 0, (rad / (2 * Mathf.PI)) * 360);
     }
 
-    private (float left, float right, float top, float bottom) CalculateViewportBorders()
+    (float left, float right, float top, float bottom) CalculateViewportBorders()
     {
         float left = viewportRectTransform.position.x - viewportRectTransform.rect.width / 2;
         float right = viewportRectTransform.position.x + viewportRectTransform.rect.width / 2;
@@ -130,7 +130,7 @@ public class HiddenGateArrow : MonoBehaviour
         return (left, right, top, bottom);
     }
 
-    private void CalculateArrowPosition(Vector3 targetScreenPosition)
+    void CalculateArrowPosition(Vector3 targetScreenPosition)
     {
         Vector3 arrowScreenPosition = targetScreenPosition;
         if (arrowScreenPosition.x <= viewportBorders.left + borderSize) arrowScreenPosition.x = viewportBorders.left + borderSize;

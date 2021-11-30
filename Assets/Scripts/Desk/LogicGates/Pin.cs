@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(MeshRenderer))]
 public class Pin : MonoBehaviour
 {
-	public event Action valueChanged;
+	public event Action<Pin, bool> valueChanged;
 	public event Action<Pin, Line> lineChanged;
 
 	public Material enabledMaterial;
@@ -19,7 +19,7 @@ public class Pin : MonoBehaviour
 		{
 			state = value;
 			meshRenderer.material = value ? enabledMaterial : disabledMaterial;
-			valueChanged?.Invoke();
+			valueChanged?.Invoke(this, value);
 		}
 	}
 

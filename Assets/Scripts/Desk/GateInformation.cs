@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GateInformation : MonoBehaviour
 {
-    Camera camera;
+    new Camera camera;
 
     TMP_Text[] gateNames;
     public float offsetValue;
