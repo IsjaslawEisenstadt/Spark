@@ -13,13 +13,17 @@ GameObject:
   - component: {fileID: 3479619909490517319}
   - component: {fileID: 3479619909490517318}
   - component: {fileID: 3479619909490517317}
+  - component: {fileID: 2192841004695422764}
+  - component: {fileID: 8672774406643178964}
+  - component: {fileID: 1665451444}
+  - component: {fileID: 1665451445}
   m_Layer: 5
   m_Name: SceneBlender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3479619909490517316
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27,7 +31,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3479619909490516667}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -59,8 +63,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 11b35d03b8e67064a88752c5c231b3dd, type: 2}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Material: {fileID: 2100000, guid: db584fa97c63f954698f53bd013ffc9d, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -108,6 +112,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a71b506565e03489573885ad1fefaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 1
-  fadeInMaterial: {fileID: 2100000, guid: 11b35d03b8e67064a88752c5c231b3dd, type: 2}
-  fadeOutMaterial: {fileID: 2100000, guid: 9904d25a2e1756e4e8a1c8412664a11c, type: 2}
+  startTransition: 0
+--- !u!114 &2192841004695422764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3479619909490516667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064331f16aef68449ab2be13483280c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Material>k__BackingField: {fileID: 2100000, guid: db584fa97c63f954698f53bd013ffc9d, type: 2}
+  <Length>k__BackingField: 0.75
+  easingType: 2
+  <Time>k__BackingField: -0.001189925
+--- !u!114 &8672774406643178964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3479619909490516667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d834dabe7b673c5428c7873b9c01336d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Material>k__BackingField: {fileID: 2100000, guid: 40bed9eecf21680479dd077871e699f1, type: 2}
+  <Length>k__BackingField: 0.75
+  easingType: 2
+  <Time>k__BackingField: 0
+--- !u!114 &1665451444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3479619909490516667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b6a74afadbbf24d9fa9deced8fa0a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Material>k__BackingField: {fileID: 2100000, guid: cb7a36a8ab352174bab64bda3eb5c823, type: 2}
+  <Length>k__BackingField: 0.75
+  easingType: 3
+  <Time>k__BackingField: -0.0010342458
+  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &1665451445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3479619909490516667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6516ad6f742a2e5419f39a07d46c75f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Material>k__BackingField: {fileID: 2100000, guid: 9904d25a2e1756e4e8a1c8412664a11c, type: 2}
+  <Length>k__BackingField: 0.75
+  easingType: 4
+  <Time>k__BackingField: 0
+  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}

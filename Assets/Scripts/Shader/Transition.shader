@@ -66,7 +66,7 @@ Shader "PostProcessing/Transition"
                 fixed value = tex2D(_GradientTex, i.uv).r;
                 fixed alpha = smoothstep(_CutOff, _CutOff + _SmoothSize, value * (1 - _SmoothSize) + _SmoothSize);
                 fixed4 result = _Color;
-                result.a = alpha;
+                result.a *= alpha;
                 return result;
             }
             ENDCG

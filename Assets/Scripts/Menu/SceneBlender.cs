@@ -1,47 +1,57 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum FadeMode
-{
-    FadeIn = 1,
-    FadeOut = -1
-};
-
 public class SceneBlender : MonoBehaviour
 {
-    Image image;
-    float cutOff = 0;
-    float epsilon = 0.01f;
+	public TransitionType startTransition = TransitionType.FadeIn;
 
-    public float animationSpeed;
-    public Material fadeInMaterial;
-    public Material fadeOutMaterial;
+	Image image;
+	Transition currentTransition;
 
-    void Awake() => image = GetComponent<Image>();
+	void Awake() => image = GetComponent<Image>();
 
-    void Start() => StartCoroutine(Fade(FadeMode.FadeIn));
+	void Start() => StartTransition(startTransition);
 
-    public IEnumerator Fade(FadeMode mode, Action callback = null) 
-    {
-        image.raycastTarget = true;
+	public void StartTransition(TransitionType type, Action onFinishCallback = null, float length = -1.0f,
+		EasingFunction.Ease? easingType = null)
+	{
+		StartCoroutine(Start(type, onFinishCallback, length, easingType));
+	}
 
-        image.material = (mode == FadeMode.FadeIn) ? fadeInMaterial : fadeOutMaterial;
-        image.material.SetFloat("_CutOff", cutOff);
+	IEnumerator Start(TransitionType type, Action onFinishCallback, float length, EasingFunction.Ease? easingType)
+	{
+		currentTransition = gameObject.GetComponent(type.ToString()) as Transition;
+		
+		if (!currentTransition)
+			yield break;
 
-        do
-        {
-            cutOff += Mathf.Clamp01(Time.deltaTime * animationSpeed * ((int)mode));
-            image.material.SetFloat("_CutOff", cutOff);
-            yield return new WaitForEndOfFrame();
-        }
-        while(cutOff - epsilon >= 0 && cutOff <= 1 + epsilon);
+		image.raycastTarget = true;
+		image.material = currentTransition.Material;
 
-        image.raycastTarget = false;
+		currentTransition.EasingType = easingType ?? currentTransition.EasingType;
+		if (length >= 0.0f)
+		{
+			currentTransition.Length = length;
+		}
 
-        if (callback != null)
-            callback();
-    }
+		currentTransition.Restart();
+
+		while (!IsFinished())
+		{
+			currentTransition.Step(Time.deltaTime);
+			image.raycastTarget = currentTransition.IsBlockingClicks();
+			yield return new WaitForEndOfFrame();
+		}
+
+		image.raycastTarget = false;
+
+		onFinishCallback?.Invoke();
+	}
+
+	public bool IsFinished()
+	{
+		return !currentTransition || currentTransition.IsFinished();
+	}
 }
