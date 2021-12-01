@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class SceneBlender : MonoBehaviour
 {
-	public TransitionType startTransition = TransitionType.FadeIn;
-
 	Image image;
 	Transition currentTransition;
 
