@@ -771,6 +771,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneBlender: {fileID: 1665451443}
+  startTransitionType: 0
+  endTransitionType: 1
 --- !u!1 &653352669
 GameObject:
   m_ObjectHideFlags: 0

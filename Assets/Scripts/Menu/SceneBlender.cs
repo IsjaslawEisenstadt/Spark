@@ -12,22 +12,22 @@ public class SceneBlender : MonoBehaviour
 
 	void Awake() => image = GetComponent<Image>();
 
-	void Start() => StartTransition(startTransition);
-
 	public void StartTransition(TransitionType type, Action onFinishCallback = null, float length = -1.0f,
 		EasingFunction.Ease? easingType = null)
 	{
-		StartCoroutine(Start(type, onFinishCallback, length, easingType));
+		StartCoroutine(Begin(type, onFinishCallback, length, easingType));
 	}
 
-	IEnumerator Start(TransitionType type, Action onFinishCallback, float length, EasingFunction.Ease? easingType)
+	IEnumerator Begin(TransitionType type, Action onFinishCallback, float length, EasingFunction.Ease? easingType)
 	{
 		currentTransition = gameObject.GetComponent(type.ToString()) as Transition;
-		
-		if (!currentTransition)
-			yield break;
 
-		image.raycastTarget = true;
+		if (!currentTransition)
+		{
+			Debug.LogError($"SceneBlender doesn't have a Transition of type [{type.ToString()}]");
+			yield break;
+		}
+
 		image.material = currentTransition.Material;
 
 		currentTransition.EasingType = easingType ?? currentTransition.EasingType;
