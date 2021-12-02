@@ -1,25 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public SceneBlender sceneBlender;
-    private bool isLoading;
-    private string currentlyLoadedScene;
+	public SceneBlender sceneBlender;
 
-    public void SwitchScene(string scene)
-    {
-        if (isLoading)
-            return;
+	public TransitionType startTransitionType = TransitionType.FadeIn;
+	public TransitionType endTransitionType = TransitionType.FadeOut;
 
-        currentlyLoadedScene = scene;
-        sceneBlender.StartBlending(() => {LoadScene();});
-    }
+	void Start() => sceneBlender.StartTransition(startTransitionType);
 
-    private void LoadScene()
-    {
-        SceneManager.LoadScene(currentlyLoadedScene);
-    }
+	public void SwitchScene(string scene)
+	{
+		if (sceneBlender.IsFinished())
+		{
+			sceneBlender.StartTransition(endTransitionType, () => { SceneManager.LoadScene(scene); });
+		}
+	}
 }

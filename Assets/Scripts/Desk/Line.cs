@@ -37,7 +37,6 @@ public class Line : MonoBehaviour
 
 	public void Disconnect()
     {
-		//tell gates about lost connection
 		enabled = false;
 	}
 }
