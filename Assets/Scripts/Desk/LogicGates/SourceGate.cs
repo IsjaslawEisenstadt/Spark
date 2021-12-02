@@ -1,6 +1,6 @@
 public class SourceGate : AbstractGate
 {
-	void Awake()
+	void Start()
 	{
 		outputs[0].State = Evaluate(null)[0];
 	}
