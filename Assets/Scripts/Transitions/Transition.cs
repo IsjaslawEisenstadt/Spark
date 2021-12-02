@@ -22,13 +22,13 @@ public abstract class Transition : MonoBehaviour
 		set
 		{
 			easingType = value;
-			easingFunction = EasingFunction.GetEasingFunction(easingType);
+			EasingFunc = EasingFunction.GetEasingFunction(easingType);
 		}
 	}
 
-	protected EasingFunction.Function easingFunction;
+	protected EasingFunction.Function EasingFunc { get; private set; }
 
-	[field: SerializeField, ReadOnly] public float Time { get; protected set; }
+	protected float Time { get; private set; }
 
 	public bool IsFinished() => Time <= 0.0f;
 	public virtual void Restart() => Time = Length;

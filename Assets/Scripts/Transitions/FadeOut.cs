@@ -16,7 +16,7 @@ public class FadeOut : Transition
 	public override void Step(float delta)
 	{
 		base.Step(delta);
-		float newAlpha = easingFunction(0.0f, 1.0f, 1.0f - Time / Length);
+		float newAlpha = EasingFunc(0.0f, 1.0f, 1.0f - Time / Length);
 		Material.SetColor(colorID, new Color(Color.r, Color.g, Color.b, newAlpha));
 	}
 
