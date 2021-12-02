@@ -71,7 +71,7 @@ public class GateInformation : MonoBehaviour
     void UpdatePosition(bool lerpPosition)
     {
         Vector3 offset =
-            Vector3.Cross(camera.transform.right, (camera.transform.position - transform.position)).normalized *
+            Vector3.Cross(camera.transform.right, camera.transform.position - transform.position).normalized *
             offsetValue;
 
         transform.position = lerpPosition
