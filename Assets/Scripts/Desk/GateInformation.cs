@@ -6,60 +6,61 @@ public class GateInformation : MonoBehaviour
 {
     new Camera camera;
 
-    TMP_Text[] gateNames;
+    TMP_Text title;
     public float offsetValue;
     public RectTransform truthTableContainer;
     public GameObject cellPrefab;
-    AbstractGate activeGate;
+    TruthTableRow[] truthTable;
 
     void Awake()
     {
-        gateNames = GetComponentsInChildren<TMP_Text>();
-        activeGate = FindObjectOfType<AbstractGate>();
+        title = GetComponentInChildren<TMP_Text>();
     }
 
     void Start()
     {
         camera = Camera.main;
         UpdatePosition(false);
+    }
 
-        TruthTableRow[] truthTable = activeGate.GenerateTruthTable();
-        // Gets the entire Row length
-        SetGridLayoutConstraintCount(truthTable[0].Inputs.Length + truthTable[0].Outputs.Length);
-        for (int i = 0; i < truthTable.Length; i++)
+    void PopulateTruthTable()
+    {
+        foreach (TruthTableRow row in truthTable)
         {
-            foreach (bool value in truthTable[i].Inputs)
+            foreach (bool value in row.Inputs)
             {
-               SetTruthtableCells(value); 
-               Instantiate(cellPrefab, truthTableContainer.transform);
+                CreateCell(value);
             }
-            
-            foreach (bool value in truthTable[i].Outputs)
+
+            foreach (bool value in row.Outputs)
             {
-               SetTruthtableCells(value); 
-               Instantiate(cellPrefab, truthTableContainer.transform);
+                CreateCell(value);
             }
         }
+    }
+
+    void CreateCell(bool value)
+    {
+        Instantiate(cellPrefab, truthTableContainer.transform).GetComponentInChildren<TMP_Text>().SetText(value ? "1" : "0");
     }
 
     void Update() => UpdatePosition(true);
 
     void OnEnable() => Update();
 
-    public void ShowGateInformation(bool show, string gateName)
+    public void ShowGateInformation(bool show, AbstractGate gate)
     {
         gameObject.SetActive(show);
-        SetGateName(gateName);
-    }
+        title.SetText(gate.name);
+        foreach (Transform child in truthTableContainer)
+        {
+            Destroy(child.gameObject);
+        }
 
-
-    // Sets the tables heading
-    void SetGateName(string gateName) => gateNames[1].SetText(gateName);
-
-    void SetTruthtableCells(bool value)
-    {
-        string cellValue = value ? "1" : "0";
-        cellPrefab.GetComponentInChildren<TMP_Text>().SetText(cellValue);
+        truthTable = gate.GenerateTruthTable();
+        // Gets the entire Row length
+        SetGridLayoutConstraintCount(truthTable[0].Inputs.Length + truthTable[0].Outputs.Length);
+        PopulateTruthTable();
     }
 
     void SetGridLayoutConstraintCount(int size)

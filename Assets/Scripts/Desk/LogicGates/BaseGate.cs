@@ -15,7 +15,7 @@ public class BaseGate : MonoBehaviour
 		{
 			selected = value;
 			SetOutline(value);
-			ShowGateInformation(value, activeGate.name);
+			ShowGateInformation(value, activeGate.GetComponent<AbstractGate>());
 		}
 	}
 
@@ -40,11 +40,11 @@ public class BaseGate : MonoBehaviour
 		activeGate.SetActive(true);
 		SetOutline(true);
 		
-		gateInformation.ShowGateInformation(true, activeGate.name);
+		ShowGateInformation(true, activeGate.GetComponent<AbstractGate>());
 		PinSettings.Instance.SetVisualizationState(activeGate);
 	}
 
 	void SetOutline(bool outlineEnabled) => activeGate.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
 
-	void ShowGateInformation(bool show, string gateName) => gateInformation.ShowGateInformation(show, gateName);
+	void ShowGateInformation(bool show, AbstractGate gateObject) => gateInformation.ShowGateInformation(show, gateObject);
 }
