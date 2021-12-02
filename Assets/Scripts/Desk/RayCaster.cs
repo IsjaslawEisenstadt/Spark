@@ -4,7 +4,7 @@ public class RayCaster : MonoBehaviour
 {
 	public static RayCaster Instance { get; private set; }
 
-	new Camera camera;
+	Camera mainCamera;
 	GameObject hitObject;
 	bool isCached = false;
 
@@ -17,7 +17,7 @@ public class RayCaster : MonoBehaviour
 		else
 		{
 			Instance = this;
-			camera = Camera.main;
+			mainCamera = Camera.main;
 		}
 	}
 
@@ -25,7 +25,7 @@ public class RayCaster : MonoBehaviour
 	{
 		Vector2 touchPosition = Input.GetTouch(0).position;
 
-		Ray ray = camera.ScreenPointToRay(touchPosition);
+		Ray ray = mainCamera.ScreenPointToRay(touchPosition);
 
 		if (Physics.Raycast(ray, out RaycastHit hit))
 		{

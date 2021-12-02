@@ -15,7 +15,8 @@ public class HiddenGateArrow : MonoBehaviour
 	public float borderSize;
 
 	GameObject target;
-	new Camera camera;
+	
+	Camera mainCamera;
 	RectTransform viewportRectTransform;
 	RectTransform arrowRectTransform;
 
@@ -32,7 +33,7 @@ public class HiddenGateArrow : MonoBehaviour
 			Instance = this;
 			viewportRectTransform = gameObject.GetComponent<RectTransform>();
 			arrowRectTransform = arrow.GetComponent<RectTransform>();
-			camera = Camera.main;
+			mainCamera = Camera.main;
 		}
 	}
 
@@ -43,7 +44,7 @@ public class HiddenGateArrow : MonoBehaviour
 
 	void Update()
 	{
-		Vector3 targetScreenPosition = camera.WorldToScreenPoint(target.transform.position);
+		Vector3 targetScreenPosition = mainCamera.WorldToScreenPoint(target.transform.position);
 
 		bool isOffScreen = IsOffScreen(targetScreenPosition);
 		if (isOffScreen)
