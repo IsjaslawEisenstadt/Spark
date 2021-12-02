@@ -112,7 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a71b506565e03489573885ad1fefaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTransition: 0
 --- !u!114 &2192841004695422764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6516ad6f742a2e5419f39a07d46c75f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Material>k__BackingField: {fileID: 2100000, guid: 11b35d03b8e67064a88752c5c231b3dd, type: 2}
+  <Material>k__BackingField: {fileID: 2100000, guid: 9904d25a2e1756e4e8a1c8412664a11c, type: 2}
   <Length>k__BackingField: 0.75
   easingType: 4
   <Time>k__BackingField: 0
