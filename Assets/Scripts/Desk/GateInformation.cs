@@ -51,6 +51,12 @@ public class GateInformation : MonoBehaviour
 
 	public void ShowGateInformation(bool show, AbstractGate gate)
 	{
+		if (gate is SourceGate || gate is SinkGate)
+		{
+			gameObject.SetActive(false);
+			return;
+		}
+
 		gameObject.SetActive(show);
 		title.SetText(gate.name);
 		foreach (Transform child in truthTableContainer)
@@ -59,7 +65,6 @@ public class GateInformation : MonoBehaviour
 		}
 
 		truthTable = gate.GenerateTruthTable();
-		// Gets the entire Row length
 		SetGridLayoutConstraintCount(truthTable[0].Inputs.Length + truthTable[0].Outputs.Length);
 		PopulateTruthTable();
 	}

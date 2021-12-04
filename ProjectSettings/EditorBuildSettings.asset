@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 44110888c61215f44a314d67f1ffbf45
   - enabled: 1
-    path: Assets/Scenes/Desk.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/MissionMode.unity
+    guid: 23b6e6ddf2a75f64abe346fd411fc4f6
+  - enabled: 1
+    path: Assets/Scenes/StudyMode.unity
+    guid: 664db61cea6ec5546a6d3f4e4d8e0df9
+  - enabled: 1
+    path: Assets/Scenes/TutorialMode.unity
+    guid: bcddfea63833ebd45bb82f9b7d68aade
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e0f544ab74c4d0847908d293fa6b2b19, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 6a5d52a00d93f454b9d31895c5526b40, type: 2}

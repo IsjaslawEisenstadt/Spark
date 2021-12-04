@@ -3,10 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public enum GateType
+{
+	AndGate,
+	OrGate,
+	Source,
+	Sink
+}
+
 public abstract class AbstractGate : MonoBehaviour
 {
 	public List<Pin> inputs;
 	public List<Pin> outputs;
+
+	[field: SerializeField] public GateType GateType { get; private set; }
 
 	void Awake()
 	{
@@ -56,6 +66,9 @@ public abstract class AbstractGate : MonoBehaviour
 	protected void Refresh()
 	{
 		bool[] outputValues = EvaluateSelf();
+
+		if (outputValues == null)
+			return;
 
 		foreach (var value in outputValues.Select((value, i) => new { value, i }))
 		{

@@ -595,7 +595,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Desk
+          m_StringArgument: MissionMode
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &538943112
@@ -1022,7 +1022,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Free
+          m_StringArgument: StudyMode
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &757051344
