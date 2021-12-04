@@ -39,12 +39,13 @@ public class BaseGate : MonoBehaviour
 		activeGate = gameObject.transform.Find(gateName).gameObject;
 		activeGate.SetActive(true);
 		SetOutline(true);
-		
+
 		ShowGateInformation(true, activeGate.GetComponent<AbstractGate>());
 		PinSettings.Instance.SetVisualizationState(activeGate);
 	}
 
 	void SetOutline(bool outlineEnabled) => activeGate.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
 
-	void ShowGateInformation(bool show, AbstractGate gateObject) => gateInformation.ShowGateInformation(show, gateObject);
+	void ShowGateInformation(bool show, AbstractGate gateObject) =>
+		gateInformation.ShowGateInformation(show, gateObject);
 }

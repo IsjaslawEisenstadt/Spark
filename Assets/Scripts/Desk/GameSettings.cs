@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameSettings : MonoBehaviour
 {
-    void Start()
-    {
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
-    }
+	void Start()
+	{
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
+	}
 }

@@ -35,7 +35,7 @@ public class Line : MonoBehaviour
 	public GameObject GetStart() => LineStart.gameObject;
 
 	public void Disconnect()
-    {
+	{
 		enabled = false;
 	}
 }

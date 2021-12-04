@@ -13,7 +13,7 @@ public class SwipeOut : Transition
 	public override void Step(float delta)
 	{
 		base.Step(delta);
-		Material.SetFloat(cutOff, EasingFunc(0.0f, 1.0f,  Time / Length));
+		Material.SetFloat(cutOff, EasingFunc(0.0f, 1.0f, Time / Length));
 	}
 
 	public override bool IsBlockingClicks() => true;

@@ -4,9 +4,9 @@ public class FadeIn : Transition
 {
 	static readonly int colorID = Shader.PropertyToID("_Color");
 
-	[field: SerializeField, ColorUsageAttribute(showAlpha: false)] 
+	[field: SerializeField, ColorUsageAttribute(showAlpha: false)]
 	Color Color { get; set; }
-	
+
 	public override void Restart()
 	{
 		base.Restart();

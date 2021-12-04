@@ -15,7 +15,7 @@ public class HiddenGateArrow : MonoBehaviour
 	public float borderSize;
 
 	GameObject target;
-	
+
 	Camera mainCamera;
 	RectTransform viewportRectTransform;
 	RectTransform arrowRectTransform;

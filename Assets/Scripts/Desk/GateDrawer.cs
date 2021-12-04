@@ -12,7 +12,7 @@ public class GateDrawer : MonoBehaviour
 	public void Open(GameObject gateObject)
 	{
 		gameObject.SetActive(true);
-		
+
 		if (baseGate)
 		{
 			baseGate.Selected = false;

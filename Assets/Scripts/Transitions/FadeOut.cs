@@ -6,7 +6,7 @@ public class FadeOut : Transition
 
 	[field: SerializeField, ColorUsageAttribute(showAlpha: false)]
 	Color Color { get; set; }
-	
+
 	public override void Restart()
 	{
 		base.Restart();

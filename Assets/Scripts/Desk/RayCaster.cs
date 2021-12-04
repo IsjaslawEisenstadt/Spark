@@ -36,7 +36,8 @@ public class RayCaster : MonoBehaviour
 		return (isCached, hitObject);
 	}
 
-	public (bool successful, GameObject hitObject) GetHitObject() => isCached ? (true, hitObject) : CalculateHitObject();
+	public (bool successful, GameObject hitObject) GetHitObject() =>
+		isCached ? (true, hitObject) : CalculateHitObject();
 
 	void LateUpdate()
 	{

@@ -6,97 +6,98 @@ using UnityEngine.UI;
 
 public class PinSettings : MonoBehaviour
 {
-    public static PinSettings Instance { get; private set; }
+	public static PinSettings Instance { get; private set; }
 
-    SourceGate currentSource;
-    int selectedPinIndex;
+	SourceGate currentSource;
+	int selectedPinIndex;
 
-    public TMP_Text pinCountText;
-    public TMP_Text selectedPinText;
-    public TMP_Text pinActivation;
+	public TMP_Text pinCountText;
+	public TMP_Text selectedPinText;
+	public TMP_Text pinActivation;
 
-    void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
+	void Awake()
+	{
+		if (Instance != null && Instance != this)
+		{
+			Destroy(gameObject);
+		}
+		else
+		{
+			Instance = this;
+		}
+	}
 
-    public void SetVisualizationState(GameObject activeGate)
-    {
-        if (!activeGate.CompareTag("Source"))
-        {
-            Close();
-            return;
-        }
+	public void SetVisualizationState(GameObject activeGate)
+	{
+		if (!activeGate.CompareTag("Source"))
+		{
+			Close();
+			return;
+		}
 
-        SetUp(activeGate);
-        gameObject.SetActive(true);
-    }
+		SetUp(activeGate);
+		gameObject.SetActive(true);
+	}
 
-    public void Close() => gameObject.SetActive(false);
+	public void Close() => gameObject.SetActive(false);
 
-    public void OnActivationButton()
-    {
-        currentSource.outputs[selectedPinIndex].State = !currentSource.outputs[selectedPinIndex].State;
-        UpdateSelectedPinView();
-    }
+	public void OnActivationButton()
+	{
+		currentSource.outputs[selectedPinIndex].State = !currentSource.outputs[selectedPinIndex].State;
+		UpdateSelectedPinView();
+	}
 
-    public void OnMinusButton()
-    {
-        if (currentSource.outputs.Count > 1)
-        {
-            currentSource.outputs.RemoveAt(currentSource.outputs.Count - 1);
-            pinCountText.text = currentSource.outputs.Count.ToString();
-        }
-    }
+	public void OnMinusButton()
+	{
+		if (currentSource.outputs.Count > 1)
+		{
+			currentSource.outputs.RemoveAt(currentSource.outputs.Count - 1);
+			pinCountText.text = currentSource.outputs.Count.ToString();
+		}
+	}
 
-    public void OnPlusButton()
-    {
-        currentSource.outputs.Add(Instantiate(currentSource.outputs[currentSource.outputs.Count - 1], currentSource.transform)); //Set pin to the right position is missing
-        UpdatePinCountView();
-    }
+	public void OnPlusButton()
+	{
+		currentSource.outputs.Add(Instantiate(currentSource.outputs[currentSource.outputs.Count - 1],
+			currentSource.transform)); //Set pin to the right position is missing
+		UpdatePinCountView();
+	}
 
-    public void OnLeftButton()
-    {
-        if (selectedPinIndex > 0)
-            selectedPinIndex--;
-        else
-            selectedPinIndex = currentSource.outputs.Count - 1;
+	public void OnLeftButton()
+	{
+		if (selectedPinIndex > 0)
+			selectedPinIndex--;
+		else
+			selectedPinIndex = currentSource.outputs.Count - 1;
 
-        UpdateSelectedPinView();
-    }
+		UpdateSelectedPinView();
+	}
 
-    public void OnRightButton()
-    {
-        if (selectedPinIndex < currentSource.outputs.Count - 1)
-            selectedPinIndex++;
-        else
-            selectedPinIndex = 0;
+	public void OnRightButton()
+	{
+		if (selectedPinIndex < currentSource.outputs.Count - 1)
+			selectedPinIndex++;
+		else
+			selectedPinIndex = 0;
 
-        UpdateSelectedPinView();
-    }
+		UpdateSelectedPinView();
+	}
 
-    private void SetUp(GameObject activeGate)
-    {
-        currentSource = activeGate.GetComponent<SourceGate>();
-        selectedPinIndex = 0;
+	private void SetUp(GameObject activeGate)
+	{
+		currentSource = activeGate.GetComponent<SourceGate>();
+		selectedPinIndex = 0;
 
-        UpdatePinCountView();
-        UpdateSelectedPinView();
-    }
+		UpdatePinCountView();
+		UpdateSelectedPinView();
+	}
 
-    private void UpdateSelectedPinView()
-    {
-        bool currentPinState = currentSource.outputs[selectedPinIndex].State;
-        selectedPinText.text = string.Format("Pin {0}: {1}", selectedPinIndex + 1, currentPinState);
-        pinActivation.text = currentPinState ? "deactivate" : "activate";
-    }
+	private void UpdateSelectedPinView()
+	{
+		bool currentPinState = currentSource.outputs[selectedPinIndex].State;
+		selectedPinText.text = string.Format("Pin {0}: {1}", selectedPinIndex + 1, currentPinState);
+		pinActivation.text = currentPinState ? "deactivate" : "activate";
+	}
 
-    private void UpdatePinCountView() => pinCountText.text = currentSource.outputs.Count.ToString();
+	private void UpdatePinCountView() => pinCountText.text = currentSource.outputs.Count.ToString();
 }
