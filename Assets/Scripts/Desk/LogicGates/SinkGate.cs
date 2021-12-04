@@ -1,7 +1,9 @@
-﻿public class SinkGate : AbstractGate
+﻿using System.Linq;
+
+public class SinkGate : AbstractGate
 {
 	protected override bool[] Evaluate(bool[] values)
 	{
-		return null;
+		return inputs.Select(pin => pin.State).ToArray();
 	}
 }

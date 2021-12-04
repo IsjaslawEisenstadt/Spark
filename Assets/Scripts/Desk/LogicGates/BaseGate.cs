@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class BaseGate : MonoBehaviour
 {
-	GameObject activeGate;
+	public GameObject ActiveGate { get; private set; }
+	public AbstractGate ActiveGateScript { get; private set; }
 	bool selected;
 
 	public GateInformation gateInformation;
@@ -15,7 +16,7 @@ public class BaseGate : MonoBehaviour
 		{
 			selected = value;
 			SetOutline(value);
-			ShowGateInformation(value, activeGate.GetComponent<AbstractGate>());
+			ShowGateInformation(value, ActiveGate.GetComponent<AbstractGate>());
 		}
 	}
 
@@ -26,7 +27,7 @@ public class BaseGate : MonoBehaviour
 		{
 			if (child is Transform childTransform && childTransform.gameObject.activeSelf)
 			{
-				activeGate = childTransform.gameObject;
+				ActiveGate = childTransform.gameObject;
 				return;
 			}
 		}
@@ -35,16 +36,17 @@ public class BaseGate : MonoBehaviour
 	public void SetGateType(string gateName)
 	{
 		SetOutline(false);
-		activeGate.SetActive(false);
-		activeGate = gameObject.transform.Find(gateName).gameObject;
-		activeGate.SetActive(true);
+		ActiveGate.SetActive(false);
+		ActiveGate = gameObject.transform.Find(gateName).gameObject;
+		ActiveGateScript = ActiveGate.GetComponent<AbstractGate>();
+		ActiveGate.SetActive(true);
 		SetOutline(true);
 
-		ShowGateInformation(true, activeGate.GetComponent<AbstractGate>());
-		PinSettings.Instance.SetVisualizationState(activeGate);
+		ShowGateInformation(true, ActiveGate.GetComponent<AbstractGate>());
+		PinSettings.Instance.SetVisualizationState(ActiveGate);
 	}
 
-	void SetOutline(bool outlineEnabled) => activeGate.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
+	void SetOutline(bool outlineEnabled) => ActiveGate.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
 
 	void ShowGateInformation(bool show, AbstractGate gateObject) =>
 		gateInformation.ShowGateInformation(show, gateObject);

@@ -23,6 +23,7 @@ public class Mission : ScriptableObject
 					gateRestriction.Add(entry.gateType, entry.count);
 				}
 			}
+
 			return gateRestriction;
 		}
 		private set => gateRestriction = value;

@@ -1,12 +1,17 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GateDrawer : MonoBehaviour
 {
+	public event Action<BaseGate> onGateTypeChanged;
+
 	BaseGate baseGate;
 
 	public void OnGateSelected(string gateName)
 	{
 		baseGate.SetGateType(gateName);
+		onGateTypeChanged?.Invoke(baseGate);
 	}
 
 	public void Open(GameObject gateObject)

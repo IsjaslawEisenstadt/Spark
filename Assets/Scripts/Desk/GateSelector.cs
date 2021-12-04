@@ -19,7 +19,8 @@ public class GateSelector : MonoBehaviour
 			var rayCast = RayCaster.Instance.GetHitObject();
 
 			if (rayCast.successful &&
-			    (rayCast.hitObject.CompareTag("LogicGate") || rayCast.hitObject.CompareTag("Source")))
+			    (rayCast.hitObject.CompareTag("LogicGate") || rayCast.hitObject.CompareTag("Source")
+			                                               || rayCast.hitObject.CompareTag("Sink")))
 			{
 				gateDrawer.Open(rayCast.hitObject.transform.parent.gameObject);
 				HiddenGateArrow.Instance.Activate(rayCast.hitObject.transform.parent.gameObject);

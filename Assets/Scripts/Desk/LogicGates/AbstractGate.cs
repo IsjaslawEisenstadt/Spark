@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public enum GateType
 {
@@ -67,12 +68,11 @@ public abstract class AbstractGate : MonoBehaviour
 	{
 		bool[] outputValues = EvaluateSelf();
 
-		if (outputValues == null)
-			return;
+		Assert.IsNotNull(outputValues);
 
-		foreach (var value in outputValues.Select((value, i) => new { value, i }))
+		for (int i = 0; i < outputs.Count; ++i)
 		{
-			outputs[value.i].State = value.value;
+			outputs[i].State = outputValues[i];
 		}
 	}
 
@@ -106,4 +106,23 @@ public readonly struct TruthTableRow
 	public readonly bool[] Outputs;
 
 	public TruthTableRow(bool[] inputs, bool[] outputs) => (Inputs, Outputs) = (inputs, outputs);
+
+	public override string ToString()
+	{
+		String ret = "TruthTableRow: Inputs = [";
+
+		foreach (bool value in Inputs)
+		{
+			ret += value;
+		}
+
+		ret += "], Outputs = [";
+
+		foreach (bool value in Outputs)
+		{
+			ret += value;
+		}
+
+		return ret + "]";
+	}
 }

@@ -10,6 +10,7 @@ TagManager:
   - LogicGateInput
   - LogicGateOutput
   - Source
+  - Sink
   layers:
   - Default
   - TransparentFX
