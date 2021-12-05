@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -17,7 +17,7 @@ public abstract class AbstractGate : MonoBehaviour
 	public List<Pin> inputs;
 	public List<Pin> outputs;
 
-	[field: SerializeField] public GateType GateType { get; private set; }
+	public GateType GateType { get; protected set; }
 
 	void Awake()
 	{
@@ -82,6 +82,8 @@ public abstract class AbstractGate : MonoBehaviour
 	}
 
 	protected abstract bool[] Evaluate(bool[] values);
+
+	public abstract void InitGateTyp();
 
 	void OnInputValueChanged(Pin pin, bool value)
 	{

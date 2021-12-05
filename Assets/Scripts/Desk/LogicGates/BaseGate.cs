@@ -1,4 +1,4 @@
-using cakeslice;
+﻿using cakeslice;
 using UnityEngine;
 
 public class BaseGate : MonoBehaviour
@@ -20,17 +20,12 @@ public class BaseGate : MonoBehaviour
 		}
 	}
 
-	void Awake()
+	void Awake() => ActiveGate = transform.GetChild(0).gameObject;
+
+	void Start()
 	{
-		// The gate that is active by default has to be found and saved in currentSelectedGate
 		foreach (object child in gameObject.transform)
-		{
-			if (child is Transform childTransform && childTransform.gameObject.activeSelf)
-			{
-				ActiveGate = childTransform.gameObject;
-				return;
-			}
-		}
+			((Transform)child).gameObject.GetComponent<AbstractGate>()?.InitGateTyp();
 	}
 
 	public void SetGateType(string gateName)
