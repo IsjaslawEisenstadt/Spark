@@ -1,7 +1,8 @@
-public class MissionMode : PlayMode
+﻿public class MissionMode : PlayMode
 {
 	protected override void EvaluatePlay(TruthTableRow[] result)
 	{
+		UIManager.Instance.Open("ResultTruthtable");
 	}
 }
 
