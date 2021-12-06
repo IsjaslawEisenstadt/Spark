@@ -44,5 +44,5 @@ public class BaseGate : MonoBehaviour
 	void SetOutline(bool outlineEnabled) => ActiveGate.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
 
 	void ShowGateInformation(bool show, AbstractGate gateObject) =>
-		gateInformation.ShowGateInformation(show, gateObject);
+		gateInformation.OpenGateInformation(show, gateObject);
 }

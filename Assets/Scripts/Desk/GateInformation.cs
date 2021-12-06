@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,14 +12,22 @@ public class GateInformation : MonoBehaviour
 	public GameObject cellPrefab;
 	TruthTableRow[] truthTable;
 
+	AbstractGate currentGate;
+	bool isInitialized = false;
+
 	void Awake()
 	{
-		title = GetComponentInChildren<TMP_Text>();
+		InitGateInformation();
 	}
 
-	void Start()
+	void InitGateInformation()
 	{
+		if (isInitialized)
+			return;
+
+		title = GetComponentInChildren<TMP_Text>();
 		mainCamera = Camera.main;
+		isInitialized = true;
 		UpdatePosition(false);
 	}
 
@@ -47,24 +55,34 @@ public class GateInformation : MonoBehaviour
 
 	void Update() => UpdatePosition(true);
 
-	void OnEnable() => Update();
-
-	public void ShowGateInformation(bool show, AbstractGate gate)
+	void OnEnable()
 	{
-		if (gate is SourceGate || gate is SinkGate)
+		InitGateInformation();
+		SetupGateInformation();
+		UpdatePosition(true);
+	}
+
+	public void OpenGateInformation(bool show, AbstractGate gate)
+	{
+		if (gate is SourceGate || gate is SinkGate || gate == null)
 		{
 			gameObject.SetActive(false);
 			return;
 		}
 
+		currentGate = gate;
 		gameObject.SetActive(show);
-		title.SetText(gate.name);
+	}
+
+	public void SetupGateInformation()
+	{
+		title.SetText(currentGate.name);
 		foreach (Transform child in truthTableContainer)
 		{
 			Destroy(child.gameObject);
 		}
 
-		truthTable = gate.GenerateTruthTable();
+		truthTable = currentGate.GenerateTruthTable();
 		SetGridLayoutConstraintCount(truthTable[0].Inputs.Length + truthTable[0].Outputs.Length);
 		PopulateTruthTable();
 	}
