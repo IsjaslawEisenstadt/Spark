@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 44110888c61215f44a314d67f1ffbf45
   - enabled: 1
+    path: Assets/Scenes/MissionSelection.unity
+    guid: 188de4392b44920419ead5b9d85b2997
+  - enabled: 1
     path: Assets/Scenes/MissionMode.unity
     guid: 23b6e6ddf2a75f64abe346fd411fc4f6
   - enabled: 1
