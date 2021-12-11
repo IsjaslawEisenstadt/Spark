@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -22,6 +22,7 @@ public abstract class PlayMode : MonoBehaviour
 
 	public void Play()
 	{
+		EvaluatePlay(null); //just to test
 		if (Source == null)
 		{
 			// TODO: add error message display

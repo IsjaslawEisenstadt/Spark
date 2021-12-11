@@ -1,14 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public enum PopupType
+{
+	ResultView
+}
 
 public class UIManager : MonoBehaviour
 {
 	public static UIManager Instance { get; private set; }
 
-	public List<GameObject> uiElementList;
+	[SerializeField] public List<Popup> uiElementList;
 
-	Dictionary<string, GameObject> uiElementDict;
+	Dictionary<PopupType, GameObject> uiElementDict;
 
 	void Awake()
 	{
@@ -24,17 +30,24 @@ public class UIManager : MonoBehaviour
 
 	void Start()
 	{
-		uiElementDict = new Dictionary<string, GameObject>();
-		uiElementList.ForEach(x => uiElementDict.Add(x.name, x));
+		uiElementDict = new Dictionary<PopupType, GameObject>();
+		uiElementList.ForEach(entry => uiElementDict.Add(entry.popupType, entry.popup));
 	}
 
-	public void Open(string uiElement)
+	public void Open(PopupType popup)
 	{
-		uiElementDict[uiElement].SetActive(true);
+		uiElementDict[popup].SetActive(true);
 	}
 
-	public GameObject GetElement(string element)
+	public GameObject GetElement(PopupType popup)
 	{
-		return uiElementDict[element];
+		return uiElementDict[popup];
 	}
+}
+
+[Serializable]
+public class Popup
+{
+	public GameObject popup;
+	public PopupType popupType;
 }

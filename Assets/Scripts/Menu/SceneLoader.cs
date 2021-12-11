@@ -1,13 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(SceneBlender))]
 public class SceneLoader : MonoBehaviour
 {
-	public SceneBlender sceneBlender;
+	SceneBlender sceneBlender;
 
 	public TransitionType startTransitionType = TransitionType.FadeIn;
 	public TransitionType endTransitionType = TransitionType.FadeOut;
 
+	void Awake() => sceneBlender = GetComponent<SceneBlender>();
 	void Start() => sceneBlender.StartTransition(startTransitionType);
 
 	public void SwitchScene(string scene)
