@@ -5,5 +5,5 @@
 		return new[] { values[0] | values[1] };
 	}
 
-	public override void InitGateTyp() => GateType = GateType.OrGate;
+	public override void InitGateType() => GateType = GateType.Or;
 }

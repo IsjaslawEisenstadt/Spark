@@ -16,15 +16,17 @@ public class GateSelector : MonoBehaviour
 
 		if (touchEvent.phase == TouchPhase.Ended)
 		{
-			var rayCast = RayCaster.Instance.GetHitObject();
+			(bool successful, GameObject hitObject) = RayCaster.Instance.GetHitObject();
 
-			if (rayCast.successful &&
-			    (rayCast.hitObject.CompareTag("LogicGate") || rayCast.hitObject.CompareTag("Source")
-			                                               || rayCast.hitObject.CompareTag("Sink")))
+			if (successful && (hitObject.CompareTag("LogicGate") || hitObject.CompareTag("Source") ||
+			                   hitObject.CompareTag("Sink")))
 			{
-				gateDrawer.Open(rayCast.hitObject.transform.parent.gameObject);
-				HiddenGateArrow.Instance.Activate(rayCast.hitObject.transform.parent.gameObject);
-				PinSettings.Instance.SetVisualizationState(rayCast.hitObject);
+				// A raycast will hit the child Box of an AbstractGate, hence why we need to get its parent and then
+				// the parent of the AbstractGate to get the BaseGate
+				GameObject baseGate = hitObject.transform.parent.parent.gameObject;
+				gateDrawer.Open(baseGate);
+				HiddenGateArrow.Instance.Activate(baseGate);
+				PinSettings.Instance.SetVisualizationState(hitObject);
 			}
 			else
 			{

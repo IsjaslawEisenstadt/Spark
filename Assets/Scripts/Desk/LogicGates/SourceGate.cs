@@ -7,7 +7,7 @@ public class SourceGate : SourceSinkGate
 		return outputs.Select(pin => pin.State).ToArray();
 	}
 
-	public override void InitGateTyp() => GateType = GateType.Source;
+	public override void InitGateType() => GateType = GateType.Source;
 
 	public override void UpdatePinPositions()
 	{

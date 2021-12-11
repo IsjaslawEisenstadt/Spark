@@ -1,14 +1,23 @@
-﻿using cakeslice;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BaseGate : MonoBehaviour
 {
-	public GameObject ActiveGate { get; private set; }
-	public AbstractGate ActiveGateScript { get; private set; }
-	bool selected;
-
 	public GateInformation gateInformation;
 
+	public AbstractGate ActiveGateScript { get; private set; }
+
+	GameObject activeGate;
+	public GameObject ActiveGate
+	{
+		get => activeGate;
+		private set
+		{
+			activeGate = value;
+			ActiveGateScript = ActiveGate.GetComponent<AbstractGate>();
+		}
+	}
+
+	bool selected;
 	public bool Selected
 	{
 		get => selected;
@@ -16,7 +25,7 @@ public class BaseGate : MonoBehaviour
 		{
 			selected = value;
 			SetOutline(value);
-			ShowGateInformation(value, ActiveGate.GetComponent<AbstractGate>());
+			ShowGateInformation(value, ActiveGateScript);
 		}
 	}
 
@@ -25,7 +34,7 @@ public class BaseGate : MonoBehaviour
 	void Start()
 	{
 		foreach (object child in gameObject.transform)
-			((Transform)child).gameObject.GetComponent<AbstractGate>()?.InitGateTyp();
+			((Transform)child).gameObject.GetComponent<AbstractGate>()?.InitGateType();
 	}
 
 	public void SetGateType(string gateName)
@@ -33,15 +42,14 @@ public class BaseGate : MonoBehaviour
 		SetOutline(false);
 		ActiveGate.SetActive(false);
 		ActiveGate = gameObject.transform.Find(gateName).gameObject;
-		ActiveGateScript = ActiveGate.GetComponent<AbstractGate>();
 		ActiveGate.SetActive(true);
 		SetOutline(true);
 
-		ShowGateInformation(true, ActiveGate.GetComponent<AbstractGate>());
+		ShowGateInformation(true, ActiveGateScript);
 		PinSettings.Instance.SetVisualizationState(ActiveGate);
 	}
 
-	void SetOutline(bool outlineEnabled) => ActiveGate.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
+	void SetOutline(bool outlineEnabled) => ActiveGateScript.SetOutline(outlineEnabled);
 
 	void ShowGateInformation(bool show, AbstractGate gateObject) =>
 		gateInformation.OpenGateInformation(show, gateObject);

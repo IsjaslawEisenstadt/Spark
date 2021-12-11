@@ -4,21 +4,60 @@ using UnityEngine.UI;
 
 public class GateInformation : MonoBehaviour
 {
-	Camera mainCamera;
-
-	TMP_Text title;
 	public float offsetValue;
 	public RectTransform truthTableContainer;
 	public GameObject cellPrefab;
-	TruthTableRow[] truthTable;
+
+	Camera mainCamera;
+	TMP_Text title;
+	GridLayoutGroup grid;
 
 	AbstractGate currentGate;
 	bool isInitialized = false;
 
-	void Awake()
+	public void OpenGateInformation(bool show, AbstractGate gate)
 	{
+		if (!show || gate is SourceGate || gate is SinkGate || gate is DefaultGate || gate == null)
+		{
+			currentGate = null;
+			gameObject.SetActive(false);
+			return;
+		}
+
+		currentGate = gate;
+
 		InitGateInformation();
+
+		title.SetText(currentGate.name);
+		foreach (Transform child in truthTableContainer)
+		{
+			Destroy(child.gameObject);
+		}
+
+		TruthTableRow[] truthTable = currentGate.GenerateTruthTable();
+		grid.constraintCount = truthTable[0].Inputs.Length + truthTable[0].Outputs.Length;
+
+		foreach (TruthTableRow row in truthTable)
+		{
+			foreach (bool value in row.Inputs)
+			{
+				CreateCell(value ? "1" : "0");
+			}
+
+			foreach (bool value in row.Outputs)
+			{
+				CreateCell(value ? "1" : "0");
+			}
+		}
+
+		UpdatePosition(true);
+
+		gameObject.SetActive(true);
 	}
+
+	void Awake() => InitGateInformation();
+
+	void Update() => UpdatePosition(true);
 
 	void InitGateInformation()
 	{
@@ -27,69 +66,14 @@ public class GateInformation : MonoBehaviour
 
 		title = GetComponentInChildren<TMP_Text>();
 		mainCamera = Camera.main;
+		grid = truthTableContainer.GetComponent<GridLayoutGroup>();
 		isInitialized = true;
 		UpdatePosition(false);
 	}
 
-	void PopulateTruthTable()
+	void CreateCell(string text)
 	{
-		foreach (TruthTableRow row in truthTable)
-		{
-			foreach (bool value in row.Inputs)
-			{
-				CreateCell(value);
-			}
-
-			foreach (bool value in row.Outputs)
-			{
-				CreateCell(value);
-			}
-		}
-	}
-
-	void CreateCell(bool value)
-	{
-		Instantiate(cellPrefab, truthTableContainer.transform).GetComponentInChildren<TMP_Text>()
-			.SetText(value ? "1" : "0");
-	}
-
-	void Update() => UpdatePosition(true);
-
-	void OnEnable()
-	{
-		InitGateInformation();
-		SetupGateInformation();
-		UpdatePosition(true);
-	}
-
-	public void OpenGateInformation(bool show, AbstractGate gate)
-	{
-		if (gate is SourceGate || gate is SinkGate || gate == null)
-		{
-			gameObject.SetActive(false);
-			return;
-		}
-
-		currentGate = gate;
-		gameObject.SetActive(show);
-	}
-
-	public void SetupGateInformation()
-	{
-		title.SetText(currentGate.name);
-		foreach (Transform child in truthTableContainer)
-		{
-			Destroy(child.gameObject);
-		}
-
-		truthTable = currentGate.GenerateTruthTable();
-		SetGridLayoutConstraintCount(truthTable[0].Inputs.Length + truthTable[0].Outputs.Length);
-		PopulateTruthTable();
-	}
-
-	void SetGridLayoutConstraintCount(int size)
-	{
-		truthTableContainer.GetComponent<GridLayoutGroup>().constraintCount = size;
+		Instantiate(cellPrefab, truthTableContainer.transform).GetComponentInChildren<TMP_Text>().SetText(text);
 	}
 
 	void UpdatePosition(bool lerpPosition)

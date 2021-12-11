@@ -1,23 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using cakeslice;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 public enum GateType
 {
-	AndGate,
-	OrGate,
+	Default,
+	And,
+	Or,
+	Not,
+	Nand,
+	Nor,
+	Xor,
+	Xnor,
 	Source,
 	Sink
 }
 
 public abstract class AbstractGate : MonoBehaviour
 {
+	public GateType GateType { get; protected set; }
+
 	public List<Pin> inputs;
 	public List<Pin> outputs;
 
-	public GateType GateType { get; protected set; }
+	public List<Outline> outlines;
 
 	void Awake()
 	{
@@ -44,6 +53,14 @@ public abstract class AbstractGate : MonoBehaviour
 		foreach (Pin output in outputs)
 		{
 			output.valueChanged -= OnOutputValueChanged;
+		}
+	}
+
+	public void SetOutline(bool outlineEnabled)
+	{
+		foreach (Outline outline in outlines)
+		{
+			outline.eraseRenderer = !outlineEnabled;
 		}
 	}
 
@@ -83,7 +100,7 @@ public abstract class AbstractGate : MonoBehaviour
 
 	protected abstract bool[] Evaluate(bool[] values);
 
-	public abstract void InitGateTyp();
+	public abstract void InitGateType();
 
 	void OnInputValueChanged(Pin pin, bool value)
 	{
@@ -111,7 +128,7 @@ public readonly struct TruthTableRow
 
 	public override string ToString()
 	{
-		String ret = "TruthTableRow: Inputs = [";
+		string ret = "TruthTableRow: Inputs = [";
 
 		foreach (bool value in Inputs)
 		{

@@ -5,5 +5,5 @@ public class AndGate : AbstractGate
 		return new[] { values[0] & values[1] };
 	}
 
-	public override void InitGateTyp() => GateType = GateType.AndGate;
+	public override void InitGateType() => GateType = GateType.And;
 }
