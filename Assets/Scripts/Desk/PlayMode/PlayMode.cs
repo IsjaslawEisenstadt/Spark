@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public abstract class PlayMode : MonoBehaviour
 {
@@ -22,14 +24,18 @@ public abstract class PlayMode : MonoBehaviour
 
 	public void Play()
 	{
-		EvaluatePlay(null); //just to test
 		if (Source == null)
 		{
-			// TODO: add error message display
+			Animator errorPanelAnim = GameObject.Find("ErrorPlane").GetComponent<Animator>();
+			TextMeshProUGUI errorPanelMessage = GameObject.Find("ErrorPanelText").GetComponent<TextMeshProUGUI>();
+
+			errorPanelMessage.text = "No Source available.";
+			errorPanelAnim.SetBool("open", true);
 		}
 
 		if (Sink == null)
 		{
+			Debug.Log("No Sink!");
 			// TODO: add error message display
 		}
 		else
