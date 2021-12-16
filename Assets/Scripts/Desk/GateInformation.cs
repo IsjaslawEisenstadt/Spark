@@ -36,6 +36,25 @@ public class GateInformation : MonoBehaviour
 
 		TruthTableRow[] truthTable = currentGate.GenerateTruthTable();
 		grid.constraintCount = truthTable[0].Inputs.Length + truthTable[0].Outputs.Length;
+		for (int i = 0; i < truthTable[0].Inputs.Length; i++)
+		{
+			string columnHeading;
+			if (gate is AdderGate)
+				columnHeading = i < truthTable[0].Inputs.Length - 1 ? $"Input {i}" : "Carry In";
+			else
+				columnHeading = $"Input {i}";
+			CreateHeadingCell(columnHeading);
+		}
+
+		for (int i = 0; i < truthTable[0].Outputs.Length; i++)
+		{
+			string columnHeading;
+			if (gate is AdderGate)
+				columnHeading = i < truthTable[0].Outputs.Length - 1 ? $"Carry Out" : "Sum";
+			else
+				columnHeading = $"Output {i}";
+			CreateHeadingCell(columnHeading);
+		}
 
 		foreach (TruthTableRow row in truthTable)
 		{
@@ -54,6 +73,7 @@ public class GateInformation : MonoBehaviour
 
 		gameObject.SetActive(true);
 	}
+
 
 	void Awake() => InitGateInformation();
 
@@ -74,6 +94,14 @@ public class GateInformation : MonoBehaviour
 	void CreateCell(string text)
 	{
 		Instantiate(cellPrefab, truthTableContainer.transform).GetComponentInChildren<TMP_Text>().SetText(text);
+	}
+
+
+	void CreateHeadingCell(string columnHeading)
+	{
+		TMP_Text cell = Instantiate(cellPrefab, truthTableContainer.transform).GetComponentInChildren<TMP_Text>();
+		cell.SetText(columnHeading);
+		cell.fontSize = 0.005f;
 	}
 
 	void UpdatePosition(bool lerpPosition)
