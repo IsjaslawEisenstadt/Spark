@@ -17,7 +17,8 @@ public enum GateType
 	Xnor,
 	Source,
 	Sink,
-	Adder
+	Adder,
+	HalfAdder
 }
 
 public abstract class AbstractGate : MonoBehaviour

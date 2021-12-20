@@ -39,12 +39,15 @@ public class GateInformation : MonoBehaviour
 
 		for (int i = 0; i < truthTable[0].Inputs.Length; ++i)
 		{
-			CreateHeadingCell(gate is AdderGate && i < truthTable[0].Inputs.Length - 1 ? "Carry In" : $"Input {i}");
+			CreateHeadingCell((gate is AdderGate || gate is HalfAdderGate) && i < truthTable[0].Inputs.Length - 1
+				? "Carry In" : $"Input {i}");
 		}
 
 		for (int i = 0; i < truthTable[0].Outputs.Length; ++i)
 		{
-			CreateHeadingCell(gate is AdderGate && i < truthTable[0].Inputs.Length - 1 ? "Carry Out" : $"Output {i}");
+			CreateHeadingCell((gate is AdderGate || gate is HalfAdderGate) && i < truthTable[0].Inputs.Length - 1
+				? "Carry Out"
+				: $"Output {i}");
 		}
 
 		foreach (TruthTableRow row in truthTable)
