@@ -8,13 +8,22 @@ using UnityEngine.UIElements;
 public abstract class PlayMode : MonoBehaviour
 {
 	[SerializeField] GateDrawer gateDrawer;
-
+	[SerializeField] Animator errorPanelAnim;
+	[SerializeField] TextMeshProUGUI errorPanelMessage;
+	[SerializeField] int playErrorAnimationHash;
 	protected SourceGate Source { get; private set; }
 	protected SinkGate Sink { get; private set; }
+
+	void Awake()
+	{
+		errorPanelAnim = GameObject.Find("ErrorPanel").GetComponent<Animator>();
+		errorPanelMessage = GameObject.Find("ErrorPanelText").GetComponent<TextMeshProUGUI>();
+	}
 
 	void Start()
 	{
 		gateDrawer.onGateTypeChanged += OnGateTypeChanged;
+		playErrorAnimationHash = Animator.StringToHash("playErrorAnimation");
 	}
 
 	void OnDestroy()
@@ -26,17 +35,14 @@ public abstract class PlayMode : MonoBehaviour
 	{
 		if (Source == null)
 		{
-			Animator errorPanelAnim = GameObject.Find("ErrorPlane").GetComponent<Animator>();
-			TextMeshProUGUI errorPanelMessage = GameObject.Find("ErrorPanelText").GetComponent<TextMeshProUGUI>();
-
 			errorPanelMessage.text = "No Source available.";
-			errorPanelAnim.SetBool("open", true);
+			errorPanelAnim.SetTrigger(playErrorAnimationHash);
 		}
 
 		if (Sink == null)
 		{
-			Debug.Log("No Sink!");
-			// TODO: add error message display
+			errorPanelMessage.text = "No Sink available.";
+			errorPanelAnim.SetTrigger(playErrorAnimationHash);
 		}
 		else
 		{
