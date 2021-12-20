@@ -36,24 +36,15 @@ public class GateInformation : MonoBehaviour
 
 		TruthTableRow[] truthTable = currentGate.GenerateTruthTable();
 		grid.constraintCount = truthTable[0].Inputs.Length + truthTable[0].Outputs.Length;
-		for (int i = 0; i < truthTable[0].Inputs.Length; i++)
+
+		for (int i = 0; i < truthTable[0].Inputs.Length; ++i)
 		{
-			string columnHeading;
-			if (gate is AdderGate)
-				columnHeading = i < truthTable[0].Inputs.Length - 1 ? $"Input {i}" : "Carry In";
-			else
-				columnHeading = $"Input {i}";
-			CreateHeadingCell(columnHeading);
+			CreateHeadingCell(gate is AdderGate && i < truthTable[0].Inputs.Length - 1 ? "Carry In" : $"Input {i}");
 		}
 
-		for (int i = 0; i < truthTable[0].Outputs.Length; i++)
+		for (int i = 0; i < truthTable[0].Outputs.Length; ++i)
 		{
-			string columnHeading;
-			if (gate is AdderGate)
-				columnHeading = i < truthTable[0].Outputs.Length - 1 ? $"Carry Out" : "Sum";
-			else
-				columnHeading = $"Output {i}";
-			CreateHeadingCell(columnHeading);
+			CreateHeadingCell(gate is AdderGate && i < truthTable[0].Inputs.Length - 1 ? "Carry Out" : $"Output {i}");
 		}
 
 		foreach (TruthTableRow row in truthTable)
