@@ -7,6 +7,7 @@ public class BaseGate : MonoBehaviour
 	public AbstractGate ActiveGateScript { get; private set; }
 
 	GameObject activeGate;
+
 	public GameObject ActiveGate
 	{
 		get => activeGate;
@@ -18,6 +19,7 @@ public class BaseGate : MonoBehaviour
 	}
 
 	bool selected;
+
 	public bool Selected
 	{
 		get => selected;
@@ -46,7 +48,7 @@ public class BaseGate : MonoBehaviour
 		SetOutline(true);
 
 		ShowGateInformation(true, ActiveGateScript);
-		PinSettings.Instance.SetVisualizationState(ActiveGate);
+		UIManager.Instance.OnGateSelected();
 	}
 
 	void SetOutline(bool outlineEnabled) => ActiveGateScript.SetOutline(outlineEnabled);

@@ -6127,6 +6127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5021aaa722498a247954028091f625dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gateSelector: {fileID: 8807970669555579352}
   pinCountText: {fileID: 8807970669682883742}
   selectedPinText: {fileID: 8807970669919058508}
   pinActivation: {fileID: 8807970668953112128}
@@ -6739,6 +6740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c710b7592a0ce48a2f8a972d4ed22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gateSelector: {fileID: 8807970669555579352}
 --- !u!1 &8807970669211714761
 GameObject:
   m_ObjectHideFlags: 0
@@ -7498,6 +7500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7253e3ea74074e74192a6c84b626c0cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gateSelector: {fileID: 8807970669555579352}
   arrow: {fileID: 8807970670102582995}
   borderSize: 50
 --- !u!1 &8807970669555579349
@@ -7570,7 +7573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 378c969239f45494cb0365ffa9cb1e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gateDrawer: {fileID: 8807970669193168681}
 --- !u!1 &8807970669589792512
 GameObject:
   m_ObjectHideFlags: 0
@@ -7656,8 +7658,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiElementList:
-  - popup: {fileID: 2290750388484413601}
-    popupType: 0
+  - popupType: 0
+    popup: {fileID: 2290750388484413601}
 --- !u!1 &8807970669612922532
 GameObject:
   m_ObjectHideFlags: 0
@@ -7782,7 +7784,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8807970669193168681}
         m_TargetAssemblyTypeName: GateDrawer, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: OnClose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

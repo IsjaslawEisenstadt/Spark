@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class GateDrawer : MonoBehaviour
+public class GateDrawer : MonoBehaviour, IUIElement
 {
+	public GateSelector gateSelector;
 	public event Action<BaseGate> onGateTypeChanged;
 
 	BaseGate baseGate;
+
 
 	public void OnGateSelected(string gateName)
 	{
@@ -14,7 +15,7 @@ public class GateDrawer : MonoBehaviour
 		onGateTypeChanged?.Invoke(baseGate);
 	}
 
-	public void Open(GameObject gateObject)
+	public void OnOpen()
 	{
 		gameObject.SetActive(true);
 
@@ -23,19 +24,16 @@ public class GateDrawer : MonoBehaviour
 			baseGate.Selected = false;
 		}
 
-		baseGate = gateObject.GetComponent<BaseGate>();
+		baseGate = gateSelector.CurrentSelectedObject.transform.parent.parent.gameObject.GetComponent<BaseGate>();
 		baseGate.Selected = true;
 	}
 
-	public void Close()
+	public void OnClose()
 	{
 		if (baseGate)
 		{
 			baseGate.Selected = false;
 		}
-
-		PinSettings.Instance.Close();
-		HiddenGateArrow.Instance.Deactivate();
 
 		gameObject.SetActive(false);
 	}

@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07c4877b98a49bf4292e7f2b6c4866c5, type: 3}
-  m_Name: OR
+  m_Name: ADDER
   m_EditorClassIdentifier: 
-  gateScript: {fileID: 1198957796057275623, guid: b3801a0fe4830a045ac4585e8c435a14, type: 3}
+  gateScript: {fileID: 8569017627696779996, guid: 09b3ade79dca3da4299216a5422fcea8, type: 3}
   <GateRestrictionEntries>k__BackingField:
-  - gateType: 4
+  - gateType: 2
     count: 1
-  - gateType: 3
+  - gateType: 6
+    count: 2
+  - gateType: 1
     count: 2

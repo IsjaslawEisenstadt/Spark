@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -586,10 +586,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneLoader: {fileID: 438007828}
-  entry: {fileID: 2954957470408676972, guid: 9d45a0fc24eb6bb459b81935b49bb356, type: 3}
+  mission: {fileID: 2954957470408676972, guid: 9d45a0fc24eb6bb459b81935b49bb356, type: 3}
   missions:
   - {fileID: 11400000, guid: e21585c26d289ef489f4b1d845ef40f8, type: 2}
   - {fileID: 11400000, guid: 5bbd6967f2089e54f82b4736b3703341, type: 2}
+  - {fileID: 11400000, guid: da4d6010df098094eb4051d9c6e66945, type: 2}
+  - {fileID: 11400000, guid: ff14f63e43673e9448229a6a99cdd320, type: 2}
 --- !u!1001 &438007826
 PrefabInstance:
   m_ObjectHideFlags: 0

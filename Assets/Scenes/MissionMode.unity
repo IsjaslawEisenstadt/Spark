@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -480,6 +480,54 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1616192200175521505, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616192200175521505, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616192200175521505, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616192200175521505, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616192200175521505, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616192200175521505, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759053432058190288, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759053432058190288, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759053432058190288, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759053432058190288, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759053432058190288, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759053432058190288, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2406405479706011940, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -664,6 +712,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8807970669041738868, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: gateSelector
+      value: 
+      objectReference: {fileID: 1023738092}
     - target: {fileID: 8807970669132862040, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -688,6 +740,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8807970669193168681, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: gateSelector
+      value: 
+      objectReference: {fileID: 1023738092}
     - target: {fileID: 8807970669253047164, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_Name
       value: BasePlayScene
@@ -756,6 +812,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8807970669529741486, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: gateSelector
+      value: 
+      objectReference: {fileID: 1023738092}
     - target: {fileID: 8807970669916724320, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -877,6 +937,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneLoader: {fileID: 986303614}
   nextButton: {fileID: 447039134}
+--- !u!114 &1023738092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8807970669555579352, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 986303613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378c969239f45494cb0365ffa9cb1e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1426123420 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8807970669253047164, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
@@ -895,3 +966,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gateDrawer: {fileID: 940538699}
+  errorPanelAnim: {fileID: 0}
+  errorPanelMessage: {fileID: 0}
+  playErrorAnimationHash: 0

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MissionMode : PlayMode
 {
@@ -18,7 +17,7 @@ public class MissionMode : PlayMode
 		OnResultIsValid();
 	}
 
-	private void OnResultIsValid()
+	void OnResultIsValid()
 	{
 		PlayerPrefs.SetInt(CurrentMission.missions[CurrentMission.currentMissionIndex].name, 1);
 	}

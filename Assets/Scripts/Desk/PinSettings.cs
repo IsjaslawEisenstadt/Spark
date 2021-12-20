@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class PinSettings : MonoBehaviour
+public class PinSettings : MonoBehaviour, IUIElement
 {
 	public static PinSettings Instance { get; private set; }
+
+	public GateSelector gateSelector;
 
 	SourceSinkGate currentGate;
 	List<Pin> pins;
@@ -18,8 +18,7 @@ public class PinSettings : MonoBehaviour
 	public TMP_Text selectedPinText;
 	public TMP_Text pinActivation;
 
-	[Space(10)]
-	public GameObject pinCount;
+	[Space(10)] public GameObject pinCount;
 	public GameObject divider;
 	public GameObject pinSelection;
 	public GameObject noSettingsText;
@@ -37,21 +36,22 @@ public class PinSettings : MonoBehaviour
 		}
 	}
 
-	public void SetVisualizationState(GameObject activeGate)
+	public void OnOpen()
 	{
-		currentGate = activeGate.GetComponent<SourceSinkGate>();
+		GameObject hitObject = gateSelector.CurrentSelectedObject;
+		currentGate = hitObject.GetComponent<SourceSinkGate>();
 
 		if (!currentGate)
 		{
-			Close();
+			OnClose();
 			return;
 		}
 
-		SetUp(activeGate);
+		SetUp(hitObject);
 		gameObject.SetActive(true);
 	}
 
-	public void Close() => gameObject.SetActive(false);
+	public void OnClose() => gameObject.SetActive(false);
 
 	public void OnActivationButton()
 	{
@@ -113,42 +113,45 @@ public class PinSettings : MonoBehaviour
 		switch (activeScene)
 		{
 			case ("MissionMode"):
+			{
+				if (currentGate.GateType == GateType.Source)
 				{
-					if (currentGate.GateType == GateType.Source)
-					{
-						SetUIContext(false, true);
-					}
-					else //isSink
-					{
-						SetUIContext(false, false);
-					}
-					break;
+					SetUIContext(false, true);
 				}
+				else //isSink
+				{
+					SetUIContext(false, false);
+				}
+
+				break;
+			}
 			case ("TutorialMode"):
+			{
+				//Context of Tutorial is missing
+				if (currentGate.GateType == GateType.Source)
 				{
-					//Context of Tutorial is missing
-					if (currentGate.GateType == GateType.Source)
-					{
-						SetUIContext(true, true);
-					}
-					else //isSink
-					{
-						SetUIContext(true, false);
-					}
-					break;
+					SetUIContext(true, true);
 				}
+				else //isSink
+				{
+					SetUIContext(true, false);
+				}
+
+				break;
+			}
 			case ("StudyMode"):
+			{
+				if (currentGate.GateType == GateType.Source)
 				{
-					if (currentGate.GateType == GateType.Source)
-					{
-						SetUIContext(true, true);
-					}
-					else //isSink
-					{
-						SetUIContext(true, false);
-					}
-					break;
+					SetUIContext(true, true);
 				}
+				else //isSink
+				{
+					SetUIContext(true, false);
+				}
+
+				break;
+			}
 		}
 
 		if (pinCount.activeSelf)

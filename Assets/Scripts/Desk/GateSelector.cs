@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class GateSelector : MonoBehaviour
 {
-	public GateDrawer gateDrawer;
+	public GameObject CurrentSelectedObject { get; private set; }
 
 	void Update()
 	{
@@ -21,19 +21,11 @@ public class GateSelector : MonoBehaviour
 			if (successful && (hitObject.CompareTag("LogicGate") || hitObject.CompareTag("Source") ||
 			                   hitObject.CompareTag("Sink")))
 			{
-				// A raycast will hit the child Box of an AbstractGate, hence why we need to get its parent and then
-				// the parent of the AbstractGate to get the BaseGate
-				GameObject baseGate = hitObject.transform.parent.parent.gameObject;
-				gateDrawer.Open(baseGate);
-				HiddenGateArrow.Instance.Activate(baseGate);
-				PinSettings.Instance.SetVisualizationState(hitObject);
+				CurrentSelectedObject = hitObject;
+				UIManager.Instance.OnGateSelected();
 			}
 			else
-			{
-				gateDrawer.Close();
-				HiddenGateArrow.Instance.Deactivate();
-				PinSettings.Instance.Close();
-			}
+				UIManager.Instance.OnNoGateSelected();
 		}
 	}
 }

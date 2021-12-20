@@ -7,9 +7,10 @@ public enum Viewport
 	UpperLeft
 }
 
-public class HiddenGateArrow : MonoBehaviour
+public class HiddenGateArrow : MonoBehaviour, IUIElement
 {
 	public static HiddenGateArrow Instance { get; private set; }
+	public GateSelector gateSelector;
 
 	public GameObject arrow;
 	public float borderSize;
@@ -37,10 +38,7 @@ public class HiddenGateArrow : MonoBehaviour
 		}
 	}
 
-	void Start()
-	{
-		SetViewport(Viewport.Left);
-	}
+	void Start() => SetViewport(Viewport.Left);
 
 	void Update()
 	{
@@ -56,16 +54,14 @@ public class HiddenGateArrow : MonoBehaviour
 		arrow.SetActive(isOffScreen);
 	}
 
-	public void Activate(GameObject baseGate)
+	public void OnOpen()
 	{
-		target = baseGate;
+		target = gateSelector.CurrentSelectedObject.transform.parent.parent.gameObject;
 		gameObject.SetActive(true);
 	}
 
-	public void Deactivate()
-	{
-		gameObject.SetActive(false);
-	}
+
+	public void OnClose() => gameObject.SetActive(false);
 
 	//Is not used yet -> should be done in new UIManager
 	public void SetViewport(Viewport viewport)

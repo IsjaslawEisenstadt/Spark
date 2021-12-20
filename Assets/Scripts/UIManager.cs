@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public enum PopupType
 {
-	ResultView
+	ResultView,
+	GateDrawer,
+	PinSettings,
+	HiddenGateArrow
 }
 
 public class UIManager : MonoBehaviour
@@ -14,7 +16,8 @@ public class UIManager : MonoBehaviour
 
 	[SerializeField] public List<Popup> uiElementList;
 
-	Dictionary<PopupType, GameObject> uiElementDict;
+	Dictionary<PopupType, GameObject> typeToObject;
+	Dictionary<PopupType, IUIElement> typeToScript;
 
 	void Awake()
 	{
@@ -30,24 +33,49 @@ public class UIManager : MonoBehaviour
 
 	void Start()
 	{
-		uiElementDict = new Dictionary<PopupType, GameObject>();
-		uiElementList.ForEach(entry => uiElementDict.Add(entry.popupType, entry.popup));
+		typeToObject = new Dictionary<PopupType, GameObject>();
+		typeToScript = new Dictionary<PopupType, IUIElement>();
+		uiElementList.ForEach(entry =>
+		{
+			typeToObject.Add(entry.popupType, entry.popup);
+			typeToScript.Add(entry.popupType, entry.script);
+		});
 	}
 
 	public void Open(PopupType popup)
 	{
-		uiElementDict[popup].SetActive(true);
+		typeToObject[popup].SetActive(true);
 	}
 
 	public GameObject GetElement(PopupType popup)
 	{
-		return uiElementDict[popup];
+		return typeToObject[popup];
+	}
+
+	/// <summary>
+	/// A raycast will hit the child Box of an AbstractGate, hence why we need to get its parent and then
+	/// the parent of the AbstractGate to get the BaseGate
+	/// </summary>
+	public void OnGateSelected()
+	{
+		typeToScript[PopupType.GateDrawer].OnOpen();
+		typeToScript[PopupType.HiddenGateArrow].OnOpen();
+		typeToScript[PopupType.PinSettings].OnOpen();
+	}
+
+
+	public void OnNoGateSelected()
+	{
+		typeToScript[PopupType.GateDrawer].OnClose();
+		typeToScript[PopupType.HiddenGateArrow].OnClose();
+		typeToScript[PopupType.PinSettings].OnClose();
 	}
 }
 
 [Serializable]
 public class Popup
 {
-	public GameObject popup;
 	public PopupType popupType;
+	public GameObject popup;
+	public IUIElement script;
 }

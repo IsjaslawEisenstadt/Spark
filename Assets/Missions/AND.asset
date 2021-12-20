@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gateScript: {fileID: 3678652314942444486, guid: 904f7c950743ec74faab4fd443dc4482, type: 3}
   <GateRestrictionEntries>k__BackingField:
-  - gateType: 0
+  - gateType: 4
+    count: 1
+  - gateType: 3
     count: 1
