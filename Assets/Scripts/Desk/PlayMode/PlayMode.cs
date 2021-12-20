@@ -13,12 +13,6 @@ public abstract class PlayMode : MonoBehaviour
 	protected SourceGate Source { get; private set; }
 	protected SinkGate Sink { get; private set; }
 
-	void Awake()
-	{
-		errorPanelAnim = GameObject.Find("ErrorPanel").GetComponent<Animator>();
-		errorPanelMessage = GameObject.Find("ErrorPanelText").GetComponent<TextMeshProUGUI>();
-	}
-
 	void Start()
 	{
 		gateDrawer.onGateTypeChanged += OnGateTypeChanged;
