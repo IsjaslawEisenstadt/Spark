@@ -5,8 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Mission", menuName = "ScriptableObjects/Mission", order = 1)]
 public class Mission : ScriptableObject
 {
+	[TextArea(5,15)]
+	public string missionDescription;
 	public AbstractGate gateScript;
-
+	public Sprite rewardImage;
+	[TextArea(5,15)]
+	public string rewardText;
 	[field: SerializeField] List<MissionEntry> GateRestrictionEntries { get; set; }
 
 	Dictionary<GateType, int> gateRestriction;
