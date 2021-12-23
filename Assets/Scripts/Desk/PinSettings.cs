@@ -38,7 +38,7 @@ public class PinSettings : MonoBehaviour, IUIElement
 
 	public void OnOpen()
 	{
-		GameObject hitObject = gateSelector.CurrentSelectedObject;
+		GameObject hitObject = gateSelector.CurrentSelectedObject.transform.parent.parent.GetComponent<BaseGate>().ActiveGate;
 		currentGate = hitObject.GetComponent<SourceSinkGate>();
 
 		if (!currentGate)

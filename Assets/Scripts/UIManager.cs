@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
 		typeToScript = new Dictionary<PopupType, IUIElement>();
 		uiElementList.ForEach(entry =>
 		{
+			entry.script = entry.popup.GetComponent<IUIElement>();
 			typeToObject.Add(entry.popupType, entry.popup);
 			typeToScript.Add(entry.popupType, entry.script);
 		});
@@ -77,5 +78,5 @@ public class Popup
 {
 	public PopupType popupType;
 	public GameObject popup;
-	public IUIElement script;
+	[HideInInspector] public IUIElement script;
 }
