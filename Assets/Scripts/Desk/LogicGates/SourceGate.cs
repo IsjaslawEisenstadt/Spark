@@ -2,7 +2,7 @@
 
 public class SourceGate : SourceSinkGate
 {
-	protected override bool[] Evaluate(bool[] values)
+	public override bool[] Evaluate(bool[] values)
 	{
 		return outputs.Select(pin => pin.State).ToArray();
 	}

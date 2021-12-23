@@ -1,6 +1,6 @@
 public class NorGate : AbstractGate
 {
-	protected override bool[] Evaluate(bool[] values)
+	public override bool[] Evaluate(bool[] values)
 	{
 		return new[] { !(values[0] | values[1]) };
 	}

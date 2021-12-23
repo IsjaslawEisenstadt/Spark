@@ -1,16 +1,13 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GateInformation : MonoBehaviour
 {
 	public float offsetValue;
 	public RectTransform truthTableContainer;
-	public GameObject cellPrefab;
 
 	Camera mainCamera;
 	TMP_Text title;
-	GridLayoutGroup grid;
 
 	AbstractGate currentGate;
 	bool isInitialized = false;
@@ -29,45 +26,13 @@ public class GateInformation : MonoBehaviour
 		InitGateInformation();
 
 		title.SetText(currentGate.name);
-		foreach (Transform child in truthTableContainer)
-		{
-			Destroy(child.gameObject);
-		}
 
-		TruthTableRow[] truthTable = currentGate.GenerateTruthTable();
-		grid.constraintCount = truthTable[0].Inputs.Length + truthTable[0].Outputs.Length;
-
-		for (int i = 0; i < truthTable[0].Inputs.Length; ++i)
-		{
-			CreateHeadingCell((gate is AdderGate || gate is HalfAdderGate) && i < truthTable[0].Inputs.Length - 1
-				? "Carry In" : $"Input {i}");
-		}
-
-		for (int i = 0; i < truthTable[0].Outputs.Length; ++i)
-		{
-			CreateHeadingCell((gate is AdderGate || gate is HalfAdderGate) && i < truthTable[0].Inputs.Length - 1
-				? "Carry Out"
-				: $"Output {i}");
-		}
-
-		foreach (TruthTableRow row in truthTable)
-		{
-			foreach (bool value in row.Inputs)
-			{
-				CreateCell(value ? "1" : "0");
-			}
-
-			foreach (bool value in row.Outputs)
-			{
-				CreateCell(value ? "1" : "0");
-			}
-		}
+		TruthTable.Instance.GenerateTruthTable(currentGate, truthTableContainer);
 
 		UpdatePosition(true);
 
 		gameObject.SetActive(true);
 	}
-
 
 	void Awake() => InitGateInformation();
 
@@ -80,22 +45,8 @@ public class GateInformation : MonoBehaviour
 
 		title = GetComponentInChildren<TMP_Text>();
 		mainCamera = Camera.main;
-		grid = truthTableContainer.GetComponent<GridLayoutGroup>();
 		isInitialized = true;
 		UpdatePosition(false);
-	}
-
-	void CreateCell(string text)
-	{
-		Instantiate(cellPrefab, truthTableContainer.transform).GetComponentInChildren<TMP_Text>().SetText(text);
-	}
-
-
-	void CreateHeadingCell(string columnHeading)
-	{
-		TMP_Text cell = Instantiate(cellPrefab, truthTableContainer.transform).GetComponentInChildren<TMP_Text>();
-		cell.SetText(columnHeading);
-		cell.fontSize = 0.005f;
 	}
 
 	void UpdatePosition(bool lerpPosition)

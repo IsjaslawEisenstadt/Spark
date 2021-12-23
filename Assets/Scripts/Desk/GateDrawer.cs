@@ -8,7 +8,6 @@ public class GateDrawer : MonoBehaviour, IUIElement
 
 	BaseGate baseGate;
 
-
 	public void OnGateSelected(string gateName)
 	{
 		baseGate.SetGateType(gateName);

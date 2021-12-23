@@ -66,23 +66,6 @@ public abstract class AbstractGate : MonoBehaviour
 		}
 	}
 
-	public TruthTableRow[] GenerateTruthTable()
-	{
-		TruthTableRow[] rows = new TruthTableRow[(int)Math.Pow(2, inputs.Count)];
-		for (int i = 0; i < rows.Length; ++i)
-		{
-			bool[] inp = new bool[inputs.Count];
-			for (int j = 0; j < inputs.Count; ++j)
-			{
-				inp[j] = (i & (1 << j)) != 0;
-			}
-
-			rows[i] = new TruthTableRow(inp, Evaluate(inp));
-		}
-
-		return rows;
-	}
-
 	protected void Refresh()
 	{
 		bool[] outputValues = EvaluateSelf();
@@ -100,7 +83,7 @@ public abstract class AbstractGate : MonoBehaviour
 		return Evaluate(inputs.Select(pin => pin.State).ToArray());
 	}
 
-	protected abstract bool[] Evaluate(bool[] values);
+	public abstract bool[] Evaluate(bool[] values);
 
 	public abstract void InitGateType();
 
@@ -118,32 +101,5 @@ public abstract class AbstractGate : MonoBehaviour
 	{
 		if (pin.Line)
 			pin.Line.LineEnd.GetComponent<Pin>().State = value;
-	}
-}
-
-public readonly struct TruthTableRow
-{
-	public readonly bool[] Inputs;
-	public readonly bool[] Outputs;
-
-	public TruthTableRow(bool[] inputs, bool[] outputs) => (Inputs, Outputs) = (inputs, outputs);
-
-	public override string ToString()
-	{
-		string ret = "TruthTableRow: Inputs = [";
-
-		foreach (bool value in Inputs)
-		{
-			ret += value;
-		}
-
-		ret += "], Outputs = [";
-
-		foreach (bool value in Outputs)
-		{
-			ret += value;
-		}
-
-		return ret + "]";
 	}
 }

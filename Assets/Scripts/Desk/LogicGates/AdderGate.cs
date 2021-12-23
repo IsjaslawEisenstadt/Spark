@@ -1,6 +1,6 @@
 public class AdderGate : AbstractGate
 {
-	protected override bool[] Evaluate(bool[] values)
+	public override bool[] Evaluate(bool[] values)
 	{
 		bool inputOne = values[0];
 		bool inputTwo = values[1];
