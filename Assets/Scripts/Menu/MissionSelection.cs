@@ -22,12 +22,12 @@ public class MissionSelection : MonoBehaviour
 			Button button = missionInstance.GetComponent<Button>();
 			button.onClick.AddListener(delegate { OnSelectMission(index); });
 
-			if (!PlayerPrefs.HasKey(missions[i].name))
-				PlayerPrefs.SetInt(missions[i].name, 0);
+			if (!PlayerPrefs.HasKey("NextMission"))
+				PlayerPrefs.SetInt("NextMission", 0);
 
-			button.interactable = i == 0 || PlayerPrefs.GetInt(missions[i - 1].name) != 0;
-			PlayerPrefs.Save();
+			button.interactable = PlayerPrefs.GetInt("NextMission") >= i;
 		}
+		PlayerPrefs.Save();
 	}
 
 	public void OnSelectMission(int index)

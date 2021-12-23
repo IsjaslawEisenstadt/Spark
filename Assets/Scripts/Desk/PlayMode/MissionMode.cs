@@ -19,7 +19,21 @@ public class MissionMode : PlayMode
 
 	void OnResultIsValid()
 	{
-		PlayerPrefs.SetInt(CurrentMission.missions[CurrentMission.currentMissionIndex].name, 1);
+		PlayerPrefs.SetInt("NextMission", CurrentMission.currentMissionIndex + 1);
+
+		string newGate = CurrentMission.missions[CurrentMission.currentMissionIndex].gateScript.GateType.ToString();
+
+		if (!PlayerPrefs.HasKey("AvailableGates"))
+			PlayerPrefs.SetString("AvailableGates", newGate);
+		else
+		{
+			string ppString = PlayerPrefs.GetString("AvailableGates"); 
+			List<string> availableGates = new List<string>(ppString.Split(','));
+			if (!availableGates.Contains(newGate))
+				PlayerPrefs.SetString("AvailableGates", ppString + ',' + newGate);
+		}
+		
+		PlayerPrefs.Save();
 	}
 }
 
