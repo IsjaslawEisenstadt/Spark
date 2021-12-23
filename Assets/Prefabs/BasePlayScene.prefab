@@ -1145,7 +1145,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8807970669027660774}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1261,7 +1261,7 @@ RectTransform:
   m_Children:
   - {fileID: 6788487430024617360}
   m_Father: {fileID: 8807970669027660774}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -6008,9 +6008,9 @@ RectTransform:
   - {fileID: 8807970668516581907}
   - {fileID: 2122298362879450323}
   - {fileID: 4865268873968683870}
-  - {fileID: 8807970669763699073}
   - {fileID: 6003680743665450641}
   - {fileID: 624541053327430869}
+  - {fileID: 8807970669763699073}
   m_Father: {fileID: 8807970668528283152}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10110,7 +10110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3479619909490517316, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3479619909490517316, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -10186,14 +10186,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
---- !u!224 &8807970669763699073 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3479619909490517316, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
-  m_PrefabInstance: {fileID: 5365517200731669701}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8807970669763700350 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3479619909490516667, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
+  m_PrefabInstance: {fileID: 5365517200731669701}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &8807970669763699073 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3479619909490517316, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
   m_PrefabInstance: {fileID: 5365517200731669701}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &4928232255054758766 stripped
