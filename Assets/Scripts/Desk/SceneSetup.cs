@@ -6,8 +6,6 @@ public class SceneSetup : MonoBehaviour
 {
 	public List<ObjectContainer> gameObjectList;
 	void Awake() => gameObjectList.ForEach(x => x.gameObject.SetActive(x.active));
-
-
 }
 
 [Serializable]
