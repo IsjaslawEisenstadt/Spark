@@ -7,7 +7,9 @@ public enum PopupType
 	ResultView,
 	GateDrawer,
 	PinSettings,
-	HiddenGateArrow
+	HiddenGateArrow,
+	MissionInfo,
+	HUD
 }
 
 public class UIManager : MonoBehaviour
