@@ -22,14 +22,12 @@ public class GateSelector : MonoBehaviour
 		{
 			isTouching = true;
 			touchStartOverUI = EventSystem.current.IsPointerOverGameObject(0);
-			Debug.LogWarning("TouchStartet with touchStartOverUI: " + touchStartOverUI);
 		}
 
 		if (touchEvent.phase == TouchPhase.Ended)
 		{
 			if (!(touchStartOverUI || EventSystem.current.IsPointerOverGameObject(0)))
 			{
-				Debug.LogWarning("Cast");
 				(bool successful, GameObject hitObject) = RayCaster.Instance.GetHitObject();
 
 				if (successful && (hitObject.CompareTag("LogicGate") || hitObject.CompareTag("Source") ||
@@ -43,7 +41,6 @@ public class GateSelector : MonoBehaviour
 			}
 
 			touchStartOverUI = isTouching = false;
-			Debug.LogWarning("Touch ends");
 		}
 	}
 }
