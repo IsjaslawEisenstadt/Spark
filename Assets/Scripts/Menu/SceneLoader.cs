@@ -42,7 +42,6 @@ public class SceneLoader : MonoBehaviour
 		}
 	}
 
-	//currently not working as intended
 	void StartARTransition(ARCameraFrameEventArgs args)
 	{
 		arCameraManager.frameReceived -= StartARTransition;
