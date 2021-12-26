@@ -21,9 +21,10 @@ public class SceneLoader : MonoBehaviour
 			case ("TutorialMode"):
 			case ("StudyMode"):
 			{
-					arCameraManager = GameObject.Find("AR Camera").GetComponent<ARCameraManager>();
-					arCameraManager.frameReceived += StartARTransition;
-					break;
+				arCameraManager = GameObject.Find("AR Camera").GetComponent<ARCameraManager>();
+				arCameraManager.frameReceived += StartARTransition;
+				StartCoroutine(sceneBlender.StartAsyncTransition(startTransitionType));
+				break;
 			}
 			default: 
 			{
@@ -45,6 +46,6 @@ public class SceneLoader : MonoBehaviour
 	void StartARTransition(ARCameraFrameEventArgs args)
 	{
 		arCameraManager.frameReceived -= StartARTransition;
-		sceneBlender.StartTransition(startTransitionType);
+		sceneBlender.SetIsReadyForTransition();
 	}
 }

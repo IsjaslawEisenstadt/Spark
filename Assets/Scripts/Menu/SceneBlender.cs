@@ -7,35 +7,30 @@ public class SceneBlender : MonoBehaviour
 {
 	Image image;
 	Transition currentTransition;
+	bool isReady;
 
 	void Awake() => image = GetComponent<Image>();
 
 	public void StartTransition(TransitionType type, Action onFinishCallback = null, float length = -1.0f,
 		EasingFunction.Ease? easingType = null)
 	{
-		StartCoroutine(Begin(type, onFinishCallback, length, easingType));
+		Init(type, length, easingType);
+		StartCoroutine(PlayTransition(onFinishCallback));
 	}
 
-	IEnumerator Begin(TransitionType type, Action onFinishCallback, float length, EasingFunction.Ease? easingType)
+	public IEnumerator StartAsyncTransition(TransitionType type, Action onFinishCallback = null, float length = -1.0f,
+		EasingFunction.Ease? easingType = null)
 	{
-		currentTransition = gameObject.GetComponent(type.ToString()) as Transition;
+		Init(type, length, easingType);
+		
+		isReady = false;
+		yield return new WaitUntil(() => isReady);
 
-		if (!currentTransition)
-		{
-			Debug.LogError($"SceneBlender doesn't have a Transition of type [{type.ToString()}]");
-			yield break;
-		}
+		StartCoroutine(PlayTransition(onFinishCallback));
+	}
 
-		image.material = currentTransition.Material;
-
-		currentTransition.EasingType = easingType ?? currentTransition.EasingType;
-		if (length >= 0.0f)
-		{
-			currentTransition.Length = length;
-		}
-
-		currentTransition.Restart();
-
+	IEnumerator PlayTransition(Action onFinishCallback)
+	{
 		while (!IsFinished())
 		{
 			currentTransition.Step(Time.deltaTime);
@@ -48,8 +43,28 @@ public class SceneBlender : MonoBehaviour
 		onFinishCallback?.Invoke();
 	}
 
-	public bool IsFinished()
+	void Init(TransitionType type, float length = -1.0f, EasingFunction.Ease? easingType = null)
 	{
-		return !currentTransition || currentTransition.IsFinished();
+		currentTransition = gameObject.GetComponent(type.ToString()) as Transition;
+
+		if (!currentTransition)
+		{
+			Debug.LogError($"SceneBlender doesn't have a Transition of type [{type.ToString()}]");
+			return;
+		}
+
+		image.material = currentTransition.Material;
+
+		currentTransition.EasingType = easingType ?? currentTransition.EasingType;
+		if (length >= 0.0f)
+		{
+			currentTransition.Length = length;
+		}
+
+		currentTransition.Restart();
 	}
+
+	public bool IsFinished() => !currentTransition || currentTransition.IsFinished();
+
+	public void SetIsReadyForTransition() => isReady = true;
 }

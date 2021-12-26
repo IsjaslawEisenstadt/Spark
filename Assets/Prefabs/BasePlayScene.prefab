@@ -1158,7 +1158,7 @@ RectTransform:
   - {fileID: 4865268873968683870}
   - {fileID: 2057542232905514880}
   m_Father: {fileID: 8807970669027660774}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7962,8 +7962,8 @@ RectTransform:
   - {fileID: 2122298362879450323}
   - {fileID: 6003680743665450641}
   - {fileID: 624541053327430869}
-  - {fileID: 8807970669763699073}
   - {fileID: 2424266593656155687}
+  - {fileID: 8807970669763699073}
   m_Father: {fileID: 8807970668528283152}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12532,7 +12532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3479619909490517316, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3479619909490517316, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -12608,9 +12608,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
---- !u!1 &8807970669763700350 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3479619909490516667, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
+--- !u!224 &8807970669763699073 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3479619909490517316, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
   m_PrefabInstance: {fileID: 5365517200731669701}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &4928232255054758766 stripped
@@ -12624,8 +12624,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 238d92a773931b640842484d00f381f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &8807970669763699073 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3479619909490517316, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
+--- !u!1 &8807970669763700350 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3479619909490516667, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
   m_PrefabInstance: {fileID: 5365517200731669701}
   m_PrefabAsset: {fileID: 0}

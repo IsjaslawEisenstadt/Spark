@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c4877b98a49bf4292e7f2b6c4866c5, type: 3}
   m_Name: AND
   m_EditorClassIdentifier: 
+  missionDescription: Make a AND
   gateScript: {fileID: 3678652314942444486, guid: 904f7c950743ec74faab4fd443dc4482, type: 3}
+  rewardImage: {fileID: 0}
+  rewardText: 
   <GateRestrictionEntries>k__BackingField:
   - gateType: 4
     count: 1
