@@ -13,9 +13,17 @@ public class Line : MonoBehaviour
 		get => lineStart;
 		set
 		{
+			if (lineStart)
+			{
+				lineStart.valueChanged -= OnLineStartValueChanged;
+				lineRenderer.material = disabledMaterial;
+			}
 			lineStart = value;
-			lineRenderer.material = LineStart.State ? enabledMaterial : disabledMaterial;
-			LineStart.valueChanged += OnLineStartValueChanged;
+			if (lineStart)
+			{
+				lineRenderer.material = lineStart.State ? enabledMaterial : disabledMaterial;
+				lineStart.valueChanged += OnLineStartValueChanged;
+			}
 		}
 	}
 
@@ -51,6 +59,11 @@ public class Line : MonoBehaviour
 		if (lineRenderer)
 		{
 			lineRenderer.material = value ? enabledMaterial : disabledMaterial;
+		}
+		else
+		{
+			// This should be fixed, but just in case...
+			Debug.LogError("A deleted Line received a ValueChanged callback from a pin.");
 		}
 	}
 

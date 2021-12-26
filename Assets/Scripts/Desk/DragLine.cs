@@ -27,6 +27,8 @@ public class DragLine : MonoBehaviour
 			}
 			else
 			{
+				// Need to set this to null for callbacks in Line
+				currentLine.LineStart = null;
 				Destroy(currentLine.gameObject);
 			}
 
@@ -36,11 +38,14 @@ public class DragLine : MonoBehaviour
 				{
 					oldLine.LineStart.Lines.Remove(oldLine);
 				}
+
 				if (oldLine.LineEnd)
 				{
 					oldLine.LineEnd.Lines.Remove(oldLine);
 				}
 
+				// Need to set this to null for callbacks in Line
+				oldLine.LineStart = null;
 				Destroy(oldLine.gameObject);
 			}
 
