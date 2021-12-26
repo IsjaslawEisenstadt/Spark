@@ -6,11 +6,36 @@ using UnityEngine.XR.ARFoundation;
 
 public class MissionInfo : MonoBehaviour, IUIElement
 {
+    public TMP_Text title;
     public TMP_Text description;
+    public TMP_Text button;
 
-	void Start() => description.text = CurrentMission.missions[CurrentMission.currentMissionIndex].missionDescription;
+    bool confirmed = false;
 
-    public void OnClose() => gameObject.SetActive(false);
+	void Start()
+    {
+        Mission currentMission = CurrentMission.missions[CurrentMission.currentMissionIndex];
+        title.text = currentMission.name;
+        description.text = currentMission.missionDescription;
+        button.text = "Start";
+    }
+
+    public void OnClose()
+    {
+        if (!confirmed)
+        {
+            confirmed = true;
+            button.text = "Continue";
+        }
+        
+        gameObject.SetActive(false);
+    }
 
 	public void OnOpen() => gameObject.SetActive(true);
+
+    public void OnBlocker()
+    {
+        if (confirmed)
+            OnClose();
+    }
 }
