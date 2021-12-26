@@ -67,7 +67,7 @@ public abstract class PlayMode : MonoBehaviour
 
 	public void OnGateTypeChanged(BaseGate baseGate)
 	{
-		AbstractGate gateScript = baseGate.ActiveGateScript;
+		AbstractGate gateScript = baseGate.ActiveGate;
 
 		if (Source == gateScript)
 		{

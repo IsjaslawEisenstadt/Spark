@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gateInformation: {fileID: 1287778388869654081}
+  <ActiveGate>k__BackingField: {fileID: 630034497610765164}
 --- !u!1 &1098847770412185405
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +390,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offsetValue: 0.2
   truthTableContainer: {fileID: 3430653005009333359}
-  cellPrefab: {fileID: 2287867618772161420, guid: 45fdc41cc30723e4e8c13268f1131430, type: 3}
 --- !u!114 &4292549231946381936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,6 +799,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7154978405314689915, guid: d87ed3f25c609aa4782d4f2353c21b3c, type: 3}
   m_PrefabInstance: {fileID: 3898778798046784406}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &630034497610765164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4514132539018049786, guid: d87ed3f25c609aa4782d4f2353c21b3c, type: 3}
+  m_PrefabInstance: {fileID: 3898778798046784406}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e81f06064eb29c4d886cac9a0ed2f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4210870935956827068
 PrefabInstance:
   m_ObjectHideFlags: 0

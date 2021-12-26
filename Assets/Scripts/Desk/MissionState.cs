@@ -35,8 +35,8 @@ public class MissionState : MonoBehaviour
 
     public void refreshMissionState(BaseGate baseGate)
     {
-        GateType baseGateType = baseGate.ActiveGateScript.GateType;
-        
+        GateType baseGateType = baseGate.ActiveGate.GateType;
+
         if (!GateAvailability[baseGateType].available)
         {
             Debug.LogError("Selected unallowed gate!");

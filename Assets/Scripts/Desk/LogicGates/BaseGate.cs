@@ -4,19 +4,7 @@ public class BaseGate : MonoBehaviour
 {
 	public GateInformation gateInformation;
 
-	public AbstractGate ActiveGateScript { get; private set; }
-
-	GameObject activeGate;
-
-	public GameObject ActiveGate
-	{
-		get => activeGate;
-		private set
-		{
-			activeGate = value;
-			ActiveGateScript = ActiveGate.GetComponent<AbstractGate>();
-		}
-	}
+	[field: SerializeField] public AbstractGate ActiveGate { get; private set; }
 
 	bool selected;
 
@@ -27,32 +15,32 @@ public class BaseGate : MonoBehaviour
 		{
 			selected = value;
 			SetOutline(value);
-			ShowGateInformation(value, ActiveGateScript);
+			ShowGateInformation(value, ActiveGate);
 		}
 	}
 
-	void Awake() => ActiveGate = transform.GetChild(0).gameObject;
-
 	void Start()
 	{
-		foreach (object child in gameObject.transform)
-			((Transform)child).gameObject.GetComponent<AbstractGate>()?.InitGateType();
+		foreach (Transform child in gameObject.transform)
+		{
+			child.gameObject.GetComponent<AbstractGate>()?.InitGateType();
+		}
 	}
 
 	public void SetGateType(string gateName)
 	{
 		SetOutline(false);
-		ActiveGateScript.Clear();
-		ActiveGate.SetActive(false);
-		ActiveGate = gameObject.transform.Find(gateName).gameObject;
-		ActiveGate.SetActive(true);
+		ActiveGate.Clear();
+		ActiveGate.gameObject.SetActive(false);
+		ActiveGate = gameObject.transform.Find(gateName).GetComponent<AbstractGate>();
+		ActiveGate.gameObject.SetActive(true);
 		SetOutline(true);
 
-		ShowGateInformation(true, ActiveGateScript);
+		ShowGateInformation(true, ActiveGate);
 		UIManager.Instance.OnGateSelected();
 	}
 
-	void SetOutline(bool outlineEnabled) => ActiveGateScript.SetOutline(outlineEnabled);
+	void SetOutline(bool outlineEnabled) => ActiveGate.SetOutline(outlineEnabled);
 
 	void ShowGateInformation(bool show, AbstractGate gateObject) =>
 		gateInformation.OpenGateInformation(show, gateObject);
