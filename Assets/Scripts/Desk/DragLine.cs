@@ -64,7 +64,7 @@ public class DragLine : MonoBehaviour
 			{
 				lineStart = rayCast.hitObject.GetComponent<Pin>();
 				currentLine = Instantiate(line, lineStart.transform).GetComponent<Line>();
-
+				currentLine.LineStart = lineStart;
 				lineStart.SetOutline(true);
 			}
 			else if (rayCast.hitObject.CompareTag("LogicGateInput"))
@@ -102,6 +102,7 @@ public class DragLine : MonoBehaviour
 			{
 				lineEnd.SetOutline(false);
 				lineEnd = null;
+				oldLine = null;
 			}
 
 			Vector3 projectedTouchPosition;

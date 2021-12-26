@@ -26,7 +26,7 @@ public class Pin : MonoBehaviour
 		}
 	}
 
-	public List<Line> Lines { get; set; } = new List<Line>();
+	public List<Line> Lines { get; } = new List<Line>();
 
 	Outline outline;
 	MeshRenderer meshRenderer;
