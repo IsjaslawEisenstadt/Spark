@@ -23,7 +23,7 @@ public class RayCaster : MonoBehaviour
 
 	(bool successful, GameObject hitObject) CalculateHitObject()
 	{
-		Vector2 touchPosition = Input.GetTouch(0).position;
+		Vector2 touchPosition = SparkInput.GetTouchPosition();
 
 		Ray ray = mainCamera.ScreenPointToRay(touchPosition);
 

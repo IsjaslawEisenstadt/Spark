@@ -3,39 +3,31 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class Line : MonoBehaviour
 {
+	public Pin LineStart { get; private set; }
+	public Pin LineEnd { get; private set; }
+
 	LineRenderer lineRenderer;
 
-	public Transform LineStart { get; private set; }
-	public Transform LineEnd { get; private set; }
+	void Awake() => lineRenderer = GetComponent<LineRenderer>();
 
-	void Awake()
-	{
-		lineRenderer = GetComponent<LineRenderer>();
-	}
+	void Start() => enabled = false;
 
-	void Start()
-	{
-		enabled = false;
-	}
+	void Update() => SetPositions(new[] { LineStart.transform.position, LineEnd.transform.position });
 
-	void Update()
-	{
-		lineRenderer.SetPositions(new[] { LineStart.position, LineEnd.position });
-	}
-
-	public void SetLine(Transform start, Transform end)
+	public void SetPins(Pin start, Pin end)
 	{
 		LineStart = start;
 		LineEnd = end;
+		LineStart.AddLine(this);
+		LineEnd.AddLine(this);
 		enabled = true;
 	}
 
 	public void SetPositions(Vector3[] positions) => lineRenderer.SetPositions(positions);
 
-	public GameObject GetStart() => LineStart.gameObject;
-
 	public void Disconnect()
 	{
 		enabled = false;
+		LineEnd = null;
 	}
 }

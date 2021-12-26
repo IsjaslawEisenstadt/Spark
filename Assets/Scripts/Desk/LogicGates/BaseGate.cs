@@ -42,6 +42,7 @@ public class BaseGate : MonoBehaviour
 	public void SetGateType(string gateName)
 	{
 		SetOutline(false);
+		ActiveGateScript.Clear();
 		ActiveGate.SetActive(false);
 		ActiveGate = gameObject.transform.Find(gateName).gameObject;
 		ActiveGate.SetActive(true);

@@ -1,44 +1,50 @@
-using cakeslice;
 using UnityEngine;
 
 public class DragLine : MonoBehaviour
 {
-	GameObject currentLine;
-	Line currentLineScript;
-	GameObject lineStart;
-	GameObject lineEnd;
+	Line currentLine;
+	Pin lineStart;
+	Pin lineEnd;
+	Line oldLine;
 
 	public GameObject line;
 
 	void Update()
 	{
-		if (Input.touchCount <= 0)
+		if (SparkInput.GetTouchCount() <= 0)
 		{
 			if (!currentLine)
 			{
 				return;
 			}
 
+			lineStart.SetOutline(false);
+
 			if (lineEnd)
 			{
-				//tell gates about new connection
-				currentLineScript.SetLine(lineStart.transform, lineEnd.transform);
-				lineStart.GetComponent<Pin>().Line = currentLineScript;
-				lineEnd.GetComponent<Pin>().Line = currentLineScript;
+				lineEnd.SetOutline(false);
+				currentLine.SetPins(lineStart, lineEnd);
 			}
 			else
 			{
-				Destroy(currentLine);
-				lineStart.GetComponent<Pin>().Line = null;
-				if (lineEnd)
-					lineEnd.GetComponent<Pin>().Line = null;
+				Destroy(currentLine.gameObject);
 			}
 
-			SetEndOutline(false);
-			SetStartOutline(false);
+			if (oldLine)
+			{
+				if (oldLine.LineStart)
+				{
+					oldLine.LineStart.Lines.Remove(oldLine);
+				}
+				if (oldLine.LineEnd)
+				{
+					oldLine.LineEnd.Lines.Remove(oldLine);
+				}
+
+				Destroy(oldLine.gameObject);
+			}
 
 			currentLine = null;
-			currentLineScript = null;
 			lineStart = null;
 			lineEnd = null;
 
@@ -50,74 +56,69 @@ public class DragLine : MonoBehaviour
 		if (!currentLine)
 		{
 			if (!rayCast.successful)
+			{
 				return;
+			}
 
 			if (rayCast.hitObject.CompareTag("LogicGateOutput"))
 			{
-				lineStart = rayCast.hitObject;
-				currentLine = Instantiate(line, lineStart.transform);
-				currentLineScript = currentLine.GetComponent<Line>();
+				lineStart = rayCast.hitObject.GetComponent<Pin>();
+				currentLine = Instantiate(line, lineStart.transform).GetComponent<Line>();
 
-				SetStartOutline(true);
+				lineStart.SetOutline(true);
 			}
 			else if (rayCast.hitObject.CompareTag("LogicGateInput"))
 			{
 				Pin pin = rayCast.hitObject.GetComponent<Pin>();
 
-				if (!pin.Line)
+				if (pin.Lines.Count <= 0)
 					return;
 
-				currentLine = pin.Line.gameObject;
-				currentLineScript = currentLine.GetComponent<Line>();
-				lineStart = currentLineScript.GetStart();
-
-				pin.Line = null;
-				currentLineScript.Disconnect();
+				currentLine = pin.Lines[0];
+				lineStart = currentLine.LineStart;
+				lineStart.Lines.Remove(currentLine);
+				pin.ClearLines();
+				currentLine.Disconnect();
 			}
 		}
 
 		if (currentLine)
 		{
-			Vector3 projectedTouchPosition;
-
 			if (rayCast.successful &&
-			    rayCast.hitObject.CompareTag("LogicGateInput") &&
-			    rayCast.hitObject != lineStart)
+			    rayCast.hitObject != lineStart.gameObject &&
+			    rayCast.hitObject.CompareTag("LogicGateInput"))
 			{
-				if (rayCast.hitObject != lineEnd)
+				Pin pin = rayCast.hitObject.GetComponent<Pin>();
+
+				if (pin != lineEnd && lineStart.CanConnect(pin))
 				{
-					lineEnd = rayCast.hitObject;
-					SetEndOutline(true);
+					oldLine = pin.Lines.Count > 0 ? pin.Lines[0] : null;
+
+					lineEnd = pin;
+					lineEnd.SetOutline(true);
 				}
-
-				projectedTouchPosition = lineEnd.transform.position;
 			}
-			else
+			else if (lineEnd)
 			{
-				Vector2 touchPosition = Input.GetTouch(0).position;
-				projectedTouchPosition = Camera.main.ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y,
-					(Camera.main.transform.position - gameObject.transform.position).magnitude +
-					Camera.main.nearClipPlane));
-
-				SetEndOutline(false);
+				lineEnd.SetOutline(false);
 				lineEnd = null;
 			}
 
+			Vector3 projectedTouchPosition;
+			if (!lineEnd)
+			{
+				Vector2 touchPosition = SparkInput.GetTouchPosition();
+				projectedTouchPosition = Camera.main.ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y,
+					(Camera.main.transform.position - gameObject.transform.position).magnitude +
+					Camera.main.nearClipPlane));
+			}
+			else
+			{
+				projectedTouchPosition = lineEnd.transform.position;
+			}
+
 			Vector3[] points = { lineStart.transform.position, projectedTouchPosition };
-
-			currentLineScript.SetPositions(points);
+			currentLine.SetPositions(points);
 		}
-	}
-
-	void SetStartOutline(bool outlineEnabled)
-	{
-		if (lineStart)
-			lineStart.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
-	}
-
-	void SetEndOutline(bool outlineEnabled)
-	{
-		if (lineEnd)
-			lineEnd.GetComponent<Outline>().eraseRenderer = !outlineEnabled;
 	}
 }

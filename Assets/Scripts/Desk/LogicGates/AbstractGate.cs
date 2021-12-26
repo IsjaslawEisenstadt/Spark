@@ -35,7 +35,8 @@ public abstract class AbstractGate : MonoBehaviour
 		foreach (Pin input in inputs)
 		{
 			input.valueChanged += OnInputValueChanged;
-			input.lineChanged += OnInputLineChanged;
+			input.lineAdded += OnInputLineAdded;
+			input.lineRemoved += OnInputLineRemoved;
 		}
 
 		foreach (Pin output in outputs)
@@ -44,12 +45,15 @@ public abstract class AbstractGate : MonoBehaviour
 		}
 	}
 
+	void Start() => Refresh();
+
 	void OnDestroy()
 	{
 		foreach (Pin input in inputs)
 		{
 			input.valueChanged -= OnInputValueChanged;
-			input.lineChanged -= OnInputLineChanged;
+			input.lineAdded -= OnInputLineAdded;
+			input.lineRemoved -= OnInputLineRemoved;
 		}
 
 		foreach (Pin output in outputs)
@@ -66,7 +70,22 @@ public abstract class AbstractGate : MonoBehaviour
 		}
 	}
 
-	protected void Refresh()
+	public void Clear()
+	{
+		foreach (Pin pin in inputs)
+		{
+			pin.Clear();
+		}
+
+		foreach (Pin pin in outputs)
+		{
+			pin.Clear();
+		}
+
+		Refresh();
+	}
+
+	void Refresh()
 	{
 		bool[] outputValues = EvaluateSelf();
 
@@ -78,28 +97,23 @@ public abstract class AbstractGate : MonoBehaviour
 		}
 	}
 
-	protected bool[] EvaluateSelf()
-	{
-		return Evaluate(inputs.Select(pin => pin.State).ToArray());
-	}
+	bool[] EvaluateSelf() => Evaluate(inputs.Select(pin => pin.State).ToArray());
 
 	public abstract bool[] Evaluate(bool[] values);
 
 	public abstract void InitGateType();
 
-	void OnInputValueChanged(Pin pin, bool value)
-	{
-		Refresh();
-	}
+	void OnInputValueChanged(Pin pin, bool value) => Refresh();
 
-	static void OnInputLineChanged(Pin pin, Line line)
-	{
-		pin.State = line && line.LineStart.GetComponent<Pin>().State;
-	}
+	static void OnInputLineAdded(Pin pin, Line line) => pin.State = line && line.LineStart.State;
+
+	static void OnInputLineRemoved(Pin pin) => pin.State = false;
 
 	static void OnOutputValueChanged(Pin pin, bool value)
 	{
-		if (pin.Line)
-			pin.Line.LineEnd.GetComponent<Pin>().State = value;
+		foreach (Line line in pin.Lines)
+		{
+			line.LineEnd.State = value;
+		}
 	}
 }
