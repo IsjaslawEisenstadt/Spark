@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b6a74afadbbf24d9fa9deced8fa0a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialTemplate: {fileID: 2100000, guid: cb7a36a8ab352174bab64bda3eb5c823, type: 2}
+  materialTemplate: {fileID: 2100000, guid: 9904d25a2e1756e4e8a1c8412664a11c, type: 2}
   <Length>k__BackingField: 0.75
   easingType: 3
   <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6516ad6f742a2e5419f39a07d46c75f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialTemplate: {fileID: 2100000, guid: 9904d25a2e1756e4e8a1c8412664a11c, type: 2}
+  materialTemplate: {fileID: 2100000, guid: cb7a36a8ab352174bab64bda3eb5c823, type: 2}
   <Length>k__BackingField: 0.75
   easingType: 4
   <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
