@@ -9,6 +9,7 @@ public class SceneLoader : MonoBehaviour
 
 	public TransitionType startTransitionType = TransitionType.FadeIn;
 	public TransitionType endTransitionType = TransitionType.FadeOut;
+	public UnityEngine.Video.VideoPlayer videoPlayer;
 
 	ARCameraManager arCameraManager;
 
@@ -24,6 +25,8 @@ public class SceneLoader : MonoBehaviour
 				arCameraManager = GameObject.Find("AR Camera").GetComponent<ARCameraManager>();
 				arCameraManager.frameReceived += StartARTransition;
 				StartCoroutine(sceneBlender.StartAsyncTransition(startTransitionType));
+				videoPlayer.gameObject.SetActive(true);
+				videoPlayer.Play();
 				break;
 			}
 			default: 
@@ -44,6 +47,8 @@ public class SceneLoader : MonoBehaviour
 
 	void StartARTransition(ARCameraFrameEventArgs args)
 	{
+		videoPlayer.Stop();
+		videoPlayer.gameObject.SetActive(false);
 		arCameraManager.frameReceived -= StartARTransition;
 		sceneBlender.SetIsReadyForTransition();
 	}
