@@ -9846,6 +9846,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 622537262721084778}
     m_Modifications:
+    - target: {fileID: 1665451444, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
+      propertyPath: materialTemplate
+      value: 
+      objectReference: {fileID: 2100000, guid: cb7a36a8ab352174bab64bda3eb5c823, type: 2}
+    - target: {fileID: 1665451445, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
+      propertyPath: materialTemplate
+      value: 
+      objectReference: {fileID: 2100000, guid: 9904d25a2e1756e4e8a1c8412664a11c, type: 2}
+    - target: {fileID: 2192841004695422764, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
+      propertyPath: materialTemplate
+      value: 
+      objectReference: {fileID: 2100000, guid: db584fa97c63f954698f53bd013ffc9d, type: 2}
     - target: {fileID: 3479619909490516667, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
       propertyPath: m_Name
       value: SceneBlender
@@ -9934,6 +9946,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8672774406643178964, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
+      propertyPath: materialTemplate
+      value: 
+      objectReference: {fileID: 2100000, guid: 40bed9eecf21680479dd077871e699f1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39dd93cd3a0755f42a10d153449029d5, type: 3}
 --- !u!222 &4133066433610062132
