@@ -14,6 +14,9 @@ public class MissionInfo : MonoBehaviour, IUIElement
 
 	void Start()
     {
+        if (CurrentMission.missions == null)
+            return;
+            
         Mission currentMission = CurrentMission.missions[CurrentMission.currentMissionIndex];
         title.text = currentMission.name;
         description.text = currentMission.missionDescription;
