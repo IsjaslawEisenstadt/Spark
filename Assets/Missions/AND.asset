@@ -21,3 +21,7 @@ MonoBehaviour:
     count: 1
   - gateType: 3
     count: 1
+  - gateType: 8
+    count: 2
+  - gateType: 9
+    count: 1

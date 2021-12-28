@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GateDrawer : MonoBehaviour, IUIElement
@@ -12,26 +11,6 @@ public class GateDrawer : MonoBehaviour, IUIElement
 	public event Action<BaseGate> onGateTypeChanged;
 
 	BaseGate baseGate;
-
-	void Awake()
-	{
-		switch (SceneManager.GetActiveScene().name)
-		{
-			case ("TutorialMode"): break;
-			case ("StudyMode"): break;
-			case ("MissionMode"): 
-			{
-				foreach (var entry in CurrentMission.missions[CurrentMission.currentMissionIndex].GateRestriction)
-				{
-					GameObject gateButton = Instantiate(gateButtonPrefab, gateButtonContainer.transform);
-					gateButton.GetComponent<Button>().onClick.AddListener(() => OnGateSelected(entry.Key.ToString() + "Gate"));
-					gateButton.transform.GetChild(0).GetComponent<TMP_Text>().text = entry.Key.ToString();
-				} 
-
-				break;
-			}
-		}
-	}
 
 	public void OnGateSelected(string gateName)
 	{
@@ -56,5 +35,15 @@ public class GateDrawer : MonoBehaviour, IUIElement
 			baseGate.Selected = false;
 
 		gameObject.SetActive(false);
+	}
+
+	protected void GenerateGateButton(string gateName)
+	{
+		if (gateName.Equals("Default"))
+			return;
+			
+		GameObject gateButton = Instantiate(gateButtonPrefab, gateButtonContainer.transform);
+		gateButton.GetComponent<Button>().onClick.AddListener(() => OnGateSelected(gateName + "Gate"));
+		gateButton.transform.GetChild(0).GetComponent<TMP_Text>().text = gateName;
 	}
 }
