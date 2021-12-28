@@ -3,9 +3,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class AvailableGates : MonoBehaviour
+public class AvailableGates : MonoBehaviour, IUIElement
 {
 	[SerializeField] GameObject gatePanelPrefab;
+
 	void Start()
 	{
 		if (SceneManager.GetActiveScene().name != "MissionMode")
@@ -22,4 +23,8 @@ public class AvailableGates : MonoBehaviour
 			gateCount.GetComponent<TextMeshProUGUI>().text = entry.Value.ToString();
 		}
 	}
+
+	public void OnOpen(){}
+
+	public void OnClose(){}
 }

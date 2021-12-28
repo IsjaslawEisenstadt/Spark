@@ -18,8 +18,7 @@ public class UIManager : MonoBehaviour
 
 	[SerializeField] public List<Popup> uiElementList;
 
-	Dictionary<PopupType, GameObject> typeToObject;
-	Dictionary<PopupType, IUIElement> typeToScript;
+	Dictionary<PopupType, Popup> typeToPopup;
 
 	void Awake()
 	{
@@ -35,25 +34,17 @@ public class UIManager : MonoBehaviour
 
 	void Start()
 	{
-		typeToObject = new Dictionary<PopupType, GameObject>();
-		typeToScript = new Dictionary<PopupType, IUIElement>();
-		uiElementList.ForEach(entry =>
-		{
-			entry.script = entry.popup.GetComponent<IUIElement>();
-			typeToObject.Add(entry.popupType, entry.popup);
-			typeToScript.Add(entry.popupType, entry.script);
-		});
+		typeToPopup = new Dictionary<PopupType, Popup>();
+		uiElementList.ForEach(entry => 
+									{
+										entry.script = entry.popup.GetComponent<IUIElement>();
+										typeToPopup.Add(entry.popupType, entry);
+									});
 	}
 
-	public void Open(PopupType popup)
-	{
-		typeToObject[popup].SetActive(true);
-	}
+	public void Open(PopupType popup) => typeToPopup[popup].popup.SetActive(true);
 
-	public GameObject GetElement(PopupType popup)
-	{
-		return typeToObject[popup];
-	}
+	public Popup GetPopup(PopupType popup) => typeToPopup[popup];
 
 	/// <summary>
 	/// A raycast will hit the child Box of an AbstractGate, hence why we need to get its parent and then
@@ -61,18 +52,19 @@ public class UIManager : MonoBehaviour
 	/// </summary>
 	public void OnGateSelected()
 	{
-		typeToScript[PopupType.GateDrawer].OnOpen();
-		typeToScript[PopupType.HiddenGateArrow].OnOpen();
-		typeToScript[PopupType.PinSettings].OnOpen();
+		typeToPopup[PopupType.GateDrawer].script.OnOpen();
+		typeToPopup[PopupType.HiddenGateArrow].script.OnOpen();
+		typeToPopup[PopupType.PinSettings].script.OnOpen();
 	}
-
 
 	public void OnNoGateSelected()
 	{
-		typeToScript[PopupType.GateDrawer].OnClose();
-		typeToScript[PopupType.HiddenGateArrow].OnClose();
-		typeToScript[PopupType.PinSettings].OnClose();
+		typeToPopup[PopupType.GateDrawer].script.OnClose();
+		typeToPopup[PopupType.HiddenGateArrow].script.OnClose();
+		typeToPopup[PopupType.PinSettings].script.OnClose();
 	}
+
+	public void SetViewport(Viewport viewport) => ((HiddenGateArrow)GetPopup(PopupType.HiddenGateArrow).script).SetViewport(viewport);
 }
 
 [Serializable]

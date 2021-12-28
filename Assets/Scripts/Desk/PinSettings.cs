@@ -48,11 +48,16 @@ public class PinSettings : MonoBehaviour, IUIElement
 			return;
 		}
 
+		UIManager.Instance.SetViewport(Viewport.PinSettingOn);
 		SetUp(hitObject);
 		gameObject.SetActive(true);
 	}
 
-	public void OnClose() => gameObject.SetActive(false);
+	public void OnClose()
+	{
+		UIManager.Instance.SetViewport(Viewport.PinSettingsOff);
+		gameObject.SetActive(false);
+	}
 
 	public void OnActivationButton()
 	{

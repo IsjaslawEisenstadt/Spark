@@ -30,7 +30,7 @@ public class MissionState : MonoBehaviour
             GateAvailability.Add(type, new GateAvailability(0, restrictions[type]));
         }
 
-        UIManager.Instance.GetElement(PopupType.GateDrawer).GetComponent<GateDrawer>().onGateTypeChanged += refreshMissionState;
+        UIManager.Instance.GetPopup(PopupType.GateDrawer).popup.GetComponent<GateDrawer>().onGateTypeChanged += refreshMissionState;
     }
 
     public void refreshMissionState(BaseGate baseGate)

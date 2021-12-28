@@ -2,9 +2,8 @@ using UnityEngine;
 
 public enum Viewport
 {
-	FullScreen,
-	Left,
-	UpperLeft
+	PinSettingOn,
+	PinSettingsOff
 }
 
 public class HiddenGateArrow : MonoBehaviour, IUIElement
@@ -38,7 +37,7 @@ public class HiddenGateArrow : MonoBehaviour, IUIElement
 		}
 	}
 
-	void Start() => SetViewport(Viewport.Left);
+	void Start() => SetViewport(Viewport.PinSettingsOff);
 
 	void Update()
 	{
@@ -68,24 +67,8 @@ public class HiddenGateArrow : MonoBehaviour, IUIElement
 	{
 		switch (viewport)
 		{
-			case Viewport.FullScreen:
-			{
-				viewportRectTransform.offsetMax = new Vector2(0, 0);
-				viewportRectTransform.offsetMin = new Vector2(0, 0);
-				break;
-			}
-			case Viewport.Left:
-			{
-				viewportRectTransform.offsetMax = new Vector2(-550, 0);
-				viewportRectTransform.offsetMin = new Vector2(0, 0);
-				break;
-			}
-			case Viewport.UpperLeft:
-			{
-				viewportRectTransform.offsetMax = new Vector2(-550, 0);
-				viewportRectTransform.offsetMin = new Vector2(0, 300);
-				break;
-			}
+			case Viewport.PinSettingOn: viewportRectTransform.offsetMin = new Vector2(viewportRectTransform.offsetMin.x, 350); break;
+			case Viewport.PinSettingsOff: viewportRectTransform.offsetMin = new Vector2(viewportRectTransform.offsetMin.x, 0); break;
 		}
 
 		viewportBorders = CalculateViewportBorders();
@@ -93,10 +76,10 @@ public class HiddenGateArrow : MonoBehaviour, IUIElement
 
 	bool IsOffScreen(Vector3 targetScreenPosition)
 	{
-		return viewportBorders.left > targetScreenPosition.x ||
-		       viewportBorders.right < targetScreenPosition.x ||
-		       viewportBorders.top < targetScreenPosition.y ||
-		       viewportBorders.bottom > targetScreenPosition.y;
+		return 	viewportBorders.left > targetScreenPosition.x ||
+				viewportBorders.right < targetScreenPosition.x ||
+				viewportBorders.top < targetScreenPosition.y ||
+				viewportBorders.bottom > targetScreenPosition.y;
 	}
 
 	void RotatePointer(Vector3 targetScreenPosition)
