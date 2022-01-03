@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,17 @@ public class GateDrawer : MonoBehaviour, IUIElement
 	public event Action<BaseGate> onGateTypeChanged;
 
 	BaseGate baseGate;
+
+	void Awake() => GenerateButtons();
+
+	protected virtual void GenerateButtons()
+	{
+		Enum.GetValues(typeof(GateType))
+			.Cast<GateType>()
+			.Where(entry => entry != GateType.Default)
+			.ToList()
+			.ForEach(entry => GenerateGateButton(entry.ToString()));
+	}
 
 	public void OnGateSelected(string gateName)
 	{
@@ -39,9 +51,6 @@ public class GateDrawer : MonoBehaviour, IUIElement
 
 	protected void GenerateGateButton(string gateName)
 	{
-		if (gateName.Equals("Default"))
-			return;
-			
 		GameObject gateButton = Instantiate(gateButtonPrefab, gateButtonContainer.transform);
 		gateButton.GetComponent<Button>().onClick.AddListener(() => OnGateSelected(gateName + "Gate"));
 		gateButton.transform.GetChild(0).GetComponent<TMP_Text>().text = gateName;
