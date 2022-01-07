@@ -10,18 +10,22 @@ public abstract class PlayMode : MonoBehaviour
 	[SerializeField] Animator errorPanelAnim;
 	[SerializeField] TextMeshProUGUI errorPanelMessage;
 	[SerializeField] int playErrorAnimationHash;
+	[SerializeField] TextMeshProUGUI playButtonLabel;
+
 	protected SourceGate Source { get; private set; }
 	protected SinkGate Sink { get; private set; }
 
+	Coroutine playCoroutine;
+
 	void Start()
 	{
-		gateDrawer.onGateTypeChanged += OnGateTypeChanged;
+		gateDrawer.onGateTypeChanged += GateTypeChanged;
 		playErrorAnimationHash = Animator.StringToHash("playErrorAnimation");
 	}
 
 	void OnDestroy()
 	{
-		gateDrawer.onGateTypeChanged -= OnGateTypeChanged;
+		gateDrawer.onGateTypeChanged -= GateTypeChanged;
 	}
 
 	public void Play()
@@ -31,20 +35,27 @@ public abstract class PlayMode : MonoBehaviour
 			errorPanelMessage.text = "No Source available.";
 			errorPanelAnim.SetTrigger(playErrorAnimationHash);
 		}
-
-		if (Sink == null)
+		else if (Sink == null)
 		{
 			errorPanelMessage.text = "No Sink available.";
 			errorPanelAnim.SetTrigger(playErrorAnimationHash);
 		}
+		else if (playCoroutine != null)
+		{
+			StopCoroutine(playCoroutine);
+			playCoroutine = null;
+			playButtonLabel.text = "Play";
+		}
 		else
 		{
-			StartCoroutine(PlayInputs());
+			playCoroutine = StartCoroutine(PlayInputs());
 		}
 	}
 
 	IEnumerator PlayInputs()
 	{
+		playButtonLabel.text = "Cancel";
+
 		TruthTableRow[] result = new TruthTableRow[(int)Math.Pow(2, Source.outputs.Count)];
 
 		for (int i = 0; i < result.Length; ++i)
@@ -61,23 +72,24 @@ public abstract class PlayMode : MonoBehaviour
 		}
 
 		EvaluatePlay(result);
+		playButtonLabel.text = "Play";
+		playCoroutine = null;
 	}
 
 	protected abstract void EvaluatePlay(TruthTableRow[] result);
 
-	public void OnGateTypeChanged(BaseGate baseGate)
+	void GateTypeChanged(BaseGate baseGate)
 	{
-		AbstractGate gateScript = baseGate.ActiveGate;
-
-		if (Source == gateScript)
+		if (Source && !Source.gameObject.activeSelf)
 		{
 			Source = null;
 		}
-		else if (Sink == gateScript)
+		if (Sink && !Sink.gameObject.activeSelf)
 		{
 			Sink = null;
 		}
 
+		AbstractGate gateScript = baseGate.ActiveGate;
 		if (gateScript is SourceGate sourceGate)
 		{
 			Source = sourceGate;
