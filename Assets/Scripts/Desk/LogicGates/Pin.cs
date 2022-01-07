@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using cakeslice;
 using UnityEngine;
 
+public enum PinType
+{
+	Input,
+	Output
+}
+
 [RequireComponent(typeof(MeshRenderer))]
 public class Pin : MonoBehaviour
 {

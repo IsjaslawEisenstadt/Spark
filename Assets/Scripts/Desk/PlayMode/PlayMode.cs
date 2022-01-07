@@ -84,6 +84,7 @@ public abstract class PlayMode : MonoBehaviour
 		{
 			Source = null;
 		}
+
 		if (Sink && !Sink.gameObject.activeSelf)
 		{
 			Sink = null;

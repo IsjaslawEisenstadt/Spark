@@ -49,7 +49,7 @@ public class PinSettings : MonoBehaviour, IUIElement
 		}
 
 		UIManager.Instance.SetViewport(Viewport.PinSettingOn);
-		SetUp(hitObject);
+		Init();
 		gameObject.SetActive(true);
 	}
 
@@ -70,7 +70,10 @@ public class PinSettings : MonoBehaviour, IUIElement
 		if (pins.Count <= 1)
 			return;
 
-		pins.RemoveAt(pins.Count - 1);
+		Pin pin = pins[pins.Count - 1];
+		pin.Clear();
+		pins.Remove(pin);
+		Destroy(pin.gameObject);
 
 		if (selectedPinIndex >= pins.Count)
 		{
@@ -84,8 +87,7 @@ public class PinSettings : MonoBehaviour, IUIElement
 
 	public void OnPlusButton()
 	{
-		pins.Add(Instantiate(pins[pins.Count - 1],
-			currentGate.transform)); //Set pin to the right position is missing
+		currentGate.CreatePin(currentGate.GateType == GateType.Source ? PinType.Output : PinType.Input);
 
 		UpdatePinPositions();
 		UpdatePinCountView();
@@ -111,54 +113,12 @@ public class PinSettings : MonoBehaviour, IUIElement
 		UpdateSelectedPinView();
 	}
 
-	void SetUp(GameObject activeGate)
+	void Init()
 	{
 		selectedPinIndex = 0;
-		pins = currentGate.GateType == GateType.Source ? currentGate.outputs : currentGate.inputs;
+		pins = currentGate.GetPins();
 
-		switch (activeScene)
-		{
-			case ("MissionMode"):
-			{
-				if (currentGate.GateType == GateType.Source)
-				{
-					SetUIContext(false, true);
-				}
-				else //isSink
-				{
-					SetUIContext(false, false);
-				}
-
-				break;
-			}
-			case ("TutorialMode"):
-			{
-				//Context of Tutorial is missing
-				if (currentGate.GateType == GateType.Source)
-				{
-					SetUIContext(true, true);
-				}
-				else //isSink
-				{
-					SetUIContext(true, false);
-				}
-
-				break;
-			}
-			case ("StudyMode"):
-			{
-				if (currentGate.GateType == GateType.Source)
-				{
-					SetUIContext(true, true);
-				}
-				else //isSink
-				{
-					SetUIContext(true, false);
-				}
-
-				break;
-			}
-		}
+		SetUIContext(activeScene != "MissionMode", currentGate.GateType == GateType.Source);
 
 		if (pinCount.activeSelf)
 			UpdatePinCountView();
@@ -169,7 +129,7 @@ public class PinSettings : MonoBehaviour, IUIElement
 	void UpdateSelectedPinView()
 	{
 		bool currentPinState = pins[selectedPinIndex].State;
-		selectedPinText.text = string.Format("Pin {0}: {1}", selectedPinIndex + 1, currentPinState);
+		selectedPinText.text = $"Pin {selectedPinIndex + 1}: {currentPinState}";
 		pinActivation.text = currentPinState ? "deactivate" : "activate";
 	}
 

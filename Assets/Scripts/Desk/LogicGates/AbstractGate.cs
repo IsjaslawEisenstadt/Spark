@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using cakeslice;
 using UnityEngine;
@@ -103,13 +102,13 @@ public abstract class AbstractGate : MonoBehaviour
 
 	public abstract void InitGateType();
 
-	void OnInputValueChanged(Pin pin, bool value) => Refresh();
+	protected void OnInputValueChanged(Pin pin, bool value) => Refresh();
 
-	static void OnInputLineAdded(Pin pin, Line line) => pin.State = line && line.LineStart.State;
+	protected static void OnInputLineAdded(Pin pin, Line line) => pin.State = line && line.LineStart.State;
 
-	static void OnInputLineRemoved(Pin pin) => pin.State = false;
+	protected static void OnInputLineRemoved(Pin pin) => pin.State = false;
 
-	static void OnOutputValueChanged(Pin pin, bool value)
+	protected static void OnOutputValueChanged(Pin pin, bool value)
 	{
 		foreach (Line line in pin.Lines)
 		{
