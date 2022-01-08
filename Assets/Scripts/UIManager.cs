@@ -20,6 +20,11 @@ public class UIManager : MonoBehaviour
 
 	Dictionary<PopupType, Popup> typeToPopup;
 
+	public void TypeToPopupTest()
+	{
+		Debug.Log("test");
+	}
+
 	void Awake()
 	{
 		if (Instance != null && Instance != this)
@@ -32,10 +37,10 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
-	void Start()
+	void OnEnable()
 	{
 		typeToPopup = new Dictionary<PopupType, Popup>();
-		uiElementList.ForEach(entry => 
+		uiElementList.ForEach(entry =>
 									{
 										entry.script = entry.popup.GetComponent<IUIElement>();
 										typeToPopup.Add(entry.popupType, entry);

@@ -9,6 +9,7 @@ public class MissionState : MonoBehaviour
 	public event Action<Dictionary<GateType, GateAvailability>> availabilityChanged;
 
 	public Dictionary<GateType, GateAvailability> GateAvailability { get; private set; }
+		= new Dictionary<GateType, GateAvailability>();
 
 	readonly Dictionary<BaseGate, GateType> currentGateTypes = new Dictionary<BaseGate, GateType>();
 
@@ -26,6 +27,7 @@ public class MissionState : MonoBehaviour
 
 	void Start()
 	{
+
 		Dictionary<GateType, int> restrictions =
 			CurrentMission.missions[CurrentMission.currentMissionIndex].GateRestriction;
 
@@ -34,8 +36,7 @@ public class MissionState : MonoBehaviour
 			GateAvailability.Add(type, new GateAvailability(0, restrictions[type]));
 		}
 
-		UIManager.Instance.GetPopup(PopupType.GateDrawer).popup.GetComponent<GateDrawer>().gateTypeChanged +=
-			RefreshMissionState;
+		UIManager.Instance.GetPopup(PopupType.GateDrawer).popup.GetComponent<GateDrawer>().gateTypeChanged += RefreshMissionState;
 	}
 
 	void RefreshMissionState(BaseGate baseGate)
