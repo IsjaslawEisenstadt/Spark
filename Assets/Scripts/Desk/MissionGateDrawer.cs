@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class MissionGateDrawer : GateDrawer
 {
-    protected override void GenerateButtons()
+	protected override void GenerateButtons()
 	{
-		foreach (var entry in CurrentMission.missions[CurrentMission.currentMissionIndex].GateRestriction)
-			GenerateGateButton(entry.Key.ToString());
+		if (CurrentMission.missions == null || CurrentMission.missions.Count <= 0)
+		{
+			Debug.LogWarning("Generating gate buttons as MissionGateDrawer without available missions...");
+			base.GenerateButtons();
+		}
+		else
+		{
+			foreach (var entry in CurrentMission.missions[CurrentMission.currentMissionIndex].GateRestriction)
+				GenerateGateButton(entry.Key.ToString());
+		}
 	}
 }

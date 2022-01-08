@@ -19,13 +19,13 @@ public abstract class PlayMode : MonoBehaviour
 
 	void Start()
 	{
-		gateDrawer.onGateTypeChanged += GateTypeChanged;
+		gateDrawer.gateTypeChanged += GateTypeChanged;
 		playErrorAnimationHash = Animator.StringToHash("playErrorAnimation");
 	}
 
 	void OnDestroy()
 	{
-		gateDrawer.onGateTypeChanged -= GateTypeChanged;
+		gateDrawer.gateTypeChanged -= GateTypeChanged;
 	}
 
 	public void Play()

@@ -13,7 +13,9 @@ public class MissionMode : PlayMode
 		if (!resultView)
 			resultView = UIManager.Instance.GetPopup(PopupType.ResultView).popup.GetComponent<ResultView>();
 
-		resultView?.UpdateNextButtonState(isValid);
+		if (resultView)
+			resultView.UpdateNextButtonState(isValid);
+
 		OnResultIsValid();
 	}
 
@@ -27,12 +29,12 @@ public class MissionMode : PlayMode
 			PlayerPrefs.SetString("AvailableGates", newGate);
 		else
 		{
-			string ppString = PlayerPrefs.GetString("AvailableGates"); 
+			string ppString = PlayerPrefs.GetString("AvailableGates");
 			List<string> availableGates = new List<string>(ppString.Split(','));
 			if (!availableGates.Contains(newGate))
 				PlayerPrefs.SetString("AvailableGates", ppString + ',' + newGate);
 		}
-		
+
 		PlayerPrefs.Save();
 	}
 }

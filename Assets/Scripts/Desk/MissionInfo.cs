@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.XR.ARFoundation;
 
 public class MissionInfo : MonoBehaviour, IUIElement
 {
@@ -16,7 +13,7 @@ public class MissionInfo : MonoBehaviour, IUIElement
     {
         if (CurrentMission.missions == null)
             return;
-            
+
         Mission currentMission = CurrentMission.missions[CurrentMission.currentMissionIndex];
         title.text = currentMission.name;
         description.text = currentMission.missionDescription;
@@ -30,7 +27,7 @@ public class MissionInfo : MonoBehaviour, IUIElement
             confirmed = true;
             button.text = "Continue";
         }
-        
+
         gameObject.SetActive(false);
     }
 

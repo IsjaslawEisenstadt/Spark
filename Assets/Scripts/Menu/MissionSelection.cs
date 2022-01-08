@@ -8,6 +8,7 @@ public class MissionSelection : MonoBehaviour
 	public SceneLoader sceneLoader;
 	public GameObject mission;
 	public List<Mission> missions;
+	public string nextScene = "MissionMode";
 
 	void Start()
 	{
@@ -33,6 +34,6 @@ public class MissionSelection : MonoBehaviour
 	public void OnSelectMission(int index)
 	{
 		CurrentMission.currentMissionIndex = index;
-		sceneLoader.SwitchScene("MissionMode");
+		sceneLoader.SwitchScene(nextScene);
 	}
 }
