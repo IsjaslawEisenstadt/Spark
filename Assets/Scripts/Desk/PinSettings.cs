@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PinSettings : MonoBehaviour, IUIElement
 {
-	public static PinSettings Instance { get; private set; }
-
 	public GateSelector gateSelector;
 
 	SourceSinkGate currentGate;
@@ -23,18 +21,7 @@ public class PinSettings : MonoBehaviour, IUIElement
 	public GameObject pinSelection;
 	public GameObject noSettingsText;
 
-	void Awake()
-	{
-		if (Instance != null && Instance != this)
-		{
-			Destroy(gameObject);
-		}
-		else
-		{
-			Instance = this;
-			activeScene = SceneManager.GetActiveScene().name;
-		}
-	}
+	void Start() => activeScene = SceneManager.GetActiveScene().name;
 
 	public void OnOpen()
 	{
