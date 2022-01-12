@@ -9,7 +9,8 @@ public enum PopupType
 	PinSettings,
 	HiddenGateArrow,
 	MissionInfo,
-	HUD
+	HUD,
+	RewardWindow
 }
 
 public class UIManager : MonoBehaviour
