@@ -9,7 +9,7 @@ public class GateDrawer : MonoBehaviour, IUIElement
 	public GateSelector gateSelector;
 	public GameObject gateButtonPrefab;
 	public GameObject gateButtonContainer;
-	public event Action<BaseGate> onGateTypeChanged;
+	public event Action<BaseGate> gateTypeChanged;
 
 	BaseGate baseGate;
 
@@ -27,7 +27,7 @@ public class GateDrawer : MonoBehaviour, IUIElement
 	public void OnGateSelected(string gateName)
 	{
 		baseGate.SetGateType(gateName);
-		onGateTypeChanged?.Invoke(baseGate);
+		gateTypeChanged?.Invoke(baseGate);
 	}
 
 	public void OnOpen()

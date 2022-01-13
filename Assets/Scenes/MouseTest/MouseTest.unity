@@ -362,7 +362,7 @@ PrefabInstance:
     - target: {fileID: 2474168666412608447, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1935409551}
+      objectReference: {fileID: 689110452}
     - target: {fileID: 2474168666412608447, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -385,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2474168666412608447, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Play
+      value: OnClick
       objectReference: {fileID: 0}
     - target: {fileID: 2474168666412608447, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -397,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2474168666412608447, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayMode, Assembly-CSharp
+      value: PlayButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2474168666412608447, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -727,8 +727,45 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 149682884119824438, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+--- !u!114 &245782411 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8807970669555579352, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 245782410}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378c969239f45494cb0365ffa9cb1e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &245782412 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8807970668410213543, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 245782410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &245782413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8807970669193168677, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 245782410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &245782414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245782413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20075cc8d8159824da6589e53040449c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gateSelector: {fileID: 245782411}
+  gateButtonPrefab: {fileID: 832838692510663604, guid: a701bf474d08a0e44a9cc0bdd1ba3b15, type: 3}
+  gateButtonContainer: {fileID: 245782412}
 --- !u!4 &295585958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 638266034634962453, guid: 4a6e5465367690c4a8883acb97cfda77, type: 3}
@@ -1041,6 +1078,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7097070233761002056, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
   m_PrefabInstance: {fileID: 245782410}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &689110452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689110451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a12dd4260fbab943944f4fac1620fb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playModeGameObject: {fileID: 1935409550}
 --- !u!1001 &823470540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1281,17 +1331,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a6e5465367690c4a8883acb97cfda77, type: 3}
---- !u!114 &990717238 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 149682884119824438, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
-  m_PrefabInstance: {fileID: 245782410}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5c710b7592a0ce48a2f8a972d4ed22c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1104756183 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 638266034634962453, guid: 4a6e5465367690c4a8883acb97cfda77, type: 3}
@@ -1739,12 +1778,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935409550}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 716f5f52c2c27cf409f70da9fb7945b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gateDrawer: {fileID: 990717238}
+  gateDrawer: {fileID: 245782414}
+  errorPanelAnim: {fileID: 570746199}
+  errorPanelMessage: {fileID: 351670354}
+  playErrorAnimationHash: 0
+  playButtonLabel: {fileID: 1541821002}
+--- !u!114 &1935409552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935409550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655a14a81beeb474092536eaccf9ef4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gateDrawer: {fileID: 245782414}
   errorPanelAnim: {fileID: 570746199}
   errorPanelMessage: {fileID: 351670354}
   playErrorAnimationHash: 0

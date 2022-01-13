@@ -1,75 +1,80 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.Events;
 
 public class MissionState : MonoBehaviour
 {
-    public static MissionState Instance { get; private set; }
+	public static MissionState Instance { get; private set; }
 
-    public event Action<Dictionary<GateType, GateAvailability>> OnAvailabilityChanged;
-    public Dictionary<GateType, GateAvailability> GateAvailability {get; private set;}
+	public event Action<Dictionary<GateType, GateAvailability>> availabilityChanged;
 
-    private Dictionary<BaseGate, GateType> currentGateTypes;
+	public Dictionary<GateType, GateAvailability> GateAvailability { get; private set; }
+
+	readonly Dictionary<BaseGate, GateType> currentGateTypes = new Dictionary<BaseGate, GateType>();
 
 	void Awake()
 	{
 		if (Instance != null && Instance != this)
+		{
 			Destroy(gameObject);
+		}
 		else
+		{
 			Instance = this;
+		}
 	}
 
-    void Start()
-    {
-        Dictionary<GateType, int> restrictions = CurrentMission.missions[CurrentMission.currentMissionIndex].GateRestriction;
-        foreach (GateType type in restrictions.Keys)
-        {
-            GateAvailability.Add(type, new GateAvailability(0, restrictions[type]));
-        }
+	void Start()
+	{
+		Dictionary<GateType, int> restrictions =
+			CurrentMission.missions[CurrentMission.currentMissionIndex].GateRestriction;
 
-        UIManager.Instance.GetPopup(PopupType.GateDrawer).popup.GetComponent<GateDrawer>().onGateTypeChanged += refreshMissionState;
-    }
+		foreach (GateType type in restrictions.Keys)
+		{
+			GateAvailability.Add(type, new GateAvailability(0, restrictions[type]));
+		}
 
-    public void refreshMissionState(BaseGate baseGate)
-    {
-        GateType baseGateType = baseGate.ActiveGate.GateType;
+		UIManager.Instance.GetPopup(PopupType.GateDrawer).popup.GetComponent<GateDrawer>().gateTypeChanged +=
+			RefreshMissionState;
+	}
 
-        if (!GateAvailability[baseGateType].available)
-        {
-            Debug.LogError("Selected unallowed gate!");
-            return;
-        }
+	void RefreshMissionState(BaseGate baseGate)
+	{
+		GateType baseGateType = baseGate.ActiveGate.GateType;
 
-        GateAvailability gateAvailability;
+		if (!GateAvailability[baseGateType].available)
+		{
+			Debug.LogError("Selected unallowed gate!");
+			return;
+		}
 
-        if (currentGateTypes.ContainsKey(baseGate))
-        {
-            gateAvailability = GateAvailability[currentGateTypes[baseGate]];
-            gateAvailability.currentCount--;
-            gateAvailability.available = true;
-        }
+		GateAvailability gateAvailability;
 
-        currentGateTypes[baseGate] = baseGateType;
-        gateAvailability = GateAvailability[baseGateType];
-        gateAvailability.currentCount++;
-        gateAvailability.available = gateAvailability.currentCount < gateAvailability.max;
+		if (currentGateTypes.ContainsKey(baseGate))
+		{
+			gateAvailability = GateAvailability[currentGateTypes[baseGate]];
+			gateAvailability.currentCount--;
+			gateAvailability.available = true;
+		}
 
-        OnAvailabilityChanged?.Invoke(GateAvailability);
-    }
+		currentGateTypes[baseGate] = baseGateType;
+		gateAvailability = GateAvailability[baseGateType];
+		gateAvailability.currentCount++;
+		gateAvailability.available = gateAvailability.currentCount < gateAvailability.max;
+
+		availabilityChanged?.Invoke(GateAvailability);
+	}
 }
 
 public class GateAvailability
 {
-    public int currentCount;
-    public int max;
-    public bool available = true;
+	public int currentCount;
+	public int max;
+	public bool available = true;
 
-    public GateAvailability(int currentCount, int max)
-    {
-        this.currentCount = currentCount;
-        this.max = max;
-    }
+	public GateAvailability(int currentCount, int max)
+	{
+		this.currentCount = currentCount;
+		this.max = max;
+	}
 }
