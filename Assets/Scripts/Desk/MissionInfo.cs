@@ -1,11 +1,13 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class MissionInfo : MonoBehaviour, IUIElement
 {
     public TMP_Text title;
     public TMP_Text description;
     public TMP_Text button;
+	public Image truthtable;
 
     bool confirmed = false;
 
@@ -18,6 +20,7 @@ public class MissionInfo : MonoBehaviour, IUIElement
         title.text = currentMission.name;
         description.text = currentMission.missionDescription;
         button.text = "Start";
+		truthtable.sprite = currentMission.truthtable;
     }
 
     public void OnClose()

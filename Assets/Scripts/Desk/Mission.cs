@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +8,12 @@ public class Mission : ScriptableObject
 	[TextArea(5,15)]
 	public string missionDescription;
 	public AbstractGate gateScript;
+	public Sprite truthtable;
 	public Sprite rewardImage;
 	[TextArea(5,15)]
 	public string rewardText;
+	public int sourcePins;
+	public int sinkPins;
 	[field: SerializeField] List<MissionEntry> GateRestrictionEntries { get; set; }
 
 	Dictionary<GateType, int> gateRestriction;
