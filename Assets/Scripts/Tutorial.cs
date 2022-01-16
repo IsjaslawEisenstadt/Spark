@@ -1,25 +1,29 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using System.Linq;
+
+public enum TutorialSteps
+{
+	WELCOME,
+	START_FIRST_MISSION,
+	TAB_START_ON_MISSIONINFO,
+	RESULT_IS_VALID
+}
 
 public class Tutorial : MonoBehaviour
 {
-    public static Tutorial Instance { get; private set; }
+	public static Tutorial Instance { get; private set; }
 
-    public TMP_Text title; 
-    public TMP_Text description;
-    public Button button;
-    public RectTransform tutorialPopup;
-    public RectTransform textContainer;
-    public float transformDuration = 1;
-    [SerializeField] public List<TutorialStep> tutorialSteps;
-    public string currentStep { get; private set; } 
-    private int currentStepIndex;
-    
+	[SerializeField] public List<OnNextStepActions> onNextStepActions;
+
+	private TutorialInfo tutorialInfo;
+    private TutorialSteps currentStep;
+	private int tutorialStepCount;
 
 	void Awake()
 	{
@@ -31,114 +35,46 @@ public class Tutorial : MonoBehaviour
 
     void Start()
     {
-        currentStepIndex = PlayerPrefs.HasKey("TutorialStep") ? PlayerPrefs.GetInt("TutorialStep") : 0;
-        currentStep = tutorialSteps[currentStepIndex].name;
-        if (currentStepIndex > 0)
+		tutorialInfo = (TutorialInfo) UIManager.Instance.GetPopup(PopupType.TutorialInfo).script;
+		currentStep = (TutorialSteps)(PlayerPrefs.HasKey("TutorialStep") ? PlayerPrefs.GetInt("TutorialStep") : 0);
+		tutorialStepCount = Enum.GetValues(typeof(GateType))
+								.Cast<GateType>()
+								.ToList()
+								.Count;
+
+		if (currentStep > 0)
             UIManager.Instance.Open(PopupType.TutorialReset);
         else
-            SetupTutorialInfo();
+			tutorialInfo.SetupTutorialInfo(currentStep);
+	}
+
+    public void nextStep(TutorialSteps tutorialStep)
+    {
+		if (!(tutorialStep == currentStep))
+			return;
+
+		onNextStepActions.FirstOrDefault(x => x.step == currentStep)?.onNextStep?.Invoke();
+
+        currentStep++;
+
+        if ((int)currentStep < tutorialStepCount)
+			tutorialInfo.SetupTutorialInfo(currentStep);
     }
 
-    public void nextStep()
+	public void nextStep(string tutorialStep) => nextStep(Enum.GetValues(typeof(TutorialSteps)).Cast<TutorialSteps>().ToList().First(x => x.ToString() == tutorialStep));
+
+
+	public void ResetTutorial()
     {
-        tutorialSteps[currentStepIndex].onNextStep?.Invoke();
-        currentStepIndex++;
-        currentStep = tutorialSteps[currentStepIndex].name;
-
-        if (currentStepIndex >= tutorialSteps.Count)
-            finishTutorial();
-        else
-            SetupTutorialInfo();
-    }
-
-    public void ResetTutorial()
-    {
-        currentStepIndex = 0;
-        PlayerPrefs.SetInt("TutorialStep", currentStepIndex);
-        SetupTutorialInfo();
-    }
-
-    public void SetupTutorialInfo()
-    {
-        TutorialStep currentTutorialStep = tutorialSteps[currentStepIndex];
-
-        tutorialPopup.gameObject.SetActive(currentTutorialStep.infoPopupVisible);
-
-        if (!currentTutorialStep.infoPopupVisible)
-            return;
-
-        title.text = currentTutorialStep.name;
-        description.text = currentTutorialStep.description;
-        StartCoroutine(StartPopupTransforms());
-    }
-
-    private void finishTutorial(){}
-
-    private IEnumerator StartPopupTransforms()
-    {
-        if (currentStepIndex == 0)
-        {
-            SetTargetLayout();
-            yield break;
-        }
-
-        bool isButtonScaling = !(tutorialSteps[currentStepIndex].showContinue == tutorialSteps[currentStepIndex - 1].showContinue);
-        Vector3 buttonScalingStart = button.transform.localScale;
-        Vector3 buttonScalingTarget = new Vector3(1, tutorialSteps[currentStepIndex].showContinue ? 1 : 0, 1);
-Debug.LogWarning("1");
-        bool isPopupTranslating = !(tutorialSteps[currentStepIndex].position == tutorialSteps[currentStepIndex - 1].position);
-        Vector3 popupTranslatingStart = tutorialPopup.anchoredPosition;
-        Vector3 popupTranslatingTarget = tutorialSteps[currentStepIndex].position;
-Debug.LogWarning("2");
-        bool isPopupScaling = !(tutorialSteps[currentStepIndex].size == tutorialSteps[currentStepIndex - 1].size);
-        Vector3 popupScalingStart = textContainer.sizeDelta;
-        Vector3 popupScalingTarget = tutorialSteps[currentStepIndex].size;
-Debug.LogWarning("3");
-        if ((!isButtonScaling && !isPopupTranslating && !isPopupScaling)
-                || !tutorialSteps[currentStepIndex - 1].infoPopupVisible)
-        {
-            SetTargetLayout();
-            yield break;
-        }
-Debug.LogWarning("4");
-        float timer = 0;
-
-        while (timer > 0)
-        {
-            Debug.LogWarning("5");
-            timer += Time.deltaTime;
-            timer = timer > transformDuration ? transformDuration : timer;
-
-            if (isButtonScaling)
-                button.transform.localScale = Vector3.Lerp(buttonScalingStart, buttonScalingTarget, timer / transformDuration);
-
-            if (isPopupTranslating)
-                tutorialPopup.anchoredPosition = Vector3.Lerp(popupTranslatingStart, popupTranslatingTarget, timer / transformDuration);
-                
-            if (isPopupScaling)
-                tutorialPopup.sizeDelta = Vector3.Lerp(popupScalingStart, popupScalingTarget, timer / transformDuration);
-            
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
-    void SetTargetLayout()
-    {
-        button.transform.localScale = new Vector3(1, tutorialSteps[currentStepIndex].showContinue ? 1 : 0, 1);
-        tutorialPopup.anchoredPosition = tutorialSteps[currentStepIndex].position;
+        currentStep = 0;
+        PlayerPrefs.SetInt("TutorialStep", (int)currentStep);
+		tutorialInfo.SetupTutorialInfo(currentStep);
     }
 }
 
 [Serializable]
-public class TutorialStep
+public class OnNextStepActions
 {
-    public string name;
-    [TextArea(5,15)] public string description;
-    public Vector2 position;
-    public Vector2 size;
-    public GameObject mask;
-    public GameObject highlight;
-    public bool infoPopupVisible;
-    public bool showContinue;
-    public UnityEvent onNextStep;
+	public TutorialSteps step;
+	public UnityEvent onNextStep;
 }
