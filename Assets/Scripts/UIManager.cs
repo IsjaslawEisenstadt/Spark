@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum PopupType
@@ -10,7 +11,8 @@ public enum PopupType
 	HiddenGateArrow,
 	MissionInfo,
 	HUD,
-	TutorialReset
+	TutorialReset,
+	TutorialInfo
 }
 
 public class UIManager : MonoBehaviour
@@ -24,26 +26,29 @@ public class UIManager : MonoBehaviour
 	void Awake()
 	{
 		if (Instance != null && Instance != this)
-		{
 			Destroy(gameObject);
-		}
 		else
 		{
 			Instance = this;
+
+			typeToPopup = new Dictionary<PopupType, Popup>();
+			uiElementList.ForEach(entry =>
+			{
+				entry.script = entry.popup.GetComponent<IUIElement>();
+				typeToPopup.Add(entry.popupType, entry);
+			});
 		}
 	}
 
-	void Start()
+	public void Open(PopupType popup)
 	{
-		typeToPopup = new Dictionary<PopupType, Popup>();
-		uiElementList.ForEach(entry => 
-									{
-										entry.script = entry.popup.GetComponent<IUIElement>();
-										typeToPopup.Add(entry.popupType, entry);
-									});
+		if (!typeToPopup.ContainsKey(popup))
+			return;
+
+		typeToPopup[popup].popup.SetActive(true);
 	}
 
-	public void Open(PopupType popup) => typeToPopup[popup].popup.SetActive(true);
+	public void Open(string popup) => Open(typeToPopup.Keys.FirstOrDefault(x => x.ToString() == popup));
 
 	public Popup GetPopup(PopupType popup) => typeToPopup[popup];
 
