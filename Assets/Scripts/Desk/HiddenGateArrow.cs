@@ -8,7 +8,6 @@ public enum Viewport
 
 public class HiddenGateArrow : MonoBehaviour, IUIElement
 {
-	public static HiddenGateArrow Instance { get; private set; }
 	public GateSelector gateSelector;
 
 	public GameObject arrow;
@@ -24,17 +23,9 @@ public class HiddenGateArrow : MonoBehaviour, IUIElement
 
 	void Awake()
 	{
-		if (Instance != null && Instance != this)
-		{
-			Destroy(gameObject);
-		}
-		else
-		{
-			Instance = this;
-			viewportRectTransform = gameObject.GetComponent<RectTransform>();
-			arrowRectTransform = arrow.GetComponent<RectTransform>();
-			mainCamera = Camera.main;
-		}
+		viewportRectTransform = gameObject.GetComponent<RectTransform>();
+		arrowRectTransform = arrow.GetComponent<RectTransform>();
+		mainCamera = Camera.main;
 	}
 
 	void Start() => SetViewport(Viewport.PinSettingsOff);

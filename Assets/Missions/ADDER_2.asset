@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07c4877b98a49bf4292e7f2b6c4866c5, type: 3}
-  m_Name: XOR
+  m_Name: ADDER_2
   m_EditorClassIdentifier: 
-  missionDescription: <color=yellow>XOR</color>
-  gateScript: {fileID: 5497268423204985574, guid: ffd5ae6757d7cf549a07d29abd918df8, type: 3}
-  truthtable: {fileID: 21300000, guid: 494c74ecb58f2fb4984587ded43185d3, type: 3}
+  missionDescription: <color=yellow>Full Adder</color></size>
+  gateScript: {fileID: 8569017627696779996, guid: 09b3ade79dca3da4299216a5422fcea8, type: 3}
+  truthtable: {fileID: 21300000, guid: 52bfafd75a556084c83b9548a3fc398c, type: 3}
   rewardImage: {fileID: 0}
   rewardText: 
   sourcePins: 0
   sinkPins: 0
   <GateRestrictionEntries>k__BackingField:
   - gateType: 2
+    count: 2
+  - gateType: 6
     count: 1
   - gateType: 1
-    count: 2
-  - gateType: 3
     count: 2
