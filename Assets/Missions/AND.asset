@@ -18,7 +18,7 @@ MonoBehaviour:
 '
   gateScript: {fileID: 3678652314942444486, guid: 904f7c950743ec74faab4fd443dc4482, type: 3}
   truthtable: {fileID: 21300000, guid: 97fd462d4a5b70a49904f11ab73a6053, type: 3}
-  rewardImage: {fileID: 0}
+  rewardImage: {fileID: 21300000, guid: 7c846174be894ab4aa7e63eaa19caa0f, type: 3}
   rewardText: 'Did you know that Logic gates are referred to as gates because they
     control the flow of electricity?
 
@@ -29,8 +29,4 @@ MonoBehaviour:
   - gateType: 4
     count: 1
   - gateType: 3
-    count: 1
-  - gateType: 8
-    count: 2
-  - gateType: 9
     count: 1
