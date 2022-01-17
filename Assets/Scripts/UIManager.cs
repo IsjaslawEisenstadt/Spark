@@ -12,7 +12,7 @@ public enum PopupType
 	MissionInfo,
 	HUD,
 	TutorialReset,
-	TutorialInfo
+	TutorialInfo,
 	RewardWindow
 }
 
