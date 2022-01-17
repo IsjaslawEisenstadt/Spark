@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,13 +16,9 @@ public class MissionState : MonoBehaviour
 	void Awake()
 	{
 		if (Instance != null && Instance != this)
-		{
 			Destroy(gameObject);
-		}
 		else
-		{
 			Instance = this;
-		}
 	}
 
 	void Start()
@@ -36,7 +32,11 @@ public class MissionState : MonoBehaviour
 			GateAvailability[type] = new GateAvailability(0, restrictions[type]);
 		}
 
-		UIManager.Instance.GetPopup(PopupType.GateDrawer).popup.GetComponent<GateDrawer>().gateTypeChanged += RefreshMissionState;
+		GateAvailability.Add(GateType.Source, new GateAvailability(0, 1));
+		GateAvailability.Add(GateType.Sink, new GateAvailability(0, 1));
+
+		UIManager.Instance.GetPopup(PopupType.GateDrawer).popup.GetComponent<GateDrawer>().gateTypeChanged +=
+			RefreshMissionState;
 	}
 
 	void RefreshMissionState(BaseGate baseGate)

@@ -13,8 +13,7 @@ public class MissionMode : PlayMode
 		if (!resultView)
 			resultView = UIManager.Instance.GetPopup(PopupType.ResultView).popup.GetComponent<ResultView>();
 
-		if (resultView)
-			resultView.UpdateNextButtonState(isValid);
+		resultView.UpdateNextButtonState(isValid);
 
 		OnResultIsValid();
 	}
