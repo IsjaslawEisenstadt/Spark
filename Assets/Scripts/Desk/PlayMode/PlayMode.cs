@@ -12,6 +12,8 @@ public abstract class PlayMode : MonoBehaviour
 	[SerializeField] int playErrorAnimationHash;
 	[SerializeField] TextMeshProUGUI playButtonLabel;
 
+	[SerializeField] float playDelay = 0.5f;
+
 	protected SourceGate Source { get; private set; }
 	protected SinkGate Sink { get; private set; }
 
@@ -68,7 +70,7 @@ public abstract class PlayMode : MonoBehaviour
 			result[i] = new TruthTableRow(Source.outputs.Select(pin => pin.State).ToArray(),
 				Sink.inputs.Select(pin => pin.State).ToArray());
 
-			yield return new WaitForSeconds(3.0f);
+			yield return new WaitForSeconds(playDelay);
 		}
 
 		EvaluatePlay(result);
