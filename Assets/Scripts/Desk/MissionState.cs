@@ -33,7 +33,7 @@ public class MissionState : MonoBehaviour
 
 		foreach (GateType type in restrictions.Keys)
 		{
-			GateAvailability.Add(type, new GateAvailability(0, restrictions[type]));
+			GateAvailability[type] = new GateAvailability(0, restrictions[type]);
 		}
 
 		UIManager.Instance.GetPopup(PopupType.GateDrawer).popup.GetComponent<GateDrawer>().gateTypeChanged += RefreshMissionState;
