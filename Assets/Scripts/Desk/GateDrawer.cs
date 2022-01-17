@@ -49,10 +49,12 @@ public class GateDrawer : MonoBehaviour, IUIElement
 		gameObject.SetActive(false);
 	}
 
-	protected void GenerateGateButton(string gateName)
+	protected Button GenerateGateButton(string gateName)
 	{
 		GameObject gateButton = Instantiate(gateButtonPrefab, gateButtonContainer.transform);
-		gateButton.GetComponent<Button>().onClick.AddListener(() => OnGateSelected(gateName + "Gate"));
+		Button button = gateButton.GetComponent<Button>();
+		button.onClick.AddListener(() => OnGateSelected(gateName + "Gate"));
 		gateButton.transform.GetChild(0).GetComponent<TMP_Text>().text = gateName;
+		return button;
 	}
 }
