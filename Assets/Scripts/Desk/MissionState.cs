@@ -23,7 +23,6 @@ public class MissionState : MonoBehaviour
 
 	void Start()
 	{
-
 		Dictionary<GateType, int> restrictions =
 			CurrentMission.missions[CurrentMission.currentMissionIndex].GateRestriction;
 
