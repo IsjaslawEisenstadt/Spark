@@ -11,7 +11,11 @@ public enum TutorialSteps
 {
 	WELCOME,
 	START_FIRST_MISSION,
-	TAB_START_ON_MISSIONINFO,
+	TAP_START_ON_MISSIONINFO,
+	LIGHTING_INFO,
+	MARKER_ADVICE,
+	SELECT_GATE,
+	SELECT_GATE_SHOW_GATE_DRAWER,
 	RESULT_IS_VALID
 }
 
@@ -21,9 +25,9 @@ public class Tutorial : MonoBehaviour
 
 	[SerializeField] public List<OnNextStepActions> onNextStepActions;
 
-	private TutorialInfo tutorialInfo;
-    private TutorialSteps currentStep;
-	private int tutorialStepCount;
+	TutorialInfo tutorialInfo;
+    TutorialSteps currentStep;
+	int tutorialStepCount;
 
 	void Awake()
 	{

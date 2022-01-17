@@ -15,9 +15,9 @@ MonoBehaviour:
   missionDescription: <color=yelow>OR</color>
   gateScript: {fileID: 1198957796057275623, guid: b3801a0fe4830a045ac4585e8c435a14, type: 3}
   truthtable: {fileID: 21300000, guid: 344ea48df78d8d744b25a0123f346a66, type: 3}
-  rewardImage: {fileID: 21300000, guid: 7c846174be894ab4aa7e63eaa19caa0f, type: 3}
-  rewardText: Did you know that Logic gates are referred to as gates because they
-    control the flow of electricity?
+  rewardImage: {fileID: 0}
+  rewardText: Did you know, that the fundamental logical operations are <color=yellow>NOT,
+    AND AND OR</color>?
   sourcePins: 0
   sinkPins: 0
   <GateRestrictionEntries>k__BackingField:

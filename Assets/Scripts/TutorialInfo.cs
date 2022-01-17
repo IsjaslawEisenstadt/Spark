@@ -17,8 +17,7 @@ public class TutorialInfo : MonoBehaviour, IUIElement
 	public RectTransform textContainer;
 	public float transformDuration = 1;
 	public RectTransform mask;
-	[Space(10)]
-	[SerializeField] public List<TutorialStep> tutorialSteps;
+	[Space(10)] [SerializeField] public List<TutorialStep> tutorialSteps;
 
 	private float buttonHeight;
 	private TutorialStep currentTutorialStep;
@@ -45,7 +44,7 @@ public class TutorialInfo : MonoBehaviour, IUIElement
 		if (currentTutorialStep.mask != null)
 		{
 			mask.position = currentTutorialStep.mask.position;
-			mask.sizeDelta = currentTutorialStep.mask.sizeDelta;
+			mask.sizeDelta = new Vector2(currentTutorialStep.mask.rect.width, currentTutorialStep.mask.rect.height);
 		}
 		else
 			mask.sizeDelta = Vector2.zero;
@@ -113,7 +112,8 @@ public class TutorialInfo : MonoBehaviour, IUIElement
 			float percent = timer / transformDuration;
 
 			if (isButtonScaling)
-				button.sizeDelta = new Vector2(button.sizeDelta.x, Mathf.Lerp(buttonStartHeight, buttonTargetHeight, percent));
+				button.sizeDelta = new Vector2(button.sizeDelta.x,
+					Mathf.Lerp(buttonStartHeight, buttonTargetHeight, percent));
 
 			if (isPopupTranslating)
 				tutorialPopup.anchoredPosition = Vector3.Lerp(popupTranslatingStart, popupTranslatingTarget, percent);

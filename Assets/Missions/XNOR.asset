@@ -16,7 +16,14 @@ MonoBehaviour:
   gateScript: {fileID: 1382881702822631053, guid: 5f97fe3eb56cb68418ce0057f276f437, type: 3}
   truthtable: {fileID: 21300000, guid: 1ce04e072b31655459fc3d97e024d8ff, type: 3}
   rewardImage: {fileID: 0}
-  rewardText: 
+  rewardText: 'Did you know that the prefix `bi-` stands for two. A Bicycle has two
+    wheels. Also the Binary number system has only two digits (0 and 1).
+
+'
   sourcePins: 0
   sinkPins: 0
-  <GateRestrictionEntries>k__BackingField: []
+  <GateRestrictionEntries>k__BackingField:
+  - gateType: 6
+    count: 1
+  - gateType: 3
+    count: 1

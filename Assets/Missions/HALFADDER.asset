@@ -16,7 +16,8 @@ MonoBehaviour:
   gateScript: {fileID: 1804807913328911944, guid: 1b870a54b0513ae4c983d26841839b7f, type: 3}
   truthtable: {fileID: 21300000, guid: 065a35fea2aea1849973858966fe1919, type: 3}
   rewardImage: {fileID: 0}
-  rewardText: 
+  rewardText: Did you know Konrad Zuse designed and built electromechanical logic
+    gates for his computer Z1 (from 1935 to 1938).
   sourcePins: 0
   sinkPins: 0
   <GateRestrictionEntries>k__BackingField:

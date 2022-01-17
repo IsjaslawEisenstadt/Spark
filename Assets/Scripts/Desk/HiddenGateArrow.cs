@@ -53,7 +53,6 @@ public class HiddenGateArrow : MonoBehaviour, IUIElement
 
 	public void OnClose() => gameObject.SetActive(false);
 
-	//Is not used yet -> should be done in new UIManager
 	public void SetViewport(Viewport viewport)
 	{
 		switch (viewport)

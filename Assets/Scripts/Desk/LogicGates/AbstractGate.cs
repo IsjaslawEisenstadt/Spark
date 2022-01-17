@@ -29,7 +29,7 @@ public abstract class AbstractGate : MonoBehaviour
 
 	public List<Outline> outlines;
 
-	void Awake()
+	protected virtual void Awake()
 	{
 		foreach (Pin input in inputs)
 		{

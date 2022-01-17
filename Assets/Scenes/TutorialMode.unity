@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -279,6 +279,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106732482}
   m_CullTransparentMesh: 1
+--- !u!114 &144907270 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4335769289626270278, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 1249078532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &343650218
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +520,17 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &364585889 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5218504447716488690, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 1249078532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &507726091
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,6 +698,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730388652}
   m_CullTransparentMesh: 1
+--- !u!224 &752084623 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8807970669266104679, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 1249078532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &902000642
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,6 +830,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1a2cbdf30d3714bae8474e4dd91893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &970464787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970464785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec595ec45276c0428606cbe0eff010a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 1687901096}
+  description: {fileID: 364585889}
+  button: {fileID: 1610144670}
+  truthtable: {fileID: 144907270}
 --- !u!1 &998609789
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,7 +944,7 @@ MonoBehaviour:
   tutorialSteps:
   - step: 0
     title: Welcome
-    description: 1
+    description: 'Hey! Welcome to <color=yellow>SPARK</color>! '
     popupPosition: {fileID: 1926365771}
     popupSize: {x: 700, y: 300}
     mask: {fileID: 0}
@@ -921,6 +964,43 @@ MonoBehaviour:
     popupPosition: {fileID: 902000643}
     popupSize: {x: 450, y: 250}
     mask: {fileID: 1249078542}
+    infoPopupVisible: 1
+    showContinue: 0
+  - step: 3
+    title: Lighting
+    description: In order to get the most out of <color=yellow>SPARK</color>, make
+      sure the room has sufficient lighting!
+    popupPosition: {fileID: 1926365771}
+    popupSize: {x: 700, y: 300}
+    mask: {fileID: 0}
+    infoPopupVisible: 1
+    showContinue: 1
+  - step: 4
+    title: Place your <color=yellow>markers</color>
+    description: You now need to place some <b>markers</b> on a surface! Make sure
+      the arrow is pointing <b>upwards</b>, otherwise you might think you are upside
+      down.
+    popupPosition: {fileID: 1640943244}
+    popupSize: {x: 550, y: 300}
+    mask: {fileID: 1554585497}
+    infoPopupVisible: 1
+    showContinue: 0
+  - step: 5
+    title: Default gate
+    description: Not bad, let's introduce you to the <color=yellow>default gate</color>,
+      your buddy until you select a specific gate.
+    popupPosition: {fileID: 1926365771}
+    popupSize: {x: 550, y: 300}
+    mask: {fileID: 752084623}
+    infoPopupVisible: 1
+    showContinue: 1
+  - step: 6
+    title: Gate drawer
+    description: Enter <color=yellow>Gate drawer</color>! All of your available logic
+      gates are placed here.
+    popupPosition: {fileID: 1926365771}
+    popupSize: {x: 550, y: 300}
+    mask: {fileID: 752084623}
     infoPopupVisible: 1
     showContinue: 0
 --- !u!222 &1074472274
@@ -1170,6 +1250,18 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7295414638624389249, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 970464787}
+    - target: {fileID: 7295414638624389249, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClose
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295414638624389249, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MissionInfoTutorial, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7599135956132350851, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: uiElementList.Array.size
       value: 6
@@ -1196,7 +1288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8807970668410213542, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00024414062
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8807970668516581907, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_RootOrder
@@ -1334,6 +1426,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8807970669529741485, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8807970669589792515, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: gameObjectList.Array.data[8].active
       value: 0
@@ -1438,7 +1534,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2374862747462957866, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
 --- !u!224 &1249078533 stripped
 RectTransform:
@@ -1781,6 +1878,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1a2cbdf30d3714bae8474e4dd91893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1554585497 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8807970669529741484, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 1249078532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1610144670 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8314253333767095463, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 1249078532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1640943243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1640943244}
+  m_Layer: 5
+  m_Name: MiddleRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1640943244
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640943243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1990718264}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -300, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1687901096 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6136126546357658635, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 1249078532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1926365770
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,6 +2004,7 @@ RectTransform:
   m_Children:
   - {fileID: 902000643}
   - {fileID: 1926365771}
+  - {fileID: 1640943244}
   m_Father: {fileID: 1074472270}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

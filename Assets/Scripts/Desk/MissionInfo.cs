@@ -23,7 +23,7 @@ public class MissionInfo : MonoBehaviour, IUIElement
 		truthtable.sprite = currentMission.truthtable;
     }
 
-    public void OnClose()
+    public virtual void OnClose()
     {
         if (!confirmed)
         {

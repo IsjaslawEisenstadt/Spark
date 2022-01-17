@@ -15,7 +15,7 @@ MonoBehaviour:
   missionDescription: '<color=yellow>XOR</color>
 
     Do you think you can build
-    the <color=yellow>XOR</color> using <color=yellow>NAND</color>?'
+    an <color=yellow>XOR</color> using <color=yellow>NAND</color>?'
   gateScript: {fileID: 5497268423204985574, guid: ffd5ae6757d7cf549a07d29abd918df8, type: 3}
   truthtable: {fileID: 21300000, guid: 494c74ecb58f2fb4984587ded43185d3, type: 3}
   rewardImage: {fileID: 0}
