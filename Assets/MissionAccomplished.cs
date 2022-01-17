@@ -22,11 +22,11 @@ public class MissionAccomplished : MonoBehaviour, IUIElement
 
 	public void OnOpen()
 	{
-		throw new NotImplementedException();
+		gameObject.SetActive(true);
 	}
 
 	public void OnClose()
 	{
-		throw new NotImplementedException();
+		gameObject.SetActive(false);
 	}
 }
