@@ -801,7 +801,6 @@ GameObject:
   m_Component:
   - component: {fileID: 624541053327430869}
   - component: {fileID: 1333995745152255759}
-  - component: {fileID: 2836172744515254359}
   - component: {fileID: 1585881290381133265}
   - component: {fileID: 542988481567139880}
   m_Layer: 5
@@ -838,36 +837,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2331637475747476877}
   m_CullTransparentMesh: 1
---- !u!114 &2836172744515254359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2331637475747476877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5686275}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &1585881290381133265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -907,6 +876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gatePanelPrefab: {fileID: 7296974019742798480, guid: cc3f54e0ea7eef246a8ea7889836820e, type: 3}
+  HUD: {fileID: 0}
 --- !u!1 &2390473587039599533
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,7 +1808,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2691996875658065826}
   m_HandleRect: {fileID: 3318883495315624156}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

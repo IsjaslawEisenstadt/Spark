@@ -20,6 +20,12 @@ public class MissionMode : PlayMode
 
 	void OnResultIsValid()
 	{
+		SaveMissionCompleted();
+		UIManager.Instance.Open(PopupType.RewardWindow);
+	}
+
+	void SaveMissionCompleted()
+	{
 		PlayerPrefs.SetInt("NextMission", CurrentMission.currentMissionIndex + 1);
 
 		string newGate = CurrentMission.missions[CurrentMission.currentMissionIndex].gateScript.GateType.ToString();
