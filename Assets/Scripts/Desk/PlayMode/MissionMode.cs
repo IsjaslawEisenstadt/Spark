@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MissionMode : PlayMode
 {
+	public static MissionMode Instance { get; private set; }
+
 	ResultView resultView;
 	bool isValid = true;
+
+	void Awake() => Instance = this;
 
 	protected override void EvaluatePlay(TruthTableRow[] result)
 	{
