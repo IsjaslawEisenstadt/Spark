@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class SourceGate : SourceSinkGate
 {
@@ -11,8 +12,7 @@ public class SourceGate : SourceSinkGate
 
 	protected override void Awake()
 	{
-		MissionMode missionMode = MissionMode.Instance;
-		if (missionMode && CurrentMission.missions != null && CurrentMission.missions.Count > 0)
+		if (SceneManager.GetActiveScene().name == "MissionMode")
 		{
 			int sourcePins = CurrentMission.missions[CurrentMission.currentMissionIndex].sourcePins;
 
