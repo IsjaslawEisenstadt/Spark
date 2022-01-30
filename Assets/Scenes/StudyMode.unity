@@ -271,6 +271,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8807970669589792515, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: gameObjectList.Array.data[2].active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807970669589792515, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: gameObjectList.Array.data[8].active
       value: 0
       objectReference: {fileID: 0}
