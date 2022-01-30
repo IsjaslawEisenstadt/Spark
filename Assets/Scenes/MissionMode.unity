@@ -976,7 +976,7 @@ PrefabInstance:
       objectReference: {fileID: -7263181841362973816, guid: b8d13a1027bc8ae43bf1efa79ab02778, type: 2}
     - target: {fileID: 5218504447716488690, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_HorizontalAlignment
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5357827010344103706, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_fontAsset
@@ -1452,7 +1452,7 @@ PrefabInstance:
       objectReference: {fileID: -7263181841362973816, guid: b8d13a1027bc8ae43bf1efa79ab02778, type: 2}
     - target: {fileID: 9067609539731730288, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8807970669193168681, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
