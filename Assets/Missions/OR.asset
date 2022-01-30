@@ -18,8 +18,8 @@ MonoBehaviour:
   rewardImage: {fileID: 21300000, guid: ee43f571093551a49b86b69118e66faf, type: 3}
   rewardText: Did you know, that the fundamental logical operations are <color=yellow>NOT,
     AND AND OR</color>?
-  sourcePins: 0
-  sinkPins: 0
+  sourcePins: 2
+  sinkPins: 1
   <GateRestrictionEntries>k__BackingField:
   - gateType: 4
     count: 1

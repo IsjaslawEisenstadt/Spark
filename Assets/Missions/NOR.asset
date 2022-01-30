@@ -19,8 +19,8 @@ MonoBehaviour:
   rewardText: "Did you know the size of the truthtable is dependent on the amount
     of inputs available.\n2<sup>x</sup>  \n2<sup>2</sup>  = 4 \n2<sup>3</sup>  =
     8"
-  sourcePins: 0
-  sinkPins: 0
+  sourcePins: 1
+  sinkPins: 1
   <GateRestrictionEntries>k__BackingField:
   - gateType: 4
     count: 1

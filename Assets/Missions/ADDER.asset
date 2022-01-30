@@ -20,8 +20,8 @@ MonoBehaviour:
     to <b>most</b> digital circuits that perform <color=yellow>addition</color> or
     <color=yellow>subtraction</color>. It is so called because it adds together two
     binary digits, plus a carry-in digit to produce a sum and carry-out digit.
-  sourcePins: 0
-  sinkPins: 0
+  sourcePins: 2
+  sinkPins: 2
   <GateRestrictionEntries>k__BackingField:
   - gateType: 2
     count: 1

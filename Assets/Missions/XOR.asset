@@ -18,12 +18,10 @@ MonoBehaviour:
   rewardImage: {fileID: 21300000, guid: 85128e53c00e25e49a8c3aa4f4168411, type: 3}
   rewardText: Did you know that XOR logic is often used in the encryption technique
     One-Time Pad? It is used to encrypt each symbol with a secret key.
-  sourcePins: 0
-  sinkPins: 0
+  sourcePins: 2
+  sinkPins: 1
   <GateRestrictionEntries>k__BackingField:
   - gateType: 2
     count: 1
-  - gateType: 1
-    count: 2
-  - gateType: 3
+  - gateType: 4
     count: 2

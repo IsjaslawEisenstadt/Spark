@@ -25,8 +25,8 @@ MonoBehaviour:
 
     You can also build <b>everything</b> in  a computer only using <color=yellow>NAND</color>
     gates!'
-  sourcePins: 0
-  sinkPins: 0
+  sourcePins: 2
+  sinkPins: 1
   <GateRestrictionEntries>k__BackingField:
   - gateType: 1
     count: 1
