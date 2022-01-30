@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c4877b98a49bf4292e7f2b6c4866c5, type: 3}
   m_Name: ADDER
   m_EditorClassIdentifier: 
-  missionDescription: <color=yellow>Full Adder</color></size>
+  missionDescription: Combine the gates to get a <color=yellow>Full Adder</color>!
   gateScript: {fileID: 8569017627696779996, guid: 09b3ade79dca3da4299216a5422fcea8, type: 3}
   truthtable: {fileID: 21300000, guid: 52bfafd75a556084c83b9548a3fc398c, type: 3}
-  rewardImage: {fileID: 0}
+  rewardImage: {fileID: 21300000, guid: 474756e44489c4642a9cbb6de3b2d863, type: 3}
   rewardText: Did you know a <color=yellow>full adder</color> circuit is central
     to <b>most</b> digital circuits that perform <color=yellow>addition</color> or
     <color=yellow>subtraction</color>. It is so called because it adds together two

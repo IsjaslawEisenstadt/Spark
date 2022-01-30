@@ -1,0 +1,5 @@
+a133862842334f079ea5cae400099b4a|C:\Users\Marco\Spark\Assets\Sprites\marker\marker1.jpeg
+8202d54db3f14942990e302a25e3cec0|C:\Users\Marco\Spark\Assets\Sprites\marker\marker2.jpeg
+c4a6d98513e6430faa9f6b2f2c1e71c8|C:\Users\Marco\Spark\Assets\Sprites\marker\marker3.jpeg
+6da0e4b860c94811bef06c73ed02e772|C:\Users\Marco\Spark\Assets\Sprites\marker\marker4.jpeg
+76fcf6730eda4c0b94e63006dd5b4278|C:\Users\Marco\Spark\Assets\Sprites\marker\marker5.jpeg

@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c4877b98a49bf4292e7f2b6c4866c5, type: 3}
   m_Name: XOR
   m_EditorClassIdentifier: 
-  missionDescription: <color=yellow>XOR</color>
+  missionDescription: Do you want to built a <color=yellow>XOR</color> gate?!
   gateScript: {fileID: 5497268423204985574, guid: ffd5ae6757d7cf549a07d29abd918df8, type: 3}
   truthtable: {fileID: 21300000, guid: 494c74ecb58f2fb4984587ded43185d3, type: 3}
-  rewardImage: {fileID: 0}
-  rewardText: Did you know <color=yellow>NAND<(color> gates are known as universal
-    gates, connecting <color=yellow>NAND </color> gates together can simulate any
-    basic gate!
+  rewardImage: {fileID: 21300000, guid: 85128e53c00e25e49a8c3aa4f4168411, type: 3}
+  rewardText: Did you know that XOR logic is often used in the encryption technique
+    One-Time Pad? It is used to encrypt each symbol with a secret key.
   sourcePins: 0
   sinkPins: 0
   <GateRestrictionEntries>k__BackingField:
