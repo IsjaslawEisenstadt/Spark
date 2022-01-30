@@ -16,6 +16,9 @@ public enum TutorialSteps
 	MARKER_ADVICE,
 	SELECT_GATE,
 	SELECT_GATE_SHOW_GATE_DRAWER,
+	SELECT_GATE_HIGHLIGHT_GATES,
+	LOGIC_GATE_SELECTED,
+	TRUTHTABLE_SHOWN,
 	RESULT_IS_VALID
 }
 
@@ -61,7 +64,7 @@ public class Tutorial : MonoBehaviour
 
         currentStep++;
 
-        if ((int)currentStep < tutorialStepCount)
+        if ((int)currentStep < tutorialStepCount - 1)
 			tutorialInfo.SetupTutorialInfo(currentStep);
     }
 

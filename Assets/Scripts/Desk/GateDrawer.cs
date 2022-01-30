@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GateDrawer : MonoBehaviour, IUIElement
@@ -26,11 +27,13 @@ public class GateDrawer : MonoBehaviour, IUIElement
 
 	public void OnGateSelected(string gateName)
 	{
+		if (SceneManager.GetActiveScene().name == "TutorialMode")
+			Tutorial.Instance.nextStep(TutorialSteps.SELECT_GATE_HIGHLIGHT_GATES);
 		baseGate.SetGateType(gateName);
 		gateTypeChanged?.Invoke(baseGate);
 	}
 
-	public void OnOpen()
+	public virtual void OnOpen()
 	{
 		gameObject.SetActive(true);
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class GateSelector : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class GateSelector : MonoBehaviour
 				{
 					CurrentSelectedObject = hitObject;
 					UIManager.Instance.OnGateSelected();
+					if (SceneManager.GetActiveScene().name == "TutorialMode")
+						Tutorial.Instance.nextStep(TutorialSteps.SELECT_GATE);
 				}
 				else
 				{

@@ -1,9 +1,10 @@
 
-public class GateDrawerTutorial : MissionInfoTutorial
+public class GateDrawerTutorial : MissionGateDrawer
 {
-	void Awake()
-	{
-		Tutorial.Instance.nextStep(TutorialSteps.SELECT_GATE_SHOW_GATE_DRAWER);
-		base.OnClose();
-	}
+	 public override void OnOpen()
+	 {
+		// Tutorial.Instance.nextStep(TutorialSteps.SELECT_GATE_SHOW_GATE_DRAWER);
+		base.OnOpen();
+		// OnClose();
+	 }
 }

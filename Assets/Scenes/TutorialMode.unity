@@ -187,6 +187,26 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &83336778 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8807970669193168677, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 1249078532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &83336781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83336778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7698b7cc36dd9fb4ab18bca48914883c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gateSelector: {fileID: 807806713}
+  gateButtonPrefab: {fileID: 832838692510663604, guid: a701bf474d08a0e44a9cc0bdd1ba3b15, type: 3}
+  gateButtonContainer: {fileID: 1293705444}
 --- !u!1 &99909134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2290750388484413601, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
@@ -650,6 +670,41 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &716414902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716414903}
+  m_Layer: 5
+  m_Name: MiddleLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &716414903
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716414902}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1990718264}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 275, y: -600}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &730388652
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +758,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8807970669266104679, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
   m_PrefabInstance: {fileID: 1249078532}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &807806713 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8807970669555579352, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 1249078532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378c969239f45494cb0365ffa9cb1e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &902000642
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,7 +1010,8 @@ MonoBehaviour:
   tutorialSteps:
   - step: 0
     title: Welcome
-    description: 'Hey! Welcome to <color=yellow>SPARK</color>! '
+    description: Hey! Welcome to <color=yellow>SPARK</color>!  I'm Sparky, I'll show
+      you how Spark is built and all the necessary steps to get started!
     popupPosition: {fileID: 1926365771}
     popupSize: {x: 700, y: 300}
     mask: {fileID: 0}
@@ -952,7 +1019,7 @@ MonoBehaviour:
     showContinue: 1
   - step: 1
     title: Start
-    description: 2
+    description: 'We are going to go together through the core functions of <color=yellow>SPARK</color>. '
     popupPosition: {fileID: 1926365771}
     popupSize: {x: 700, y: 300}
     mask: {fileID: 0}
@@ -979,7 +1046,7 @@ MonoBehaviour:
     title: Place your <color=yellow>markers</color>
     description: You now need to place some <b>markers</b> on a surface! Make sure
       the arrow is pointing <b>upwards</b>, otherwise you might think you are upside
-      down.
+      down. The marker should cover atleast <b> 25% </b> of your screen size.
     popupPosition: {fileID: 1640943244}
     popupSize: {x: 550, y: 300}
     mask: {fileID: 1554585497}
@@ -988,12 +1055,13 @@ MonoBehaviour:
   - step: 5
     title: Default gate
     description: Not bad, let's introduce you to the <color=yellow>default gate</color>,
-      your buddy until you select a specific gate.
-    popupPosition: {fileID: 1926365771}
+      your buddy until you select a specific gate. Next step is to tap on it, don't
+      worry, it's friendly...
+    popupPosition: {fileID: 902000643}
     popupSize: {x: 550, y: 300}
-    mask: {fileID: 752084623}
+    mask: {fileID: 1554585497}
     infoPopupVisible: 1
-    showContinue: 1
+    showContinue: 0
   - step: 6
     title: Gate drawer
     description: Enter <color=yellow>Gate drawer</color>! All of your available logic
@@ -1001,6 +1069,34 @@ MonoBehaviour:
     popupPosition: {fileID: 1926365771}
     popupSize: {x: 550, y: 300}
     mask: {fileID: 752084623}
+    infoPopupVisible: 1
+    showContinue: 1
+  - step: 7
+    title: Selecting Logic Gates
+    description: 'You can select a <color=yellow>logic gate</color> to replace the
+      <b>currently selected</b> logic gate! '
+    popupPosition: {fileID: 1926365771}
+    popupSize: {x: 550, y: 300}
+    mask: {fileID: 1293705445}
+    infoPopupVisible: 1
+    showContinue: 0
+  - step: 8
+    title: Logic Gate selected
+    description: I'm proud of you, how far we have come... Errr, sorry about that!
+      Anyways now that you have selected a logic gate, that logic gate is created!
+    popupPosition: {fileID: 716414903}
+    popupSize: {x: 550, y: 300}
+    mask: {fileID: 1554585497}
+    infoPopupVisible: 1
+    showContinue: 1
+  - step: 9
+    title: Truthtable
+    description: The <color=yellow>truthtable</color> is shown above of the logic
+      gate, pretty neat huh! Now you know what combinations are needed for specific
+      outputs.
+    popupPosition: {fileID: 716414903}
+    popupSize: {x: 550, y: 300}
+    mask: {fileID: 1554585497}
     infoPopupVisible: 1
     showContinue: 0
 --- !u!222 &1074472274
@@ -1018,6 +1114,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 542988481567139880, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: HUD
+      value: 
+      objectReference: {fileID: 2146132666}
     - target: {fileID: 606613026149310452, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1354,6 +1454,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8807970669193168677, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8807970669253047164, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_Name
       value: BasePlayScene
@@ -1428,6 +1532,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8807970669529741485, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807970669589792515, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: gameObjectList.Array.data[2].active
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8807970669589792515, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
@@ -1536,6 +1644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2374862747462957866, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+    - {fileID: 149682884119824438, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
 --- !u!224 &1249078533 stripped
 RectTransform:
@@ -1608,17 +1717,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 8369485662550290089, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
   m_PrefabInstance: {fileID: 1249078532}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1249078540 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 149682884119824438, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
-  m_PrefabInstance: {fileID: 1249078532}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5c710b7592a0ce48a2f8a972d4ed22c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1249078541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1631,11 +1729,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994e9d9b921b67d4cb3a60cb52537f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gateDrawer: {fileID: 1249078540}
+  gateDrawer: {fileID: 83336781}
   errorPanelAnim: {fileID: 1249078539}
   errorPanelMessage: {fileID: 1249078538}
   playErrorAnimationHash: 0
   playButtonLabel: {fileID: 1249078537}
+  playDelay: 0.5
 --- !u!224 &1249078542 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3572525690298087311, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
@@ -1650,6 +1749,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc52ba834561933418ce6f40d3c3f9c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1249078548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249078534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d4cd19491dc654aae4819b5e10a4d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1259612096
@@ -1786,6 +1897,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259612096}
   m_CullTransparentMesh: 1
+--- !u!1 &1293705444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8807970668410213543, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 1249078532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1293705445 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8807970668410213542, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 1249078532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1308796326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2005,6 +2126,7 @@ RectTransform:
   - {fileID: 902000643}
   - {fileID: 1926365771}
   - {fileID: 1640943244}
+  - {fileID: 716414903}
   m_Father: {fileID: 1074472270}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2301,3 +2423,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143190086}
   m_CullTransparentMesh: 1
+--- !u!1 &2146132666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2331637475747476877, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 1249078532}
+  m_PrefabAsset: {fileID: 0}
