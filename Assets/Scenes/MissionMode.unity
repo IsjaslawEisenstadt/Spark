@@ -1174,6 +1174,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -162.49998
       objectReference: {fileID: 0}
+    - target: {fileID: 8807970669048982660, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.24528301
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807970669048982660, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.24528301
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807970669048982660, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.24528301
+      objectReference: {fileID: 0}
     - target: {fileID: 8807970669132862040, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1440,7 +1452,7 @@ PrefabInstance:
       objectReference: {fileID: -7263181841362973816, guid: b8d13a1027bc8ae43bf1efa79ab02778, type: 2}
     - target: {fileID: 9067609539731730288, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8807970669193168681, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
@@ -1529,6 +1541,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2424266593656155687, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
   m_PrefabInstance: {fileID: 986303613}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &986303624 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8295427047505268383, guid: 98f07b9daf16fb2498b19e3999eaa8d1, type: 3}
+  m_PrefabInstance: {fileID: 986303613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1014973131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,7 +1712,7 @@ MonoBehaviour:
   errorPanelAnim: {fileID: 1607958685}
   errorPanelMessage: {fileID: 261871854}
   playErrorAnimationHash: 0
-  playButtonLabel: {fileID: 0}
+  playButtonLabel: {fileID: 986303624}
   playDelay: 0.5
 --- !u!95 &1607958685 stripped
 Animator:
