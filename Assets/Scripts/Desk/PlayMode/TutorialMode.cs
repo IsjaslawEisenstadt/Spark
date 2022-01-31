@@ -1,7 +1,6 @@
 ﻿public class TutorialMode : PlayMode
 {
 	ResultView resultView;
-	bool isValid = true;
 
 	protected override void EvaluatePlay(TruthTableRow[] result)
 	{
@@ -10,9 +9,8 @@
 		if (!resultView)
 			resultView = UIManager.Instance.GetPopup(PopupType.ResultView).popup.GetComponent<ResultView>();
 
-		resultView.UpdateNextButtonState(isValid);
+		resultView.UpdateNextButtonState(true);
 
-		if (isValid)
-			Tutorial.Instance.nextStep(TutorialSteps.RESULT_IS_VALID);
+		Tutorial.Instance.nextStep(TutorialSteps.RESULT_IS_VALID);
 	}
 }

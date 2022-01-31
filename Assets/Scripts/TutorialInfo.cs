@@ -8,6 +8,8 @@ using UnityEngine.Events;
 
 public class TutorialInfo : MonoBehaviour, IUIElement
 {
+	public static TutorialInfo Instance { get; private set; }
+
 	public Action<bool> OnVisibilityChanged;
 
 	public TMP_Text title;
@@ -21,6 +23,14 @@ public class TutorialInfo : MonoBehaviour, IUIElement
 
 	private float buttonHeight;
 	private TutorialStep currentTutorialStep;
+
+	void Awake()
+	{
+		if (Instance != null && Instance != this)
+			Destroy(gameObject);
+		else
+			Instance = this;
+	}
 
 	void Start() => buttonHeight = button.sizeDelta.y;
 

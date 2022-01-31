@@ -14,8 +14,9 @@ public enum TutorialSteps
 	TAP_START_ON_MISSIONINFO,
 	LIGHTING_INFO,
 	MARKER_ADVICE,
-	SELECT_GATE, // hier fehlt noch ein state
+	SELECT_GATE,
 	LOGIC_GATE_SELECTED,
+	LOGIC_GATE_SELECTED_INFO,
 	TRUTHTABLE_SHOWN,
 	RESULT_IS_VALID
 }
@@ -42,10 +43,7 @@ public class Tutorial : MonoBehaviour
     {
 		tutorialInfo = (TutorialInfo) UIManager.Instance.GetPopup(PopupType.TutorialInfo).script;
 		currentStep = (TutorialSteps)(PlayerPrefs.HasKey("TutorialStep") ? PlayerPrefs.GetInt("TutorialStep") : 0);
-		tutorialStepCount = Enum.GetValues(typeof(GateType))
-								.Cast<GateType>()
-								.ToList()
-								.Count;
+		tutorialStepCount = Enum.GetValues(typeof(GateType)).Length;
 
 		if (currentStep > 0)
             UIManager.Instance.Open(PopupType.TutorialReset);
@@ -53,9 +51,9 @@ public class Tutorial : MonoBehaviour
 			tutorialInfo.SetupTutorialInfo(currentStep);
 	}
 
-    public void nextStep(TutorialSteps tutorialStep)
+    public void nextStep(TutorialSteps currStep)
     {
-		if (!(tutorialStep == currentStep))
+		if (currStep != currentStep)
 			return;
 
 		onNextStepActions.FirstOrDefault(x => x.step == currentStep)?.onNextStep?.Invoke();
@@ -66,7 +64,7 @@ public class Tutorial : MonoBehaviour
 			tutorialInfo.SetupTutorialInfo(currentStep);
     }
 
-	public void nextStep(string tutorialStep) => nextStep(Enum.GetValues(typeof(TutorialSteps)).Cast<TutorialSteps>().ToList().First(x => x.ToString() == tutorialStep));
+	public void nextStep(string currStep) => nextStep(Enum.GetValues(typeof(TutorialSteps)).Cast<TutorialSteps>().ToList().First(x => x.ToString() == currStep));
 
 
 	public void ResetTutorial()

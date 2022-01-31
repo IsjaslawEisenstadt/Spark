@@ -27,8 +27,6 @@ public class GateDrawer : MonoBehaviour, IUIElement
 
 	public void OnGateSelected(string gateName)
 	{
-		if (SceneManager.GetActiveScene().name == "TutorialMode")
-			Tutorial.Instance.nextStep(TutorialSteps.SELECT_GATE_HIGHLIGHT_GATES);
 		baseGate.SetGateType(gateName);
 		gateTypeChanged?.Invoke(baseGate);
 	}
@@ -52,7 +50,7 @@ public class GateDrawer : MonoBehaviour, IUIElement
 		gameObject.SetActive(false);
 	}
 
-	protected Button GenerateGateButton(string gateName)
+	protected virtual Button GenerateGateButton(string gateName)
 	{
 		GameObject gateButton = Instantiate(gateButtonPrefab, gateButtonContainer.transform);
 		Button button = gateButton.GetComponent<Button>();
